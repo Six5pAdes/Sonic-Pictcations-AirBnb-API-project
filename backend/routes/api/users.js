@@ -30,10 +30,18 @@ const validateSignup = [
 router.post("/", async (req, res) => {
   const { email, password, username } = req.body;
   const hashedPassword = bcrypt.hashSync(password);
-  const user = await User.create({ email, username, hashedPassword });
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    username,
+    hashedPassword,
+  });
 
   const safeUser = {
     id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
     email: user.email,
     username: user.username,
   };
@@ -48,10 +56,18 @@ router.post("/", async (req, res) => {
 router.post("/", validateSignup, async (req, res) => {
   const { email, password, username } = req.body;
   const hashedPassword = bcrypt.hashSync(password);
-  const user = await User.create({ email, username, hashedPassword });
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    username,
+    hashedPassword,
+  });
 
   const safeUser = {
     id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
     email: user.email,
     username: user.username,
   };
