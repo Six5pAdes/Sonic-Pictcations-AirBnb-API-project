@@ -18,38 +18,41 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await Booking.bulkCreate([
-      {
-        spotId: 1,
-        userId: 1,
-        startDate: "2024-02-28",
-        endDate: "2024-02-29",
-      },
-      {
-        spotId: 2,
-        userId: 2,
-        startDate: "2024-05-17",
-        endDate: "2024-06-01",
-      },
-      {
-        spotId: 3,
-        userId: 3,
-        startDate: "2024-03-03",
-        endDate: "2024-04-02",
-      },
-      {
-        spotId: 4,
-        userId: 4,
-        startDate: "2024-08-05",
-        endDate: "2024-08-10",
-      },
-      {
-        spotId: 5,
-        userId: 5,
-        startDate: "2024-11-30",
-        endDate: "2024-12-06",
-      },
-    ]);
+    await Booking.bulkCreate(
+      [
+        {
+          spotId: 1,
+          userId: 1,
+          startDate: "2024-02-28",
+          endDate: "2024-02-29",
+        },
+        {
+          spotId: 2,
+          userId: 2,
+          startDate: "2024-05-17",
+          endDate: "2024-06-01",
+        },
+        {
+          spotId: 3,
+          userId: 3,
+          startDate: "2024-03-03",
+          endDate: "2024-04-02",
+        },
+        {
+          spotId: 4,
+          userId: 4,
+          startDate: "2024-08-05",
+          endDate: "2024-08-10",
+        },
+        {
+          spotId: 5,
+          userId: 5,
+          startDate: "2024-11-30",
+          endDate: "2024-12-06",
+        },
+      ],
+      { validate: true }
+    );
   },
 
   async down(queryInterface, Sequelize) {
