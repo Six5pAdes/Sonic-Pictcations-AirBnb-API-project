@@ -98,16 +98,20 @@ module.exports = {
      */
     options.tableName = "Spots";
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
-      country: {
-        [Op.in]: [
-          "Australia",
-          "India",
-          "Mexico",
-          "Nigeria",
-          "United States of America",
-        ],
+    return queryInterface.bulkDelete(
+      options,
+      {
+        country: {
+          [Op.in]: [
+            "Australia",
+            "India",
+            "Mexico",
+            "Nigeria",
+            "United States of America",
+          ],
+        },
       },
-    });
+      {}
+    );
   },
 };
