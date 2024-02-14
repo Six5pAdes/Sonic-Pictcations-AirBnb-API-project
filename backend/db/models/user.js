@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         as: "Owner",
       });
       User.hasMany(models.Booking, {
-        foreignKey: "userID",
+        foreignKey: "userId",
         onDelete: "CASCADE",
         hooks: true,
         as: "Booker",
