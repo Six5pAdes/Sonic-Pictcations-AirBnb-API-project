@@ -11,14 +11,14 @@ const isProduction = environment === "production";
 
 const app = express();
 
+const { ValidationError } = require("sequelize");
+
+const routes = require("./routes");
+
 app.use(morgan("dev"));
 
 app.use(cookieParser());
 app.use(express.json());
-
-const { ValidationError } = require("sequelize");
-
-const routes = require("./routes");
 
 // Security Middleware
 if (!isProduction) {
