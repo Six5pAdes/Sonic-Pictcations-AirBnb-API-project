@@ -12,6 +12,16 @@ const router = express.Router();
 // 22. Delete review image
 // require authentication
 // require proper authorization
-router.delete("/:imageId", async (req, res) => {});
+router.delete("/:imageId", requireAuth, async (req, res) => {
+  const { user } = req;
+  const { imageId } = req.params;
+
+  const findReviewImg = await ReviewImage.findOne({ where: { id: imageId } });
+
+  await findReviewImg.destroy();
+  return res.json({
+    message: "Successfully deleted",
+  });
+});
 
 module.exports = router;
