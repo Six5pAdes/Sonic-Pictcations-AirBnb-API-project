@@ -16,6 +16,86 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
+const validateSpot = [
+  check("address")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("Street address is required"),
+  check("city")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("City is required"),
+  check("state")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("State is required"),
+  check("country")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("Country is required"),
+  check("lat")
+    .exists({ checkFalsy: true })
+    .isFloat({ min: -90, max: 90 })
+    .withMessage("Latitude must be within -90 and 90"),
+  check("lng")
+    .exists({ checkFalsy: true })
+    .isFloat({ min: -180, max: 180 })
+    .withMessage("Longitude must be within -180 and 180"),
+  check("name")
+    .exists({ checkFalsy: true })
+    .isLength({ max: 49 })
+    .withMessage("Name must be less than 50 characters"),
+  check("description")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("Description is required"),
+  check("price")
+    .exists({ checkFalsy: true })
+    .isFloat({ min: 0 })
+    .withMessage("Price per day must be a positive number"),
+  handleValidationErrors,
+];
+
+const validateReview = [
+  check("review")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("Review text is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .isInt({ min: 1, max: 5 })
+    .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors,
+];
+
+const validateDates = [
+  check("startDate")
+    .exists({ checkFalsy: true })
+    .custom((value, { req }) => {
+      let givenStartDate = new Date(value);
+      let currentDate = new Date();
+
+      if (currentDate > givenStartDate) {
+        return false;
+      }
+      return true;
+    })
+    .withMessage("startDate cannot be in the past"),
+  check("startDate")
+    .exists({ checkFalsy: true })
+    .custom((value, { req }) => {
+      let givenStartDate = new Date(req.body.startDate);
+      let givenEndDate = new Date(value);
+
+      if (givenStartDate <= givenEndDate) {
+        return false;
+      }
+      return true;
+    })
+    .withMessage("endDate cannot be on or before startDate"),
+  handleValidationErrors,
+];
+
 // 4. Get all spots
 router.get("/", async (req, res) => {
   // 24. add query filters to get all spots
@@ -67,7 +147,7 @@ router.get("/:spotId", async (req, res) => {
 
 // 7. Create spot
 // require authentication
-router.post("/", requireAuth, async (req, res) => {
+router.post("/", requireAuth, validateSpot, async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } =
     req.body;
 
@@ -117,7 +197,7 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
 // 9. Edit spot
 // require authentication
 // require proper authorization
-router.put("/:spotId", requireAuth, async (req, res) => {
+router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
   const { user } = req;
   const { spotId } = req.params;
   const { address, city, state, country, lat, lng, name, description, price } =
@@ -176,23 +256,28 @@ router.get("/:spotId/reviews", async (req, res) => {
 
 // 13. Add review to spot based on id
 // require authentication
-router.post("/:spotId/reviews", requireAuth, async (req, res) => {
-  const { user } = req;
-  const { spotId } = req.params;
-  const { review, stars } = req.body;
+router.post(
+  "/:spotId/reviews",
+  requireAuth,
+  validateReview,
+  async (req, res) => {
+    const { user } = req;
+    const { spotId } = req.params;
+    const { review, stars } = req.body;
 
-  const findSpot = await Spot.findOne({
-    where: { id: spotId },
-  });
-  const newReview = await Review.create({
-    userId: user.id,
-    spotId: spotId,
-    review,
-    stars,
-  });
+    const findSpot = await Spot.findOne({
+      where: { id: spotId },
+    });
+    const newReview = await Review.create({
+      userId: user.id,
+      spotId: spotId,
+      review,
+      stars,
+    });
 
-  res.status(201).json(newReview);
-});
+    res.status(201).json(newReview);
+  }
+);
 
 // 18. Get all bookings for spot based on id
 // require authentication
@@ -226,19 +311,24 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
 // 19. Create booking from spot based on id
 // require authentication
 // require proper authorization
-router.post("/:spotId/bookings", requireAuth, async (req, res) => {
-  const { user } = req;
-  const { spotId } = req.params;
-  const { startDate, endDate } = req.body;
+router.post(
+  "/:spotId/bookings",
+  requireAuth,
+  validateDates,
+  async (req, res) => {
+    const { user } = req;
+    const { spotId } = req.params;
+    const { startDate, endDate } = req.body;
 
-  const newBooking = await Booking.create({
-    spotId,
-    userId: user.id,
-    startDate,
-    endDate,
-  });
+    const newBooking = await Booking.create({
+      spotId,
+      userId: user.id,
+      startDate,
+      endDate,
+    });
 
-  res.json(newBooking);
-});
+    res.json(newBooking);
+  }
+);
 
 module.exports = router;
