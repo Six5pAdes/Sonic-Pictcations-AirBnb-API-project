@@ -48,7 +48,7 @@ correct role(s) or permission(s).
     }
     ```
 
-### Get the Current User
+### 1. Get the Current User
 
 Returns the information about the current user that is logged in.
 
@@ -91,7 +91,7 @@ Returns the information about the current user that is logged in.
     }
     ```
 
-### Log In a User
+### 2. Log In a User
 
 Logs in a current user with valid credentials and returns the current user's
 information.
@@ -161,7 +161,7 @@ information.
     }
     ```
 
-### Sign Up a User
+### 3. Sign Up a User
 
 Creates a new user, logs them in as the current user, and returns the current
 user's information.
@@ -257,7 +257,7 @@ user's information.
 
 ## SPOTS
 
-### Get all Spots
+### 4. Get all Spots
 
 Returns all the spots.
 
@@ -299,7 +299,7 @@ Returns all the spots.
     }
     ```
 
-### Get all Spots owned by the Current User
+### 5. Get all Spots owned by the Current User
 
 Returns all the spots owned (created) by the current user.
 
@@ -341,7 +341,7 @@ Returns all the spots owned (created) by the current user.
     }
     ```
 
-### Get details of a Spot from an id
+### 6. Get details of a Spot from an id
 
 Returns the details of a spot specified by its id.
 
@@ -409,7 +409,7 @@ Returns the details of a spot specified by its id.
     }
     ```
 
-### Create a Spot
+### 7. Create a Spot
 
 Creates and returns a new spot.
 
@@ -485,7 +485,7 @@ Creates and returns a new spot.
     }
     ```
 
-### Add an Image to a Spot based on the Spot's id
+### 8. Add an Image to a Spot based on the Spot's id
 
 Create and return a new image for a spot specified by id.
 
@@ -534,7 +534,7 @@ Create and return a new image for a spot specified by id.
     }
     ```
 
-### Edit a Spot
+### 9. Edit a Spot
 
 Updates and returns an existing spot.
 
@@ -624,7 +624,7 @@ Updates and returns an existing spot.
     }
     ```
 
-### Delete a Spot
+### 10. Delete a Spot
 
 Deletes an existing spot.
 
@@ -664,7 +664,7 @@ Deletes an existing spot.
 
 ## REVIEWS
 
-### Get all Reviews of the Current User
+### 11. Get all Reviews of the Current User
 
 Returns all the reviews written by the current user.
 
@@ -722,7 +722,7 @@ Returns all the reviews written by the current user.
     }
     ```
 
-### Get all Reviews by a Spot's id
+### 12. Get all Reviews by a Spot's id
 
 Returns all the reviews that belong to a spot specified by id.
 
@@ -780,7 +780,7 @@ Returns all the reviews that belong to a spot specified by id.
     }
     ```
 
-### Create a Review for a Spot based on the Spot's id
+### 13. Create a Review for a Spot based on the Spot's id
 
 Create and return a new review for a spot specified by id.
 
@@ -862,7 +862,7 @@ Create and return a new review for a spot specified by id.
     }
     ```
 
-### Add an Image to a Review based on the Review's id
+### 14. Add an Image to a Review based on the Review's id
 
 Create and return a new image for a review specified by id.
 
@@ -923,7 +923,7 @@ Create and return a new image for a review specified by id.
     }
     ```
 
-### Edit a Review
+### 15. Edit a Review
 
 Update and return an existing review.
 
@@ -993,7 +993,7 @@ Update and return an existing review.
     }
     ```
 
-### Delete a Review
+### 16. Delete a Review
 
 Delete an existing review.
 
@@ -1033,7 +1033,7 @@ Delete an existing review.
 
 ## BOOKINGS
 
-### Get all of the Current User's Bookings
+### 17. Get all of the Current User's Bookings
 
 Return all the bookings that the current user has made.
 
@@ -1080,7 +1080,7 @@ Return all the bookings that the current user has made.
     }
     ```
 
-### Get all Bookings for a Spot based on the Spot's id
+### 18. Get all Bookings for a Spot based on the Spot's id
 
 Return all the bookings for a spot specified by id.
 
@@ -1151,7 +1151,7 @@ Return all the bookings for a spot specified by id.
     }
     ```
 
-### Create a Booking from a Spot based on the Spot's id
+### 19. Create a Booking from a Spot based on the Spot's id
 
 Create and return a new booking from a spot specified by id.
 
@@ -1238,7 +1238,7 @@ Create and return a new booking from a spot specified by id.
     }
     ```
 
-### Edit a Booking
+### 20. Edit a Booking
 
 Update and return an existing booking.
 
@@ -1338,7 +1338,7 @@ Update and return an existing booking.
     }
     ```
 
-### Delete a Booking
+### 21. Delete a Booking
 
 Delete an existing booking.
 
@@ -1392,7 +1392,7 @@ Delete an existing booking.
 
 ## IMAGES
 
-### Delete a Spot Image
+### 22. Delete a Spot Image
 
 Delete an existing image for a Spot.
 
@@ -1430,7 +1430,7 @@ Delete an existing image for a Spot.
     }
     ```
 
-### Delete a Review Image
+### 23. Delete a Review Image
 
 Delete an existing image for a Review.
 
