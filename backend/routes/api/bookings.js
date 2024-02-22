@@ -2,7 +2,7 @@ const express = require("express");
 const { Op } = require("sequelize");
 
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { Booking, Spot } = require("../../db/models");
+const { Booking, Spot, SpotImage } = require("../../db/models");
 
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -67,11 +67,11 @@ router.get("/current", requireAuth, async (req, res) => {
 // require proper authorization
 router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
   const { user } = req;
-  const { bookingId } = req.params;
+  let { bookingId } = req.params;
   const { startDate, endDate } = req.body;
 
   const findBooking = await Booking.findOne({
-    where: { bookingId },
+    where: { id: bookingId },
   });
   if (!findBooking)
     return res.status(404).json({ message: "Booking couldn't be found" });
@@ -81,7 +81,7 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
     });
 
   let currDate = new Date();
-  if (new Date(endDate) < currDate || new Date(startDate) < currDate) {
+  if (new Date(startDate) < currDate || new Date(endDate) < currDate) {
     return res.status(403).json({
       message: "Past bookings can't be modified",
     });
@@ -92,8 +92,8 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
       id: { [Op.ne]: bookingId },
       spotId: findBooking.spotId,
       [Op.and]: [
-        { startDate: { [Op.lte]: new Date(startDate) } },
-        { endDate: { [Op.gte]: new Date(endDate) } },
+        { startDate: { [Op.lte]: new Date(endDate) } },
+        { endDate: { [Op.gte]: new Date(startDate) } },
       ],
     },
   });
@@ -118,14 +118,17 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
 // require proper authorization
 router.delete("/:bookingId", requireAuth, async (req, res) => {
   const { user } = req;
+  let { bookingId } = req.params;
 
-  const findBooking = await Booking.findByPk(req.params.id);
+  const findBooking = await Booking.findOne({
+    where: { id: bookingId },
+  });
   if (!findBooking)
     return res.status(404).json({ message: "Booking couldn't be found" });
 
   const findSpot = await Spot.findOne({ where: { id: findBooking.spotId } });
   if (user.id === findBooking.userId || user.id === findSpot.ownerId) {
-    if (newDate(findBooking.startDate) <= new Date()) {
+    if (new Date(findBooking.startDate) <= new Date()) {
       return res.status(403).json({
         message: "Bookings that have been started can't be deleted",
       });

@@ -64,7 +64,7 @@ router.get("/current", requireAuth, async (req, res) => {
 router.post("/:reviewId/images", requireAuth, async (req, res) => {
   const { user } = req;
   const { url } = req.body;
-  const { reviewId } = req.params;
+  let { reviewId } = req.params;
 
   const findReview = await Review.findOne({
     where: { id: reviewId },
@@ -101,9 +101,12 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
 // require proper authorization
 router.put("/:reviewId", [requireAuth, validateReview], async (req, res) => {
   const { user } = req;
+  let { reviewId } = req.params;
   const { review, stars } = req.body;
 
-  const findReview = await Review.findByPk(req.params.id);
+  const findReview = await Review.findOne({
+    where: { id: reviewId },
+  });
   if (!findReview)
     return res.status(404).json({ message: "Review couldn't be found" });
   if (findReview.userId !== user.id)
@@ -123,11 +126,14 @@ router.put("/:reviewId", [requireAuth, validateReview], async (req, res) => {
 // require proper authorization
 router.delete("/:reviewId", requireAuth, async (req, res) => {
   const { user } = req;
+  let { reviewId } = req.params;
 
-  const findReview = await Review.findByPk(req.params.id);
+  const findReview = await Review.findOne({
+    where: { id: reviewId },
+  });
   if (!findReview)
     return res.status(404).json({ message: "Review couldn't be found" });
-  if (findReview.ownerId !== user.id)
+  if (findReview.userId !== user.id)
     return res.status(403).json({
       message: "Forbidden",
     });

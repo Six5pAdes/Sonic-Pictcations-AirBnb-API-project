@@ -13,13 +13,15 @@ const router = express.Router();
 // require proper authorization
 router.delete("/:imageId", requireAuth, async (req, res) => {
   const { user } = req;
+  let { imageId } = req.params;
 
-  const findReviewImg = await ReviewImage.findByPk(req.params.id);
+  const findReviewImg = await ReviewImage.findOne({
+    where: { id: imageId },
+  });
   if (!findReviewImg)
     return res.status(404).json({ message: "Review Image couldn't be found" });
-
   const findReview = await Review.findOne({
-    where: { id: spotId },
+    where: { id: imageId },
   });
   if (findReview.userId !== user.id)
     return res.status(403).json({

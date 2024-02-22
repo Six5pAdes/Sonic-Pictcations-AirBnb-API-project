@@ -34,11 +34,11 @@ module.exports = {
           onDelete: "CASCADE",
         },
         startDate: {
-          type: Sequelize.DATE,
+          type: Sequelize.DATEONLY,
           allowNull: false,
         },
         endDate: {
-          type: Sequelize.DATE,
+          type: Sequelize.DATEONLY,
           allowNull: false,
         },
         createdAt: {
@@ -57,6 +57,6 @@ module.exports = {
   },
   async down(queryInterface, Sequelize) {
     options.tableName = "Bookings";
-    return queryInterface.dropTable(options);
+    await queryInterface.dropTable(options);
   },
 };
