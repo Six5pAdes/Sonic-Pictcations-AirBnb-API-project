@@ -64,6 +64,7 @@ const validateReview = [
     .withMessage("Review text is required"),
   check("stars")
     .exists({ checkFalsy: true })
+    .notEmpty()
     .isInt({ min: 1, max: 5 })
     .withMessage("Stars must be an integer from 1 to 5"),
   handleValidationErrors,
@@ -81,13 +82,13 @@ const validateDates = [
       }
       return true;
     }),
-  check("startDate")
+  check("endDate")
     .exists({ checkFalsy: true })
     .custom((value, { req }) => {
       let givenStartDate = new Date(req.body.startDate);
       let givenEndDate = new Date(value);
 
-      if (givenStartDate <= givenEndDate) {
+      if (givenStartDate >= givenEndDate) {
         throw new Error("endDate cannot be on or before startDate");
       }
       return true;
@@ -134,7 +135,7 @@ const queryParams = [
 // 4. Get all spots
 router.get("/", queryParams, async (req, res) => {
   // 24. add query filters to get all spots
-  const { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } =
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } =
     req.query;
 
   page = page || 1;
@@ -146,36 +147,141 @@ router.get("/", queryParams, async (req, res) => {
     limit: size,
     offset: size * (page - 1),
   };
+
+  const query = {
+    where: {},
+  };
+
+  if (minLat && maxLat) {
+    query.where.lat = { [Op.between]: [minLat, maxLat] };
+  } else if (minLat) {
+    query.where.lat = { [Op.gte]: [minLat] };
+  } else if (maxLat) {
+    query.where.lat = { [Op.lte]: [maxLat] };
+  }
+
+  if (minLng && maxLng) {
+    query.where.lat = { [Op.between]: [minLng, maxLng] };
+  } else if (minLng) {
+    query.where.lat = { [Op.gte]: [minLng] };
+  } else if (maxLng) {
+    query.where.lat = { [Op.lte]: [maxLng] };
+  }
+
+  if (minPrice && maxPrice) {
+    query.where.lat = { [Op.between]: [minPrice, maxPrice] };
+  } else if (minPrice) {
+    query.where.lat = { [Op.gte]: [minPrice] };
+  } else if (maxPrice) {
+    query.where.lat = { [Op.lte]: [maxPrice] };
+  }
+
+  const findSpots = await Spot.findAll({
+    ...pagination,
+    ...query,
+  });
+
+  let avgRating;
+  for (let index = 0; index < findSpots.length; index++) {
+    // average rating info here
+    let ratings = await Review.count({
+      where: { spotId: findSpots[index].id },
+    });
+    let stars = await Review.sum("stars", {
+      where: { spotId: findSpots[index].id },
+    });
+    if (!stars) avgRating = 0;
+    else avgRating = stars / ratings;
+    findSpots[index].dataValues.avgRating = avgRating || null;
+
+    let findSpotImg = await SpotImage.findOne({
+      where: { spotId: findSpots[index].id, preview: true },
+    });
+    if (findSpotImg) {
+      findSpots[index].dataValues.previewImage = findSpotImg.url;
+    } else findSpots[index].dataValues.previewImage = null;
+  }
+
+  res.json({
+    Spots: findSpots,
+    // page: parseInt(page),
+    // size: parseInt(size),
+  });
 });
 
 // 5. Get all spots owned by current user
 // require authentication
 router.get("/current", requireAuth, async (req, res) => {
   const { user } = req;
-  const currSpots = await Spot.findAll({
+  const currSpot = await Spot.findAll({
     where: {
       ownerId: user.id,
     },
   });
 
-  res.json({ Spots: currSpots });
+  let avgRating;
+  for (let index = 0; index < currSpot.length; index++) {
+    // average rating info here
+    let ratings = await Review.count({
+      where: { spotId: currSpot[index].id },
+    });
+    let stars = await Review.sum("stars", {
+      where: { spotId: currSpot[index].id },
+    });
+    if (!stars) avgRating = 0;
+    else avgRating = stars / ratings;
+    currSpot[index].dataValues.avgRating = avgRating || null;
+
+    let findSpotImg = await SpotImage.findOne({
+      where: { spotId: currSpot[index].id, preview: true },
+    });
+    if (findSpotImg) {
+      currSpot[index].dataValues.previewImage = findSpotImg.url;
+    } else currSpot[index].dataValues.previewImage = null;
+  }
+
+  res.json({ Spots: currSpot });
 });
 
 // 6. Get spot details from id
 router.get("/:spotId", async (req, res) => {
   const { spotId } = req.params;
-  const spotById = await Spot.findOne({
-    where: {
-      id: spotId,
-    },
-  });
 
-  res.json({ spotById });
+  const spotById = await Spot.findByPk(spotId);
+  if (!spotById)
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+    });
+
+  let avgStarRating;
+  let numReviews = await Review.count({
+    where: { spotId: spotId },
+  });
+  let stars = await Review.sum("stars", {
+    where: { spotId: spotId },
+  });
+  if (!stars) avgStarRating = 0;
+  else avgStarRating = stars / numReviews;
+  spotById.dataValues.numReviews = numReviews;
+  spotById.dataValues.avgStarRating = avgStarRating;
+
+  const findSpotImg = await SpotImage.findAll({
+    where: { spotId: spotId },
+    attributes: ["id", "url", "preview"],
+  });
+  spotById.dataValues.SpotImages = findSpotImg;
+
+  const findOwner = await User.findByPk(spotById.ownerId, {
+    attributes: ["id", "firstName", "lastName"],
+  });
+  spotById.dataValues.Owner = findOwner;
+
+  res.json(spotById);
 });
 
 // 7. Create spot
 // require authentication
-router.post("/", requireAuth, validateSpot, async (req, res) => {
+router.post("/", [requireAuth, validateSpot], async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } =
     req.body;
 
@@ -232,7 +338,7 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
 // 9. Edit spot
 // require authentication
 // require proper authorization
-router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
+router.put("/:spotId", [requireAuth, validateSpot], async (req, res) => {
   const { user } = req;
   const { address, city, state, country, lat, lng, name, description, price } =
     req.body;
@@ -324,6 +430,7 @@ router.post(
       return res.status(500).json({
         message: "User already has a review for this spot",
       });
+    // spotId = parseInt(spotId);
 
     const newReview = await Review.create({
       userId: user.id,
@@ -403,6 +510,8 @@ router.post(
           endDate: "End date conflicts with an existing booking",
         },
       });
+
+    spotId = parseInt(spotId);
 
     const newBooking = await Booking.create({
       spotId,

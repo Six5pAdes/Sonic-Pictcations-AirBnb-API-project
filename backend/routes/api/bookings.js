@@ -17,23 +17,21 @@ const validateDates = [
       let currentDate = new Date();
 
       if (currentDate > givenStartDate) {
-        return false;
+        throw new Error("startDate cannot be in the past");
       }
       return true;
-    })
-    .withMessage("startDate cannot be in the past"),
-  check("startDate")
+    }),
+  check("endDate")
     .exists({ checkFalsy: true })
     .custom((value, { req }) => {
       let givenStartDate = new Date(req.body.startDate);
       let givenEndDate = new Date(value);
 
-      if (givenStartDate <= givenEndDate) {
-        return false;
+      if (givenStartDate >= givenEndDate) {
+        throw new Error("endDate cannot be on or before startDate");
       }
       return true;
-    })
-    .withMessage("endDate cannot be on or before startDate"),
+    }),
   handleValidationErrors,
 ];
 
@@ -56,7 +54,6 @@ router.get("/current", requireAuth, async (req, res) => {
     let findSpotImg = await SpotImage.findOne({
       where: { spotId: allBookings[index].Spot.id, preview: true },
     });
-
     if (findSpotImg) {
       allBookings[index].Spot.dataValues.previewImage = findSpotImg.url;
     } else allBookings[index].Spot.dataValues.previewImage = null;
@@ -68,11 +65,14 @@ router.get("/current", requireAuth, async (req, res) => {
 // 20. Edit booking
 // require authentication
 // require proper authorization
-router.put("/:bookingId", requireAuth, validateDates, async (req, res) => {
+router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
   const { user } = req;
+  const { bookingId } = req.params;
   const { startDate, endDate } = req.body;
 
-  const findBooking = await Booking.findByPk(req.params.id);
+  const findBooking = await Booking.findOne({
+    where: { bookingId },
+  });
   if (!findBooking)
     return res.status(404).json({ message: "Booking couldn't be found" });
   if (findBooking.userId !== user.id)
@@ -80,7 +80,8 @@ router.put("/:bookingId", requireAuth, validateDates, async (req, res) => {
       message: "Forbidden",
     });
 
-  if (new Date(endDate) < new Date()) {
+  let currDate = new Date();
+  if (new Date(endDate) < currDate || new Date(startDate) < currDate) {
     return res.status(403).json({
       message: "Past bookings can't be modified",
     });
