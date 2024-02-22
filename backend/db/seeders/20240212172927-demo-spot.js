@@ -98,7 +98,7 @@ module.exports = {
      */
     options.tableName = "Spots";
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(
+    await queryInterface.bulkDelete(
       options,
       {
         country: {

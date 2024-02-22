@@ -245,7 +245,7 @@ router.get("/current", requireAuth, async (req, res) => {
 
 // 6. Get spot details from id
 router.get("/:spotId", async (req, res) => {
-  const { spotId } = req.params;
+  let { spotId } = req.params;
 
   const spotById = await Spot.findByPk(spotId);
   if (!spotById)
@@ -309,7 +309,7 @@ router.post("/", [requireAuth, validateSpot], async (req, res) => {
 // require proper authorization
 router.post("/:spotId/images", requireAuth, async (req, res) => {
   const { user } = req;
-  const { spotId } = req.params;
+  let { spotId } = req.params;
   const { url, preview } = req.body;
 
   const findSpot = await Spot.findOne({
@@ -340,10 +340,13 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
 // require proper authorization
 router.put("/:spotId", [requireAuth, validateSpot], async (req, res) => {
   const { user } = req;
+  let { spotId } = req.params;
   const { address, city, state, country, lat, lng, name, description, price } =
     req.body;
 
-  const findSpot = await Spot.findByPk(req.params.id);
+  const findSpot = await Spot.findOne({
+    where: { id: spotId },
+  });
   if (!findSpot)
     return res.status(404).json({ message: "Spot couldn't be found" });
   if (findSpot.ownerId !== user.id)
@@ -370,8 +373,11 @@ router.put("/:spotId", [requireAuth, validateSpot], async (req, res) => {
 // require proper authorization
 router.delete("/:spotId", requireAuth, async (req, res) => {
   const { user } = req;
+  let { spotId } = req.params;
 
-  const findSpot = await Spot.findByPk(req.params.id);
+  const findSpot = await Spot.findOne({
+    where: { id: spotId },
+  });
   if (!findSpot)
     return res.status(404).json({ message: "Spot couldn't be found" });
   if (findSpot.ownerId !== user.id)
@@ -387,7 +393,7 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
 
 // 12. Get all reviews by spot's id
 router.get("/:spotId/reviews", async (req, res) => {
-  const { spotId } = req.params;
+  let { spotId } = req.params;
 
   const findSpot = await Spot.findOne({ where: { id: spotId } });
   if (!findSpot)
@@ -414,7 +420,7 @@ router.post(
   [requireAuth, validateReview],
   async (req, res) => {
     const { user } = req;
-    const { spotId } = req.params;
+    let { spotId } = req.params;
     const { review, stars } = req.body;
 
     const findSpot = await Spot.findOne({
@@ -447,7 +453,7 @@ router.post(
 // require authentication
 router.get("/:spotId/bookings", requireAuth, async (req, res) => {
   const { user } = req;
-  const { spotId } = req.params;
+  let { spotId } = req.params;
   let bookings;
 
   const findSpot = await Spot.findOne({
@@ -482,7 +488,7 @@ router.post(
   [requireAuth, validateDates],
   async (req, res) => {
     const { user } = req;
-    const { spotId } = req.params;
+    let { spotId } = req.params;
     const { startDate, endDate } = req.body;
 
     const findSpot = await Spot.findOne({ where: { id: spotId } });
@@ -497,8 +503,8 @@ router.post(
       where: {
         spotId: spotId,
         [Op.and]: [
-          { startDate: { [Op.lte]: new Date(startDate) } },
-          { endDate: { [Op.gte]: new Date(endDate) } },
+          { startDate: { [Op.lte]: new Date(endDate) } },
+          { endDate: { [Op.gte]: new Date(startDate) } },
         ],
       },
     });
