@@ -21,6 +21,7 @@ const validateReview = [
     .withMessage("Review text is required"),
   check("stars")
     .exists({ checkFalsy: true })
+    .notEmpty()
     .isInt({ min: 1, max: 5 })
     .withMessage("Stars must be an integer from 1 to 5"),
   handleValidationErrors,
@@ -49,7 +50,6 @@ router.get("/current", requireAuth, async (req, res) => {
     let findSpotImg = await SpotImage.findOne({
       where: { spotId: allReviews[index].Spot.id, preview: true },
     });
-
     if (findSpotImg) {
       allReviews[index].Spot.dataValues.previewImage = findSpotImg.url;
     } else allReviews[index].Spot.dataValues.previewImage = null;
@@ -99,7 +99,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
 // 15. Edit review
 // require authentication
 // require proper authorization
-router.put("/:reviewId", requireAuth, validateReview, async (req, res) => {
+router.put("/:reviewId", [requireAuth, validateReview], async (req, res) => {
   const { user } = req;
   const { review, stars } = req.body;
 
