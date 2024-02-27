@@ -312,9 +312,7 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
   let { spotId } = req.params;
   const { url, preview } = req.body;
 
-  const findSpot = await Spot.findOne({
-    where: { id: spotId },
-  });
+  const findSpot = await Spot.findByPk(spotId);
   if (!findSpot)
     return res.status(404).json({ message: "Spot couldn't be found" });
   if (findSpot.ownerId !== user.id)
@@ -344,9 +342,7 @@ router.put("/:spotId", [requireAuth, validateSpot], async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } =
     req.body;
 
-  const findSpot = await Spot.findOne({
-    where: { id: spotId },
-  });
+  const findSpot = await Spot.findByPk(spotId);
   if (!findSpot)
     return res.status(404).json({ message: "Spot couldn't be found" });
   if (findSpot.ownerId !== user.id)
@@ -375,9 +371,7 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
   const { user } = req;
   let { spotId } = req.params;
 
-  const findSpot = await Spot.findOne({
-    where: { id: spotId },
-  });
+  const findSpot = await Spot.findByPk(spotId);
   if (!findSpot)
     return res.status(404).json({ message: "Spot couldn't be found" });
   if (findSpot.ownerId !== user.id)
@@ -395,7 +389,7 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
 router.get("/:spotId/reviews", async (req, res) => {
   let { spotId } = req.params;
 
-  const findSpot = await Spot.findOne({ where: { id: spotId } });
+  const findSpot = await Spot.findByPk(spotId);
   if (!findSpot)
     return res.status(404).json({ message: "Spot couldn't be found" });
 
@@ -423,9 +417,7 @@ router.post(
     let { spotId } = req.params;
     const { review, stars } = req.body;
 
-    const findSpot = await Spot.findOne({
-      where: { id: spotId },
-    });
+    const findSpot = await Spot.findByPk(spotId);
     if (!findSpot)
       return res.status(404).json({ message: "Spot couldn't be found" });
 
@@ -456,9 +448,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
   let { spotId } = req.params;
   let bookings;
 
-  const findSpot = await Spot.findOne({
-    where: { id: spotId },
-  });
+  const findSpot = await Spot.findByPk(spotId);
   if (!findSpot)
     return res.status(404).json({ message: "Spot couldn't be found" });
 
@@ -491,7 +481,7 @@ router.post(
     let { spotId } = req.params;
     const { startDate, endDate } = req.body;
 
-    const findSpot = await Spot.findOne({ where: { id: spotId } });
+    const findSpot = await Spot.findByPk(spotId);
     if (!findSpot)
       return res.status(404).json({ message: "Spot couldn't be found" });
     if (findSpot.ownerId !== user.id)
