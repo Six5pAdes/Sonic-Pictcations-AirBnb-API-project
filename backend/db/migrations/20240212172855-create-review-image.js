@@ -20,7 +20,7 @@ module.exports = {
         reviewId: {
           type: Sequelize.INTEGER,
           references: {
-            model: "ReviewImages",
+            model: "Reviews",
             key: "id",
           },
           onDelete: "CASCADE",

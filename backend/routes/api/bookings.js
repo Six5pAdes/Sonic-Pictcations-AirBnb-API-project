@@ -51,12 +51,16 @@ router.get("/current", requireAuth, async (req, res) => {
   });
 
   for (let index = 0; index < allBookings.length; index++) {
+    let thisBooking = allBookings[index].toJSON();
+
     let findSpotImg = await SpotImage.findOne({
-      where: { spotId: allBookings[index].Spot.id, preview: true },
+      where: { spotId: thisBooking.Spot.id, preview: true },
     });
+
     if (findSpotImg) {
-      allBookings[index].Spot.dataValues.previewImage = findSpotImg.url;
-    } else allBookings[index].Spot.dataValues.previewImage = null;
+      thisBooking.Spot.previewImage = findSpotImg.url;
+    } else thisBooking.Spot.previewImage = null;
+    allBookings[index] = thisBooking;
   }
 
   res.json({ Bookings: allBookings });
@@ -70,9 +74,7 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
   let { bookingId } = req.params;
   const { startDate, endDate } = req.body;
 
-  const findBooking = await Booking.findOne({
-    where: { id: bookingId },
-  });
+  const findBooking = await Booking.findByPk(bookingId);
   if (!findBooking)
     return res.status(404).json({ message: "Booking couldn't be found" });
   if (findBooking.userId !== user.id)
@@ -126,8 +128,7 @@ router.delete("/:bookingId", requireAuth, async (req, res) => {
   if (!findBooking)
     return res.status(404).json({ message: "Booking couldn't be found" });
 
-  const findSpot = await Spot.findOne({ where: { id: findBooking.spotId } });
-  if (user.id === findBooking.userId || user.id === findSpot.ownerId) {
+  if (user.id === findBooking.userId) {
     if (new Date(findBooking.startDate) <= new Date()) {
       return res.status(403).json({
         message: "Bookings that have been started can't be deleted",

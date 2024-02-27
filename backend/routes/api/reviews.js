@@ -47,12 +47,16 @@ router.get("/current", requireAuth, async (req, res) => {
   });
 
   for (let index = 0; index < allReviews.length; index++) {
+    let thisReview = allReviews[index].toJSON();
+
     let findSpotImg = await SpotImage.findOne({
-      where: { spotId: allReviews[index].Spot.id, preview: true },
+      where: { spotId: thisReview.Spot.id, preview: true },
     });
+
     if (findSpotImg) {
-      allReviews[index].Spot.dataValues.previewImage = findSpotImg.url;
-    } else allReviews[index].Spot.dataValues.previewImage = null;
+      thisReview.Spot.previewImage = findSpotImg.url;
+    } else thisReview.Spot.previewImage = null;
+    allReviews[index] = thisReview;
   }
 
   res.json({ Reviews: allReviews });
@@ -66,9 +70,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
   const { url } = req.body;
   let { reviewId } = req.params;
 
-  const findReview = await Review.findOne({
-    where: { id: reviewId },
-  });
+  const findReview = await Review.findByPk(reviewId);
   if (!findReview)
     return res.status(404).json({ message: "Review couldn't be found" });
   if (findReview.userId !== user.id)
@@ -104,9 +106,7 @@ router.put("/:reviewId", [requireAuth, validateReview], async (req, res) => {
   let { reviewId } = req.params;
   const { review, stars } = req.body;
 
-  const findReview = await Review.findOne({
-    where: { id: reviewId },
-  });
+  const findReview = await Review.findByPk(reviewId);
   if (!findReview)
     return res.status(404).json({ message: "Review couldn't be found" });
   if (findReview.userId !== user.id)
@@ -128,9 +128,7 @@ router.delete("/:reviewId", requireAuth, async (req, res) => {
   const { user } = req;
   let { reviewId } = req.params;
 
-  const findReview = await Review.findOne({
-    where: { id: reviewId },
-  });
+  const findReview = await Review.findByPk(reviewId);
   if (!findReview)
     return res.status(404).json({ message: "Review couldn't be found" });
   if (findReview.userId !== user.id)
