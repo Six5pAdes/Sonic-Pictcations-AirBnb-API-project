@@ -192,17 +192,18 @@ router.get("/", queryParams, async (req, res) => {
     });
     if (!stars) avgRating = 0;
     else avgRating = stars / ratings;
-    findSpots[index].dataValues.avgRating = avgRating || null;
+    findSpots[index].dataValues.avgRating =
+      avgRating || "No average rating yet";
 
     let findSpotImg = await SpotImage.findOne({
       where: { spotId: findSpots[index].id, preview: true },
     });
     if (findSpotImg) {
       findSpots[index].dataValues.previewImage = findSpotImg.url;
-    } else findSpots[index].dataValues.previewImage = null;
+    } else findSpots[index].dataValues.previewImage = "Image set to private";
   }
 
-  res.json({
+  return res.json({
     Spots: findSpots,
     // page: parseInt(page),
     // size: parseInt(size),
@@ -230,17 +231,17 @@ router.get("/current", requireAuth, async (req, res) => {
     });
     if (!stars) avgRating = 0;
     else avgRating = stars / ratings;
-    currSpot[index].dataValues.avgRating = avgRating || null;
+    currSpot[index].dataValues.avgRating = avgRating || "No average rating yet";
 
     let findSpotImg = await SpotImage.findOne({
       where: { spotId: currSpot[index].id, preview: true },
     });
     if (findSpotImg) {
       currSpot[index].dataValues.previewImage = findSpotImg.url;
-    } else currSpot[index].dataValues.previewImage = null;
+    } else currSpot[index].dataValues.previewImage = "Image set to private";
   }
 
-  res.json({ Spots: currSpot });
+  return res.json({ Spots: currSpot });
 });
 
 // 6. Get spot details from id
@@ -276,7 +277,7 @@ router.get("/:spotId", async (req, res) => {
   });
   spotById.dataValues.Owner = findOwner;
 
-  res.json(spotById);
+  return res.json(spotById);
 });
 
 // 7. Create spot
@@ -317,7 +318,7 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     return res.status(404).json({ message: "Spot couldn't be found" });
   if (findSpot.ownerId !== user.id)
     return res.status(403).json({
-      message: "Forbidden",
+      message: "Forbidden; Spot must belong to the current user",
     });
 
   const newSpotImg = await SpotImage.create({
@@ -326,7 +327,7 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     preview,
   });
 
-  res.json({
+  return res.json({
     id: newSpotImg.id,
     url: newSpotImg.url,
     preview: newSpotImg.preview,
@@ -347,7 +348,7 @@ router.put("/:spotId", [requireAuth, validateSpot], async (req, res) => {
     return res.status(404).json({ message: "Spot couldn't be found" });
   if (findSpot.ownerId !== user.id)
     return res.status(403).json({
-      message: "Forbidden",
+      message: "Forbidden; Spot must belong to the current user",
     });
 
   address ? (findSpot.address = address) : findSpot.address;
@@ -361,7 +362,7 @@ router.put("/:spotId", [requireAuth, validateSpot], async (req, res) => {
   price ? (findSpot.price = price) : findSpot.price;
 
   await findSpot.save();
-  res.json(findSpot);
+  return res.json(findSpot);
 });
 
 // 10. Delete spot
@@ -376,7 +377,7 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
     return res.status(404).json({ message: "Spot couldn't be found" });
   if (findSpot.ownerId !== user.id)
     return res.status(403).json({
-      message: "Forbidden",
+      message: "Forbidden; Spot must belong to the current user",
     });
 
   await findSpot.destroy();
@@ -404,7 +405,7 @@ router.get("/:spotId/reviews", async (req, res) => {
     ],
   });
 
-  res.json({ Reviews: allReviews });
+  return res.json({ Reviews: allReviews });
 });
 
 // 13. Add review to spot based on id
@@ -437,7 +438,7 @@ router.post(
       stars,
     });
 
-    res.status(201).json(newReview);
+    return res.status(201).json(newReview);
   }
 );
 
@@ -460,14 +461,26 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
         attributes: ["id", "firstName", "lastName"],
       },
     });
+
+    const results = bookings.map((booking) => ({
+      User: booking.User,
+      id: booking.id,
+      spotId: booking.spotId,
+      userId: booking.userId,
+      startDate: booking.startDate,
+      endDate: booking.endDate,
+      createdAt: booking.createdAt,
+      updatedAt: booking.updatedAt,
+    }));
+    res.json({ Bookings: results });
   } else {
     bookings = await Booking.findAll({
       where: { spotId: spotId },
       attributes: ["spotId", "startDate", "endDate"],
     });
-  }
 
-  res.json({ Bookings: bookings });
+    return res.json({ Bookings: bookings });
+  }
 });
 
 // 19. Create booking from spot based on id
@@ -484,12 +497,12 @@ router.post(
     const findSpot = await Spot.findByPk(spotId);
     if (!findSpot)
       return res.status(404).json({ message: "Spot couldn't be found" });
-    if (findSpot.ownerId !== user.id)
+    if (findSpot.ownerId === user.id)
       return res.status(403).json({
-        message: "Forbidden",
+        message: "Forbidden; Spot must NOT belong to the current user",
       });
 
-    const bookingCheck = await Booking.findOne({
+    const bookingCheck = await Booking.findAll({
       where: {
         spotId: spotId,
         [Op.and]: [
@@ -507,7 +520,7 @@ router.post(
         },
       });
 
-    spotId = parseInt(spotId);
+    // spotId = parseInt(spotId);
 
     const newBooking = await Booking.create({
       spotId,
@@ -516,7 +529,7 @@ router.post(
       endDate,
     });
 
-    res.json(newBooking);
+    return res.json(newBooking);
   }
 );
 
