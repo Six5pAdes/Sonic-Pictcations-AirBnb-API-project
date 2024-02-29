@@ -63,7 +63,18 @@ router.get("/current", requireAuth, async (req, res) => {
     allBookings[index] = thisBooking;
   }
 
-  res.json({ Bookings: allBookings });
+  const results = allBookings.map((booking) => ({
+    id: booking.id,
+    spotId: booking.spotId,
+    Spot: booking.Spot,
+    userId: booking.userId,
+    startDate: booking.startDate,
+    endDate: booking.endDate,
+    createdAt: booking.createdAt,
+    updatedAt: booking.updatedAt,
+  }));
+
+  res.json({ Bookings: results });
 });
 
 // 20. Edit booking
@@ -79,17 +90,17 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
     return res.status(404).json({ message: "Booking couldn't be found" });
   if (findBooking.userId !== user.id)
     return res.status(403).json({
-      message: "Forbidden",
+      message: "Forbidden; Booking must belong to the current user",
     });
 
   let currDate = new Date();
-  if (new Date(startDate) < currDate || new Date(endDate) < currDate) {
+  if (new Date(endDate) < currDate) {
     return res.status(403).json({
       message: "Past bookings can't be modified",
     });
   }
 
-  const bookingCheck = await Booking.findOne({
+  const bookingCheck = await Booking.findAll({
     where: {
       id: { [Op.ne]: bookingId },
       spotId: findBooking.spotId,
@@ -140,7 +151,10 @@ router.delete("/:bookingId", requireAuth, async (req, res) => {
       message: "Successfully deleted",
     });
   } else {
-    return res.status(403).json({ message: "Forbidden" });
+    return res.status(403).json({
+      message:
+        "Forbidden; Booking must belong to the current user, or Spot must belong to the current user",
+    });
   }
 });
 

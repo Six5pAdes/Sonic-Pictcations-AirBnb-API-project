@@ -59,7 +59,7 @@ router.get("/current", requireAuth, async (req, res) => {
     allReviews[index] = thisReview;
   }
 
-  res.json({ Reviews: allReviews });
+  return res.json({ Reviews: allReviews });
 });
 
 // 14. Add image to review based on id
@@ -75,7 +75,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
     return res.status(404).json({ message: "Review couldn't be found" });
   if (findReview.userId !== user.id)
     return res.status(403).json({
-      message: "Forbidden",
+      message: "Forbidden; Review must belong to the current user",
     });
 
   const imageTally = await ReviewImage.findAll({
@@ -92,7 +92,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
     url,
   });
 
-  res.json({
+  return res.json({
     id: newReviewImg.id,
     url: newReviewImg.url,
   });
@@ -111,14 +111,14 @@ router.put("/:reviewId", [requireAuth, validateReview], async (req, res) => {
     return res.status(404).json({ message: "Review couldn't be found" });
   if (findReview.userId !== user.id)
     return res.status(403).json({
-      message: "Forbidden",
+      message: "Forbidden; Review must belong to the current user",
     });
 
   review ? (findReview.review = review) : findReview.review;
   stars ? (findReview.stars = stars) : findReview.stars;
 
   await findReview.save();
-  res.json(findReview);
+  return res.json(findReview);
 });
 
 // 16. Delete review
@@ -133,7 +133,7 @@ router.delete("/:reviewId", requireAuth, async (req, res) => {
     return res.status(404).json({ message: "Review couldn't be found" });
   if (findReview.userId !== user.id)
     return res.status(403).json({
-      message: "Forbidden",
+      message: "Forbidden; Review must belong to the current user",
     });
 
   await findReview.destroy();
