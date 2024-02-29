@@ -148,9 +148,7 @@ router.get("/", queryParams, async (req, res) => {
     offset: size * (page - 1),
   };
 
-  const query = {
-    where: {},
-  };
+  const query = {};
 
   if (minLat && maxLat) {
     query.where.lat = { [Op.between]: [minLat, maxLat] };
@@ -177,8 +175,8 @@ router.get("/", queryParams, async (req, res) => {
   }
 
   const findSpots = await Spot.findAll({
+    where: query,
     ...pagination,
-    ...query,
   });
 
   let avgRating;
@@ -505,13 +503,25 @@ router.post(
     const bookingCheck = await Booking.findAll({
       where: {
         spotId: spotId,
-        [Op.and]: [
-          { startDate: { [Op.lte]: new Date(endDate) } },
-          { endDate: { [Op.gte]: new Date(startDate) } },
+        [Op.or]: [
+          {
+            startDate: {
+              [Op.between]: [new Date(startDate), new Date(endDate)],
+            },
+          },
+          {
+            endDate: { [Op.between]: [new Date(startDate), new Date(endDate)] },
+          },
+          {
+            [Op.and]: [
+              { startDate: { [Op.lte]: new Date(startDate) } },
+              { endDate: { [Op.gte]: new Date(endDate) } },
+            ],
+          },
         ],
       },
     });
-    if (bookingCheck)
+    if (bookingCheck.length > 0)
       return res.status(403).json({
         message: "Sorry, this spot is already booked for the specified dates",
         errors: {
