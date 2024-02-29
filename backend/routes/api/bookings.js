@@ -104,13 +104,21 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
     where: {
       id: { [Op.ne]: bookingId },
       spotId: findBooking.spotId,
-      [Op.and]: [
-        { startDate: { [Op.lte]: new Date(endDate) } },
-        { endDate: { [Op.gte]: new Date(startDate) } },
+      [Op.or]: [
+        {
+          startDate: { [Op.between]: [new Date(startDate), new Date(endDate)] },
+        },
+        { endDate: { [Op.between]: [new Date(startDate), new Date(endDate)] } },
+        {
+          [Op.and]: [
+            { startDate: { [Op.lte]: new Date(startDate) } },
+            { endDate: { [Op.gte]: new Date(endDate) } },
+          ],
+        },
       ],
     },
   });
-  if (bookingCheck)
+  if (bookingCheck.length > 0)
     return res.status(403).json({
       message: "Sorry, this spot is already booked for the specified dates",
       errors: {
