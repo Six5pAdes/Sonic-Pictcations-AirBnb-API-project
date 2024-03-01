@@ -101,31 +101,31 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
   }
 
   const bookingCheck = await Booking.findAll({
-    where: {
-      id: { [Op.ne]: bookingId },
-      spotId: findBooking.spotId,
-      [Op.or]: [
-        {
-          startDate: { [Op.between]: [new Date(startDate), new Date(endDate)] },
-        },
-        { endDate: { [Op.between]: [new Date(startDate), new Date(endDate)] } },
-        {
-          [Op.and]: [
-            { startDate: { [Op.lte]: new Date(startDate) } },
-            { endDate: { [Op.gte]: new Date(endDate) } },
-          ],
-        },
-      ],
-    },
+    where: { spotId: findBooking.spotId },
   });
-  if (bookingCheck.length > 0)
-    return res.status(403).json({
-      message: "Sorry, this spot is already booked for the specified dates",
-      errors: {
-        startDate: "Start date conflicts with an existing booking",
-        endDate: "End date conflicts with an existing booking",
-      },
-    });
+
+  const sdTime = new Date(startDate).getTime();
+  const edTime = new Date(endDate).getTime();
+
+  for (let booking of bookingCheck) {
+    const err = {};
+    const bookingS = new Date(booking.startDate).getTime();
+    const bookingE = new Date(booking.endDate).getTime();
+
+    if (bookingS <= sdTime && bookingE >= sdTime) {
+      err.startDate = "Start date conflicts with an existing booking";
+    }
+    if (bookingS <= edTime && bookingE >= edTime) {
+      err.endDate = "End date conflicts with an existing booking";
+    }
+
+    if (Object.keys(err).length > 0) {
+      return res.status(403).json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        errors: err,
+      });
+    }
+  }
 
   startDate ? (findBooking.startDate = startDate) : findBooking.startDate;
   endDate ? (findBooking.endDate = endDate) : findBooking.endDate;

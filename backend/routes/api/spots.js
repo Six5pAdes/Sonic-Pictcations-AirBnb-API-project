@@ -138,44 +138,46 @@ router.get("/", queryParams, async (req, res) => {
   let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } =
     req.query;
 
-  page = page || 1;
-  size = size || 20;
+  page = parseInt(page) || 1;
+  size = parseInt(size) || 20;
   if (page > 10) page = 10;
   if (size > 20) size = 20;
 
-  const pagination = {
+  let pagination = {
     limit: size,
     offset: size * (page - 1),
   };
 
-  const query = {};
+  const query = {
+    where: {},
+  };
 
   if (minLat && maxLat) {
     query.where.lat = { [Op.between]: [minLat, maxLat] };
   } else if (minLat) {
-    query.where.lat = { [Op.gte]: [minLat] };
+    query.where.lat = { [Op.gte]: minLat };
   } else if (maxLat) {
-    query.where.lat = { [Op.lte]: [maxLat] };
+    query.where.lat = { [Op.lte]: maxLat };
   }
 
   if (minLng && maxLng) {
-    query.where.lat = { [Op.between]: [minLng, maxLng] };
+    query.where.lng = { [Op.between]: [minLng, maxLng] };
   } else if (minLng) {
-    query.where.lat = { [Op.gte]: [minLng] };
+    query.where.lng = { [Op.gte]: minLng };
   } else if (maxLng) {
-    query.where.lat = { [Op.lte]: [maxLng] };
+    query.where.lng = { [Op.lte]: maxLng };
   }
 
   if (minPrice && maxPrice) {
-    query.where.lat = { [Op.between]: [minPrice, maxPrice] };
+    query.where.price = { [Op.between]: [minPrice, maxPrice] };
   } else if (minPrice) {
-    query.where.lat = { [Op.gte]: [minPrice] };
+    query.where.price = { [Op.gte]: minPrice };
   } else if (maxPrice) {
-    query.where.lat = { [Op.lte]: [maxPrice] };
+    query.where.price = { [Op.lte]: maxPrice };
   }
 
   const findSpots = await Spot.findAll({
-    where: query,
+    ...query,
     ...pagination,
   });
 
@@ -501,34 +503,31 @@ router.post(
       });
 
     const bookingCheck = await Booking.findAll({
-      where: {
-        spotId: spotId,
-        [Op.or]: [
-          {
-            startDate: {
-              [Op.between]: [new Date(startDate), new Date(endDate)],
-            },
-          },
-          {
-            endDate: { [Op.between]: [new Date(startDate), new Date(endDate)] },
-          },
-          {
-            [Op.and]: [
-              { startDate: { [Op.lte]: new Date(startDate) } },
-              { endDate: { [Op.gte]: new Date(endDate) } },
-            ],
-          },
-        ],
-      },
+      where: { spotId: spotId },
     });
-    if (bookingCheck.length > 0)
-      return res.status(403).json({
-        message: "Sorry, this spot is already booked for the specified dates",
-        errors: {
-          startDate: "Start date conflicts with an existing booking",
-          endDate: "End date conflicts with an existing booking",
-        },
-      });
+
+    const sdTime = new Date(startDate).getTime();
+    const edTime = new Date(endDate).getTime();
+
+    for (let booking of bookingCheck) {
+      const err = {};
+      const bookingS = new Date(booking.startDate).getTime();
+      const bookingE = new Date(booking.endDate).getTime();
+
+      if (bookingS <= sdTime && bookingE >= sdTime) {
+        err.startDate = "Start date conflicts with an existing booking";
+      }
+      if (bookingS <= edTime && bookingE >= edTime) {
+        err.endDate = "End date conflicts with an existing booking";
+      }
+
+      if (Object.keys(err).length > 0) {
+        return res.status(403).json({
+          message: "Sorry, this spot is already booked for the specified dates",
+          errors: err,
+        });
+      }
+    }
 
     // spotId = parseInt(spotId);
 
