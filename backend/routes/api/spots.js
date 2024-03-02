@@ -201,6 +201,21 @@ router.get("/", queryParams, async (req, res) => {
     if (findSpotImg) {
       findSpots[index].dataValues.previewImage = findSpotImg.url;
     } else findSpots[index].dataValues.previewImage = "Image set to private";
+
+    // Convert lat, lng, and price to numbers
+    findSpots[index].lat = parseFloat(findSpots[index].lat);
+    findSpots[index].lng = parseFloat(findSpots[index].lng);
+    findSpots[index].price = parseFloat(findSpots[index].price);
+
+    // Format createdAt and updatedAt
+    findSpots[index].createdAt = new Date(findSpots[index].createdAt)
+      .toISOString()
+      .replace("T", " ")
+      .replace("Z", "");
+    findSpots[index].updatedAt = new Date(findSpots[index].updatedAt)
+      .toISOString()
+      .replace("T", " ")
+      .replace("Z", "");
   }
 
   return res.json({
