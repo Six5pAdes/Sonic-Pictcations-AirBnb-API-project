@@ -205,8 +205,8 @@ router.get("/", queryParams, async (req, res) => {
 
   return res.json({
     Spots: findSpots,
-    // page: parseInt(page),
-    // size: parseInt(size),
+    page: parseInt(page),
+    size: parseInt(size),
   });
 });
 
