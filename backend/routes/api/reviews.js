@@ -59,7 +59,36 @@ router.get("/current", requireAuth, async (req, res) => {
     allReviews[index] = thisReview;
   }
 
-  return res.json({ Reviews: allReviews });
+  const results = allReviews.map((review) => ({
+    id: review.id,
+    userId: review.userId,
+    spotId: review.spotId,
+    review: review.review,
+    stars: review.stars,
+    createdAt: new Date(review.createdAt).toLocaleString("se-SE"),
+    updatedAt: new Date(review.updatedAt).toLocaleString("se-SE"),
+    User: {
+      id: review.User.id,
+      firstName: review.User.firstName,
+      lastName: review.User.lastName,
+    },
+    Spot: {
+      id: review.Spot.id,
+      ownerId: review.Spot.ownerId,
+      address: review.Spot.address,
+      city: review.Spot.city,
+      state: review.Spot.state,
+      country: review.Spot.country,
+      lat: parseFloat(review.Spot.lat),
+      lng: parseFloat(review.Spot.lng),
+      name: review.Spot.name,
+      price: parseFloat(review.Spot.price),
+      previewImage: review.Spot.previewImage,
+    },
+    ReviewImages: review.ReviewImages,
+  }));
+
+  return res.json({ Reviews: results });
 });
 
 // 14. Add image to review based on id
@@ -114,8 +143,10 @@ router.put("/:reviewId", [requireAuth, validateReview], async (req, res) => {
       message: "Forbidden; Review must belong to the current user",
     });
 
-  review ? (findReview.review = review) : findReview.review;
-  stars ? (findReview.stars = stars) : findReview.stars;
+  if (review) findReview.review = review;
+  if (stars) findReview.stars = parseFloat(stars);
+  findReview.createdAt = new Date(findReview.createdAt).toLocaleString("se-SE");
+  findReview.updatedAt = new Date(findReview.updatedAt).toLocaleString("se-SE");
 
   await findReview.save();
   return res.json(findReview);
