@@ -140,19 +140,11 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
     });
 
   if (startDate)
-    findBooking.startDate = new Date(findBooking.startDate).toLocaleDateString(
-      "se-SE"
-    );
+    findBooking.startDate = new Date(startDate).toLocaleDateString("se-SE");
   if (endDate)
-    findBooking.endDate = new Date(findBooking.endDate).toLocaleDateString(
-      "se-SE"
-    );
-  findBooking.createdAt = new Date(findBooking.createdAt).toLocaleString(
-    "se-SE"
-  );
-  findBooking.updatedAt = new Date(findBooking.updatedAt).toLocaleString(
-    "se-SE"
-  );
+    findBooking.endDate = new Date(endDate).toLocaleDateString("se-SE");
+  findBooking.createdAt = new Date().toLocaleString("se-SE");
+  findBooking.updatedAt = new Date().toLocaleString("se-SE");
 
   await findBooking.save();
   res.json(findBooking);
