@@ -210,10 +210,10 @@ router.get("/", queryParams, async (req, res) => {
     // Format createdAt and updatedAt
     findSpots[index].createdAt = new Date(
       findSpots[index].createdAt
-    ).toLocaleString("se-SE");
+    ).toLocaleString("sv-SE");
     findSpots[index].updatedAt = new Date(
       findSpots[index].updatedAt
-    ).toLocaleString("se-SE");
+    ).toLocaleString("sv-SE");
   }
 
   return res.json({
@@ -261,10 +261,10 @@ router.get("/current", requireAuth, async (req, res) => {
     // Format createdAt and updatedAt
     currSpot[index].createdAt = new Date(
       currSpot[index].createdAt
-    ).toLocaleString("se-SE");
+    ).toLocaleString("sv-SE");
     currSpot[index].updatedAt = new Date(
       currSpot[index].updatedAt
-    ).toLocaleString("se-SE");
+    ).toLocaleString("sv-SE");
   }
 
   return res.json({ Spots: currSpot });
@@ -309,8 +309,8 @@ router.get("/:spotId", async (req, res) => {
   spotById.price = parseFloat(spotById.price);
 
   // Format createdAt and updatedAt
-  spotById.createdAt = new Date(spotById.createdAt).toLocaleString("se-SE");
-  spotById.updatedAt = new Date(spotById.updatedAt).toLocaleString("se-SE");
+  spotById.createdAt = new Date(spotById.createdAt).toLocaleString("sv-SE");
+  spotById.updatedAt = new Date(spotById.updatedAt).toLocaleString("sv-SE");
 
   return res.json(spotById);
 });
@@ -335,8 +335,8 @@ router.post("/", [requireAuth, validateSpot], async (req, res) => {
     name,
     description,
     price: parseFloat(price),
-    createdAt: new Date().toLocaleString("se-SE"),
-    updatedAt: new Date().toLocaleString("se-SE"),
+    createdAt: new Date().toLocaleString("sv-SE"),
+    updatedAt: new Date().toLocaleString("sv-SE"),
   });
 
   return res.status(201).json(newSpot);
@@ -397,8 +397,8 @@ router.put("/:spotId", [requireAuth, validateSpot], async (req, res) => {
   if (name) findSpot.name = name;
   if (description) findSpot.description = description;
   if (price) findSpot.price = parseFloat(price);
-  if (findSpot) findSpot.createdAt = new Date().toLocaleString("se-SE");
-  if (findSpot) findSpot.updatedAt = new Date().toLocaleString("se-SE");
+  if (findSpot) findSpot.createdAt = new Date().toLocaleString("sv-SE");
+  if (findSpot) findSpot.updatedAt = new Date().toLocaleString("sv-SE");
 
   await findSpot.save();
   return res.json(findSpot);
@@ -457,8 +457,8 @@ router.get("/:spotId/reviews", async (req, res) => {
       User,
       ReviewImages,
     } = result.toJSON();
-    const formattedCreatedAt = new Date(createdAt).toLocaleString("se-SE");
-    const formattedUpdatedAt = new Date(updatedAt).toLocaleString("se-SE");
+    const formattedCreatedAt = new Date(createdAt).toLocaleString("sv-SE");
+    const formattedUpdatedAt = new Date(updatedAt).toLocaleString("sv-SE");
     const formattedUser = {
       id: User.id,
       firstName: User.firstName,
@@ -512,8 +512,8 @@ router.post(
       spotId: parseFloat(spotId),
       review,
       stars: parseFloat(stars),
-      createdAt: new Date().toLocaleString("se-SE"),
-      updatedAt: new Date().toLocaleString("se-SE"),
+      createdAt: new Date().toLocaleString("sv-SE"),
+      updatedAt: new Date().toLocaleString("sv-SE"),
     });
 
     return res.status(201).json(newReview);
@@ -545,10 +545,10 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
       id: booking.id,
       spotId: parseFloat(booking.spotId),
       userId: booking.userId,
-      startDate: new Date().toLocaleDateString("se-SE"),
-      endDate: new Date().toLocaleDateString("se-SE"),
-      createdAt: new Date().toLocaleString("se-SE"),
-      updatedAt: new Date().toLocaleString("se-SE"),
+      startDate: new Date().toLocaleDateString("sv-SE"),
+      endDate: new Date().toLocaleDateString("sv-SE"),
+      createdAt: new Date().toLocaleString("sv-SE"),
+      updatedAt: new Date().toLocaleString("sv-SE"),
     }));
 
     return res.json({ Bookings: results });
@@ -560,8 +560,8 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
 
     const results = bookings.map((booking) => ({
       spotId: parseFloat(booking.spotId),
-      startDate: new Date().toLocaleDateString("se-SE"),
-      endDate: new Date().toLocaleDateString("se-SE"),
+      startDate: new Date().toLocaleDateString("sv-SE"),
+      endDate: new Date().toLocaleDateString("sv-SE"),
     }));
 
     return res.json({ Bookings: results });
@@ -620,10 +620,10 @@ router.post(
     const newBooking = await Booking.create({
       spotId: parseFloat(spotId),
       userId: user.id,
-      startDate: new Date(startDate).toLocaleDateString("se-SE"),
-      endDate: new Date(endDate).toLocaleDateString("se-SE"),
-      createdAt: new Date().toLocaleString("se-SE"),
-      updatedAt: new Date().toLocaleString("se-SE"),
+      startDate: new Date(startDate).toLocaleDateString("sv-SE"),
+      endDate: new Date(endDate).toLocaleDateString("sv-SE"),
+      createdAt: new Date().toLocaleString("sv-SE"),
+      updatedAt: new Date().toLocaleString("sv-SE"),
     });
 
     return res.json(newBooking);

@@ -65,8 +65,8 @@ router.get("/current", requireAuth, async (req, res) => {
     spotId: review.spotId,
     review: review.review,
     stars: review.stars,
-    createdAt: new Date(review.createdAt).toLocaleString("se-SE"),
-    updatedAt: new Date(review.updatedAt).toLocaleString("se-SE"),
+    createdAt: new Date(review.createdAt).toLocaleString("sv-SE"),
+    updatedAt: new Date(review.updatedAt).toLocaleString("sv-SE"),
     User: {
       id: review.User.id,
       firstName: review.User.firstName,
@@ -145,8 +145,8 @@ router.put("/:reviewId", [requireAuth, validateReview], async (req, res) => {
 
   if (review) findReview.review = review;
   if (stars) findReview.stars = parseFloat(stars);
-  findReview.createdAt = new Date(findReview.createdAt).toLocaleString("se-SE");
-  findReview.updatedAt = new Date(findReview.updatedAt).toLocaleString("se-SE");
+  findReview.createdAt = new Date(findReview.createdAt).toLocaleString("sv-SE");
+  findReview.updatedAt = new Date(findReview.updatedAt).toLocaleString("sv-SE");
 
   await findReview.save();
   return res.json(findReview);

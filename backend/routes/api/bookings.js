@@ -80,10 +80,10 @@ router.get("/current", requireAuth, async (req, res) => {
       previewImage: booking.Spot.previewImage,
     },
     userId: booking.userId,
-    startDate: new Date(booking.startDate).toLocaleDateString("se-SE"),
-    endDate: new Date(booking.endDate).toLocaleDateString("se-SE"),
-    createdAt: new Date(booking.createdAt).toLocaleString("se-SE"),
-    updatedAt: new Date(booking.updatedAt).toLocaleString("se-SE"),
+    startDate: new Date(booking.startDate).toLocaleDateString("sv-SE"),
+    endDate: new Date(booking.endDate).toLocaleDateString("sv-SE"),
+    createdAt: new Date(booking.createdAt).toLocaleString("sv-SE"),
+    updatedAt: new Date(booking.updatedAt).toLocaleString("sv-SE"),
   }));
 
   res.json({ Bookings: results });
@@ -140,11 +140,11 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
     });
 
   if (startDate)
-    findBooking.startDate = new Date(startDate).toLocaleDateString("se-SE");
+    findBooking.startDate = new Date(startDate).toLocaleDateString("sv-SE");
   if (endDate)
-    findBooking.endDate = new Date(endDate).toLocaleDateString("se-SE");
-  findBooking.createdAt = new Date().toLocaleString("se-SE");
-  findBooking.updatedAt = new Date().toLocaleString("se-SE");
+    findBooking.endDate = new Date(endDate).toLocaleDateString("sv-SE");
+  findBooking.createdAt = new Date().toLocaleString("sv-SE");
+  findBooking.updatedAt = new Date().toLocaleString("sv-SE");
 
   await findBooking.save();
   res.json(findBooking);
