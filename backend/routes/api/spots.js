@@ -444,17 +444,43 @@ router.get("/:spotId/reviews", async (req, res) => {
     ],
   });
 
-  const results = allReviews.map((review) => ({
-    id: review.id,
-    userId: review.userId,
-    spotId: review.spotId,
-    review: review.review,
-    stars: review.stars,
-    createdAt: new Date(review.createdAt).toLocaleString("se-SE"),
-    updatedAt: new Date(review.updatedAt).toLocaleString("se-SE"),
-    User: review.User,
-    ReviewImages: review.ReviewImage,
-  }));
+  // reformatting results
+  const results = allReviews.map((result) => {
+    const {
+      id,
+      userId,
+      spotId,
+      review,
+      stars,
+      createdAt,
+      updatedAt,
+      User,
+      ReviewImages,
+    } = result.toJSON();
+    const formattedCreatedAt = new Date(createdAt).toLocaleString("se-SE");
+    const formattedUpdatedAt = new Date(updatedAt).toLocaleString("se-SE");
+    const formattedUser = {
+      id: User.id,
+      firstName: User.firstName,
+      lastName: User.lastName,
+    };
+    const formattedReviewImages = ReviewImages.map((image) => ({
+      id: image.id,
+      url: image.url,
+    }));
+
+    return {
+      id,
+      userId,
+      spotId,
+      review,
+      stars,
+      createdAt: formattedCreatedAt,
+      updatedAt: formattedUpdatedAt,
+      User: formattedUser,
+      ReviewImages: formattedReviewImages,
+    };
+  });
 
   return res.json({ Reviews: results });
 });
