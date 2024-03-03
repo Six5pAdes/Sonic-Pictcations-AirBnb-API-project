@@ -201,6 +201,19 @@ router.get("/", queryParams, async (req, res) => {
     if (findSpotImg) {
       findSpots[index].dataValues.previewImage = findSpotImg.url;
     } else findSpots[index].dataValues.previewImage = "Image set to private";
+
+    // Convert lat, lng, and price to numbers
+    findSpots[index].lat = parseFloat(findSpots[index].lat);
+    findSpots[index].lng = parseFloat(findSpots[index].lng);
+    findSpots[index].price = parseFloat(findSpots[index].price);
+
+    // Format createdAt and updatedAt
+    findSpots[index].createdAt = new Date(
+      findSpots[index].createdAt
+    ).toLocaleString("se-SE");
+    findSpots[index].updatedAt = new Date(
+      findSpots[index].updatedAt
+    ).toLocaleString("se-SE");
   }
 
   return res.json({
@@ -239,6 +252,19 @@ router.get("/current", requireAuth, async (req, res) => {
     if (findSpotImg) {
       currSpot[index].dataValues.previewImage = findSpotImg.url;
     } else currSpot[index].dataValues.previewImage = "Image set to private";
+
+    // Convert lat, lng, and price to numbers
+    currSpot[index].lat = parseFloat(currSpot[index].lat);
+    currSpot[index].lng = parseFloat(currSpot[index].lng);
+    currSpot[index].price = parseFloat(currSpot[index].price);
+
+    // Format createdAt and updatedAt
+    currSpot[index].createdAt = new Date(
+      currSpot[index].createdAt
+    ).toLocaleString("se-SE");
+    currSpot[index].updatedAt = new Date(
+      currSpot[index].updatedAt
+    ).toLocaleString("se-SE");
   }
 
   return res.json({ Spots: currSpot });
@@ -277,6 +303,15 @@ router.get("/:spotId", async (req, res) => {
   });
   spotById.dataValues.Owner = findOwner;
 
+  // Convert lat, lng, and price to numbers
+  spotById.lat = parseFloat(spotById.lat);
+  spotById.lng = parseFloat(spotById.lng);
+  spotById.price = parseFloat(spotById.price);
+
+  // Format createdAt and updatedAt
+  spotById.createdAt = new Date(spotById.createdAt).toLocaleString("se-SE");
+  spotById.updatedAt = new Date(spotById.updatedAt).toLocaleString("se-SE");
+
   return res.json(spotById);
 });
 
@@ -295,11 +330,13 @@ router.post("/", [requireAuth, validateSpot], async (req, res) => {
     city,
     state,
     country,
-    lat,
-    lng,
+    lat: parseFloat(lat),
+    lng: parseFloat(lng),
     name,
     description,
-    price,
+    price: parseFloat(price),
+    createdAt: new Date().toLocaleString("se-SE"),
+    updatedAt: new Date().toLocaleString("se-SE"),
   });
 
   return res.status(201).json(newSpot);
@@ -351,15 +388,17 @@ router.put("/:spotId", [requireAuth, validateSpot], async (req, res) => {
       message: "Forbidden; Spot must belong to the current user",
     });
 
-  address ? (findSpot.address = address) : findSpot.address;
-  city ? (findSpot.city = city) : findSpot.city;
-  state ? (findSpot.state = state) : findSpot.state;
-  country ? (findSpot.country = country) : findSpot.country;
-  lat ? (findSpot.lat = lat) : findSpot.lat;
-  lng ? (findSpot.lng = lng) : findSpot.lng;
-  name ? (findSpot.name = name) : findSpot.name;
-  description ? (findSpot.description = description) : findSpot.description;
-  price ? (findSpot.price = price) : findSpot.price;
+  if (address) findSpot.address = address;
+  if (city) findSpot.city = city;
+  if (state) findSpot.state = state;
+  if (country) findSpot.country = country;
+  if (lat) findSpot.lat = parseFloat(lat);
+  if (lng) findSpot.lng = parseFloat(lng);
+  if (name) findSpot.name = name;
+  if (description) findSpot.description = description;
+  if (price) findSpot.price = parseFloat(price);
+  if (findSpot) findSpot.createdAt = new Date().toLocaleString("se-SE");
+  if (findSpot) findSpot.updatedAt = new Date().toLocaleString("se-SE");
 
   await findSpot.save();
   return res.json(findSpot);
@@ -400,12 +439,24 @@ router.get("/:spotId/reviews", async (req, res) => {
       { model: User, attributes: ["id", "firstName", "lastName"] },
       {
         model: ReviewImage,
-        attributes: { exclude: ["reviewId", "createdAt", "updatedAt"] },
+        attributes: ["id", "url"],
       },
     ],
   });
 
-  return res.json({ Reviews: allReviews });
+  const results = allReviews.map((review) => ({
+    id: review.id,
+    userId: review.userId,
+    spotId: review.spotId,
+    review: review.review,
+    stars: review.stars,
+    createdAt: new Date(review.createdAt).toLocaleString("se-SE"),
+    updatedAt: new Date(review.updatedAt).toLocaleString("se-SE"),
+    User: review.User,
+    ReviewImages: review.ReviewImage,
+  }));
+
+  return res.json({ Reviews: results });
 });
 
 // 13. Add review to spot based on id
@@ -429,13 +480,14 @@ router.post(
       return res.status(500).json({
         message: "User already has a review for this spot",
       });
-    // spotId = parseInt(spotId);
 
     const newReview = await Review.create({
       userId: user.id,
-      spotId: spotId,
+      spotId: parseFloat(spotId),
       review,
-      stars,
+      stars: parseFloat(stars),
+      createdAt: new Date().toLocaleString("se-SE"),
+      updatedAt: new Date().toLocaleString("se-SE"),
     });
 
     return res.status(201).json(newReview);
@@ -465,21 +517,28 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
     const results = bookings.map((booking) => ({
       User: booking.User,
       id: booking.id,
-      spotId: booking.spotId,
+      spotId: parseFloat(booking.spotId),
       userId: booking.userId,
-      startDate: booking.startDate,
-      endDate: booking.endDate,
-      createdAt: booking.createdAt,
-      updatedAt: booking.updatedAt,
+      startDate: new Date().toLocaleDateString("se-SE"),
+      endDate: new Date().toLocaleDateString("se-SE"),
+      createdAt: new Date().toLocaleString("se-SE"),
+      updatedAt: new Date().toLocaleString("se-SE"),
     }));
-    res.json({ Bookings: results });
+
+    return res.json({ Bookings: results });
   } else {
     bookings = await Booking.findAll({
       where: { spotId: spotId },
       attributes: ["spotId", "startDate", "endDate"],
     });
 
-    return res.json({ Bookings: bookings });
+    const results = bookings.map((booking) => ({
+      spotId: parseFloat(booking.spotId),
+      startDate: new Date().toLocaleDateString("se-SE"),
+      endDate: new Date().toLocaleDateString("se-SE"),
+    }));
+
+    return res.json({ Bookings: results });
   }
 });
 
@@ -532,13 +591,13 @@ router.post(
         },
       });
 
-    // spotId = parseInt(spotId);
-
     const newBooking = await Booking.create({
-      spotId,
+      spotId: parseFloat(spotId),
       userId: user.id,
-      startDate,
-      endDate,
+      startDate: new Date(startDate).toLocaleDateString("se-SE"),
+      endDate: new Date(endDate).toLocaleDateString("se-SE"),
+      createdAt: new Date().toLocaleString("se-SE"),
+      updatedAt: new Date().toLocaleString("se-SE"),
     });
 
     return res.json(newBooking);

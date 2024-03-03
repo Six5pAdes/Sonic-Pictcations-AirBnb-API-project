@@ -59,19 +59,31 @@ router.get("/current", requireAuth, async (req, res) => {
 
     if (findSpotImg) {
       thisBooking.Spot.previewImage = findSpotImg.url;
-    } else thisBooking.Spot.previewImage = null;
+    } else thisBooking.Spot.previewImage = "Image set to private";
     allBookings[index] = thisBooking;
   }
 
   const results = allBookings.map((booking) => ({
     id: booking.id,
     spotId: booking.spotId,
-    Spot: booking.Spot,
+    Spot: {
+      id: booking.Spot.id,
+      ownerId: booking.Spot.ownerId,
+      address: booking.Spot.address,
+      city: booking.Spot.city,
+      state: booking.Spot.state,
+      country: booking.Spot.country,
+      lat: parseFloat(booking.Spot.lat),
+      lng: parseFloat(booking.Spot.lng),
+      name: booking.Spot.name,
+      price: parseFloat(booking.Spot.price),
+      previewImage: booking.Spot.previewImage,
+    },
     userId: booking.userId,
-    startDate: booking.startDate,
-    endDate: booking.endDate,
-    createdAt: booking.createdAt,
-    updatedAt: booking.updatedAt,
+    startDate: new Date(booking.startDate).toLocaleDateString("se-SE"),
+    endDate: new Date(booking.endDate).toLocaleDateString("se-SE"),
+    createdAt: new Date(booking.createdAt).toLocaleString("se-SE"),
+    updatedAt: new Date(booking.updatedAt).toLocaleString("se-SE"),
   }));
 
   res.json({ Bookings: results });
@@ -102,7 +114,6 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
 
   const bookingCheck = await Booking.findAll({
     where: {
-      id: { [Op.ne]: bookingId },
       spotId: findBooking.spotId,
       [Op.or]: [
         {
@@ -116,6 +127,7 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
           ],
         },
       ],
+      id: { [Op.ne]: bookingId },
     },
   });
   if (bookingCheck.length > 0)
@@ -127,8 +139,20 @@ router.put("/:bookingId", [requireAuth, validateDates], async (req, res) => {
       },
     });
 
-  startDate ? (findBooking.startDate = startDate) : findBooking.startDate;
-  endDate ? (findBooking.endDate = endDate) : findBooking.endDate;
+  if (startDate)
+    findBooking.startDate = new Date(findBooking.startDate).toLocaleDateString(
+      "se-SE"
+    );
+  if (endDate)
+    findBooking.endDate = new Date(findBooking.endDate).toLocaleDateString(
+      "se-SE"
+    );
+  findBooking.createdAt = new Date(findBooking.createdAt).toLocaleString(
+    "se-SE"
+  );
+  findBooking.updatedAt = new Date(findBooking.updatedAt).toLocaleString(
+    "se-SE"
+  );
 
   await findBooking.save();
   res.json(findBooking);
