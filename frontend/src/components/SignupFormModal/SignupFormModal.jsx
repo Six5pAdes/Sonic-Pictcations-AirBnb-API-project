@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useModal } from '../../context/Modal';
-import * as sessionActions from '../../store/session';
-import './SignupForm.css';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
+import * as sessionActions from "../../store/session";
+import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ function SignupFormModal() {
           username,
           firstName,
           lastName,
-          password
+          password,
         })
       )
         .then(closeModal)
@@ -37,77 +37,113 @@ function SignupFormModal() {
         });
     }
     return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
+      confirmPassword:
+        "Confirm Password field must be the same as the Password field",
     });
   };
 
+  const invalidInfo = () => {
+    return (
+      !email.length ||
+      username.length < 4 ||
+      !firstName ||
+      !lastName ||
+      password.length < 6 ||
+      !confirmPassword
+    );
+  };
+
   return (
-    <>
+    <div>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email
           <input
+            placeholder='Email'
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && (
+          <p className="error-message" style={{ color: "red" }}>
+            {errors.email}
+          </p>
+        )}
         <label>
-          Username
           <input
+            placeholder='Username'
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && (
+          <p className="error-message" style={{ color: "red" }}>
+            {errors.username}
+          </p>
+        )}
         <label>
-          First Name
           <input
+            placeholder='First Name'
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
+        {errors.firstName && (
+          <p className="error-message" style={{ color: "red" }}>
+            {errors.firstName}
+          </p>
+        )}
         <label>
-          Last Name
           <input
+            placeholder='Last Name'
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
+        {errors.lastName && (
+          <p className="error-message" style={{ color: "red" }}>
+            {errors.lastName}
+          </p>
+        )}
         <label>
-          Password
           <input
+            placeholder='Password'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && (
+          <p className="error-message" style={{ color: "red" }}>
+            {errors.password}
+          </p>
+        )}
         <label>
-          Confirm Password
           <input
+            placeholder='Confirm Password'
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && (
+          <p className="error-message" style={{ color: "red" }}>
+            {errors.confirmPassword}
+          </p>
+        )}
+        <button type="submit" disabled={invalidInfo()} className="signup-button">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

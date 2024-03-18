@@ -6,6 +6,7 @@ import { Outlet, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation-bonus';
 import * as sessionActions from './store/session';
 import { Modal } from './context/Modal';
+import Landing from './components/LandingPage/LandingPage';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function Layout() {
 
   return (
     <>
-      <Modal/>
+      <Modal />
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Outlet />}
     </>
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <Landing />
       },
       // {
       //   path: 'login',

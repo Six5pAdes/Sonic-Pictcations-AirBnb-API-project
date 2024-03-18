@@ -1,0 +1,18 @@
+.allSpotsContain {
+    border: red solid 5px;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 10px;
+  }
+
+  .oneSpotContain {
+    border: green solid 2px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .image {
+    aspect-ratio: 1 / 1;
+  }
+  .image:hover {
+    cursor: pointer;
+  }
