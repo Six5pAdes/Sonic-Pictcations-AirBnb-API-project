@@ -24,12 +24,12 @@ module.exports = {
         {
           spotId: 1,
           url: "https://static.wikia.nocookie.net/sonic/images/7/7d/Sweet_mountain_2.png/revision/latest?cb=20160831111912",
-          preview: false,
+          preview: true,
         },
         {
           spotId: 2,
           url: "https://static.wikia.nocookie.net/sonic/images/a/a1/Chilianddiphangin_out.jpg/revision/latest?cb=20160828172010",
-          preview: false,
+          preview: true,
         },
         {
           spotId: 3,
@@ -44,22 +44,22 @@ module.exports = {
         {
           spotId: 5,
           url: "https://static.wikia.nocookie.net/sonic/images/c/cc/Space_Colony_ARK_encapsuled.png/revision/latest?cb=20140714184228",
-          preview: false,
+          preview: true,
         },
         {
           spotId: 6,
           url: "https://static.wikia.nocookie.net/sonic/images/a/ae/RADICALHIGHWAYGC14.png/revision/latest?cb=20170520114855",
-          preview: false,
+          preview: true,
         },
         {
           spotId: 7,
           url: "https://static.wikia.nocookie.net/sonic/images/b/b7/Sonic_Advance_2_21.png/revision/latest?cb=20130901000622",
-          preview: false,
+          preview: true,
         },
         {
           spotId: 8,
           url: "https://static.wikia.nocookie.net/sonic/images/9/91/Coralcave.1.JPG/revision/latest?cb=20120628230927",
-          preview: false,
+          preview: true,
         },
         {
           spotId: 9,
@@ -74,7 +74,7 @@ module.exports = {
         {
           spotId: 11,
           url: "https://static.wikia.nocookie.net/sonic/images/f/f4/Sonic_Adventure_DX_Final_Egg_outside.png/revision/latest?cb=20220328030519",
-          preview: false,
+          preview: true,
         },
         {
           spotId: 12,

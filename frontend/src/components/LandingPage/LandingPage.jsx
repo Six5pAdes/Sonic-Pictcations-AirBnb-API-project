@@ -5,14 +5,14 @@ import { accessSpots } from '../../store/spot';
 import './LandingPage.css'
 
 const Landing = () => {
-    const spots = useSelector(state => state.spots)
+    const spots = useSelector(state => state.spotStore)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(accessSpots())
     }, [dispatch])
 
-    if (!spots) return null;
+    // if (!spots) return null;
 
     return (
         <div className='allSpotsContain'>
