@@ -23,51 +23,51 @@ module.exports = {
       [
         {
           reviewId: 1,
-          url: "https://static.wikia.nocookie.net/sonic/images/c/c8/SonicChannel_SweetMountain.jpg/revision/latest?cb=20200707094254",
+          url: "https://info.sonicretro.org/images/thumb/3/33/Sonic_Pict_2019-09-23.jpg/300px-Sonic_Pict_2019-09-23.jpg",
         },
         {
           reviewId: 2,
-          url: "https://static.wikia.nocookie.net/sonic/images/0/05/Sonic_Channel_April.jpg/revision/latest?cb=20220428192526",
+          url: "https://pbs.twimg.com/media/FRYs8zyagAEWRF8?format=jpg&name=medium",
         },
         {
           reviewId: 3,
-          url: "https://static.wikia.nocookie.net/sonic/images/1/11/Sonic_Channel_March_2022.jpg/revision/latest?cb=20220324231614",
+          url: "https://64.media.tumblr.com/3f37ec0b02bde37cbee05f4b849bcf1f/c1bbad97c61c4657-39/s500x750/73c1c4951265b109c9715d556676993f06718b00.jpg",
         },
         {
           reviewId: 4,
-          url: "https://static.wikia.nocookie.net/sonic/images/3/35/Sonic_Channel_2021_Amy.jpg/revision/latest?cb=20220805235221",
+          url: "https://i.pinimg.com/originals/da/90/ae/da90ae230e60ea0d1fb0a90f335c6476.jpg",
         },
         {
           reviewId: 5,
-          url: "https://static.wikia.nocookie.net/sonic/images/c/ca/Sonic_Channel_Tanabata_2020.jpg/revision/latest?cb=20230117130439",
+          url: "https://c4.wallpaperflare.com/wallpaper/513/931/678/sonic-sonic-the-hedgehog-shadow-the-hedgehog-maria-sega-hd-wallpaper-preview.jpg",
         },
         {
           reviewId: 6,
-          url: "https://static.wikia.nocookie.net/sonic/images/2/20/Sonic_PICT_May_2023.jpg/revision/latest?cb=20230428225608",
+          url: "https://www.sonicstadium.org/uploads/monthly_2023_04/2023-may-pict.jpeg.5d56f3b4e157c129fea284df590a45a4.jpeg",
         },
         {
           reviewId: 7,
-          url: "https://static.wikia.nocookie.net/sonic/images/5/56/SCSonicPictFeb24.jpg/revision/latest?cb=20240226080231",
+          url: "https://sonic-city.net/wp-content/uploads/2024/02/image-205-400x200.png",
         },
         {
           reviewId: 8,
-          url: "https://static.wikia.nocookie.net/sonic/images/1/18/SonicPICTAugust2023.jpg/revision/latest?cb=20230910191816",
+          url: "https://sonic-city.net/wp-content/uploads/2023/08/image-74.png",
         },
         {
           reviewId: 9,
-          url: "https://static.wikia.nocookie.net/sonic/images/4/46/Silver_In_The_Bad_Future.jpg/revision/latest?cb=20220929233129",
+          url: "https://pbs.twimg.com/media/Fd2_RanVsAA2CWK.jpg:large",
         },
         {
           reviewId: 10,
-          url: "https://static.wikia.nocookie.net/sonic/images/6/61/Sonic_Channel_Cat_Day_2021.jpg/revision/latest?cb=20210222062541",
+          url: "https://pbs.twimg.com/media/Euy_JUnVEAE0ByM?format=jpg&name=medium",
         },
         {
           reviewId: 11,
-          url: "https://static.wikia.nocookie.net/sonic/images/3/32/SCSageChristmas.jpg/revision/latest?cb=20221223020444",
+          url: "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2022/12/sonic-frontiers-sage-eggman.jpg",
         },
         {
           reviewId: 12,
-          url: "https://static.wikia.nocookie.net/sonic/images/a/a5/SC_Frontiers_November2022.jpg/revision/latest?cb=20221124002012",
+          url: "https://c4.wallpaperflare.com/wallpaper/281/771/582/sonic-sega-pc-gaming-sonic-frontiers-video-game-art-hd-wallpaper-thumb.jpg",
         },
       ],
       { validate: true }

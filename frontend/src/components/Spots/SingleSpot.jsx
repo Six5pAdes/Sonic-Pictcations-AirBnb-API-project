@@ -59,6 +59,5 @@ const ReviewInfo = ({ numReviews, avgRating }) => {
         {avgRating} {numReviews !== 0 ? ` • ${numReviews} review${amount}` : null}
     </p>
 }
-// https://iili.io/JX1mVnV.png
 
 export default SpotDetails
