@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf.js";
 
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
 const FIND_SPOT = "spots/FIND_SPOT";
-// const ADD_SPOT = "spots/ADD_SPOT";
+const ADD_SPOT = "spots/ADD_SPOT";
 const EDIT_SPOT = "spots/EDIT_SPOT";
 const REMOVE_SPOT = "spots/REMOVE_SPOT";
 
@@ -107,8 +107,15 @@ function spotReducer(state = initialState, action) {
     case FIND_SPOT: {
       return { ...state, spot: action.spot };
     }
+    case ADD_SPOT:
+      return { ...state, [action.spot.id]: action.spot };
     case EDIT_SPOT: {
       return { ...state, spot: action.spot };
+    }
+    case REMOVE_SPOT: {
+      const newState = { ...state };
+      delete newState[action.spotId];
+      return newState;
     }
     default:
       return state;
