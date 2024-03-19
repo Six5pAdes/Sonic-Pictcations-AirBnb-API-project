@@ -16,15 +16,13 @@ const Landing = () => {
     // if (!spots) return null;
 
     return (
-        <div className='allSpotsContain'>
+        <div className='all-spots-contain'>
             {Object.values(spots).map((spot) => (
-                <div key={spot.id} className='oneSpotContain'>
+                <div key={spot.id} className='one-spot-contain'
+                    onClick={() => navigate(`spots/${spot.id}`)}>
                     <img className='image' src={spot.previewImage} alt={``} />
                     <div className='info'>
-                        <p
-                            className='name'
-                            onClick={() => navigate(`spots/${spot.id}`)}
-                        >{spot.name}</p>
+                        <p className='name'>{spot.name}</p>
                         <p className='location'>{spot.city}, {spot.state}</p>
                         <p className='price'>{`$${spot.price} / night`}</p>
                         <p>

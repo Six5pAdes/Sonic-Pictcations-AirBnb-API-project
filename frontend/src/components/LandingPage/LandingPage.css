@@ -1,18 +1,33 @@
 .allSpotsContain {
-    border: red solid 5px;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
   }
 
-  .oneSpotContain {
-    border: green solid 2px;
-    aspect-ratio: 1 / 1;
+  .one-spot-contain {
+    border: cornflowerblue;
+    border-radius: 10px;
+  }
+
+  /* .one-spot-contain:hover {
+    cursor: pointer;
+  } */
+
+  .info {
+    width: 200px;
+  }
+
+  .name {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   .image {
-    aspect-ratio: 1 / 1;
-  }
-  .image:hover {
-    cursor: pointer;
+    aspect-ratio: auto / 4;
+    width: 200px;
+    height: 150px;
   }
