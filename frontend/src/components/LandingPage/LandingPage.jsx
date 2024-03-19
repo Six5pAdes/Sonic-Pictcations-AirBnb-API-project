@@ -26,7 +26,7 @@ const Landing = () => {
                         <p className='location'>{spot.city}, {spot.state}</p>
                         <p className='price'>{`$${spot.price} / night`}</p>
                         <p>
-                            <i className='fa-solid fa-star'></i>
+                            <i className='fa-solid fa-ring'></i>
                             {spot.avgRating > 0 ? spot.avgRating.toFixed(1) : 'New'}
                         </p>
                     </div>

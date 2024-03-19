@@ -105,7 +105,7 @@ function spotReducer(state = initialState, action) {
       return newState;
     }
     case FIND_SPOT: {
-      return { ...state, spot: action.spot };
+      return { ...state, [action.spot.id]: action.spot };
     }
     case ADD_SPOT:
       return { ...state, [action.spot.id]: action.spot };

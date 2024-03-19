@@ -1,0 +1,56 @@
+#spot-new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#full-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 33%;
+}
+
+.spot-label {
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid black 1px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+}
+
+#new-spot-images input {
+    margin-bottom: 8px;
+}
+
+#submit-button {
+    width: fit-content;
+    align-self: center;
+}
+
+#city-and-state {
+    display: flex;
+}
+
+.spot-label {
+    display: flex;
+    flex-direction: column;
+}
+
+#comma {
+    padding-left: 4px;
+    padding-right: 4px;
+    align-self: flex-end;
+}
+
+#full-form>h2 {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+h3 {
+    margin: 0;
+}
+
+.err-msg {
+    color: red;
+}

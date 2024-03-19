@@ -6,7 +6,7 @@
   }
 
   .one-spot-contain {
-    border: cornflowerblue;
+    border: #3061e3;
     border-radius: 10px;
   }
 
@@ -27,7 +27,6 @@
   }
 
   .image {
-    aspect-ratio: auto / 4;
-    width: 200px;
-    height: 150px;
+    width: 300px;
+    height: 200px;
   }
