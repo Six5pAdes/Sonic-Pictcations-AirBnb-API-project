@@ -18,9 +18,12 @@ const Landing = () => {
     return (
         <div className='all-spots-contain'>
             {Object.values(spots).map((spot) => (
-                <div key={spot.id} className='one-spot-contain'
-                    onClick={() => navigate(`spots/${spot.id}`)}>
-                    <img className='image' src={spot.previewImage} alt={``} />
+                <div key={spot.id} className='one-spot-contain'>
+                    <img
+                        className='image'
+                        src={spot.previewImage}
+                        onClick={() => navigate(`spots/${spot.id}`)}
+                    />
                     <div className='info'>
                         <p className='name'>{spot.name}</p>
                         <p className='location'>{spot.city}, {spot.state}</p>

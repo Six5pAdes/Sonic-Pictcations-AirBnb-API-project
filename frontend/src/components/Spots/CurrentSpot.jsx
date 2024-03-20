@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useModal } from '../../context/Modal'
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import { accessSpots, deleteSpot } from '../../store/spot'
-// import './LandingPage.css'
+import '../LandingPage/LandingPage.css'
 import './CurrentSpot.css'
 
 const ManageSpot = () => {

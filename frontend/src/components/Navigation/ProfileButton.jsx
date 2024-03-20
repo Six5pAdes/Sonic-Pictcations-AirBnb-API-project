@@ -1,11 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { NavLink, useNavigate } from 'react-router-dom'
+import OpenModalMenuItem from './OpenModalMenuItem'
+import LoginFormModal from '../LoginFormModal'
+import SignupFormModal from '../SignupFormModal'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const navigate = useNavigate()
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep click from bubbling up to document and triggering closeMenu
@@ -16,7 +21,9 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (ulRef.current && !ulRef.current.contains(e.target)) {
+      if (
+        // ulRef.current &&
+        !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -26,9 +33,13 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
+  const closeMenu = () => setShowMenu(false)
+
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    closeMenu()
+    navigate('/')
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -36,19 +47,41 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={toggleMenu}>
-        <i className="fas fa-user-circle" />
+        <i className="fas fa-bars-staggered" />
+        &nbsp;
+        {/* <i className="fas fa-user-circle" /> */}
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
-        <li>{user.email}</li>
-        <li>
-          <button onClick={logout}>Log Out</button>
-        </li>
+        {user ? (
+          <div>
+            <li>Welcome, {user.firstName}
+              <br />
+              {user.email}
+            </li>
+            <li>
+              <NavLink to='spots/current'>Go to Spots</NavLink>
+            </li>
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+          </div>
+        ) : (
+          <div>
+            <OpenModalMenuItem
+              itemText='Log In'
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalMenuItem
+              itemText='Sign Up'
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
+          </div>
+        )}
       </ul>
     </>
   );
 }
 
 export default ProfileButton;
-
