@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { findOneSpot } from '../../store/spot';
 import { useParams } from 'react-router-dom';
-import ReviewList from '../Reviews/ReviewList';
+// import ReviewList from '../Reviews/ReviewList';
 import './SingleSpot.css'
 
 const SpotDetails = () => {
@@ -49,7 +49,7 @@ const SpotDetails = () => {
                 numReviews={spot.numReviews}
                 avgRating={spot.avgRating}
             />
-            <ReviewList spot={spot} />
+            {/* <ReviewList spot={spot} /> */}
         </div>
     )
 }
