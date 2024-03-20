@@ -1,15 +1,21 @@
 .single-spot {
-    margin: 1rem;
+    margin: 2rem;
     display: flex;
     flex-direction: column;
 }
 
-.image {
+.info {
+    background-color: #ffd78f;
+    margin-bottom: 15px;
+}
+
+.image-sec {
     display: grid;
     grid-template-areas:
         "a a b c"
         "a a d e";
-    margin-bottom: 10rem;
+    margin-bottom: 1rem;
+    max-width: 500px;
 }
 
 .spot-image-0 {

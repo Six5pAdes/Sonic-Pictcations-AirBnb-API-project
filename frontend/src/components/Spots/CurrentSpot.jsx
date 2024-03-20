@@ -17,7 +17,7 @@ const ManageSpot = () => {
     }, [dispatch])
 
     const userId = useSelector(state => state.session.user ? state.session.user.id : null)
-    const spots = useSelector(state => Object.values(state.spots).filter(spot => spot.ownerId === userId))
+    const spots = useSelector(state => Object.values(state.spotStore).filter(spot => spot.ownerId === userId))
 
     if (!userId) navigate('/')
 
@@ -31,7 +31,7 @@ const ManageSpot = () => {
 
     return (
         <div id='this-spot'>
-            <h1>Manage Your Spots</h1>
+            <h1>Manage Spots</h1>
             <button type='button' onClick={() => navigate('/spots/new')}>Create a New Spot</button>
             <br />
             <ul id='spots'>

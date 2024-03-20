@@ -1,38 +1,39 @@
 .allSpotsContain {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  /* grid-gap: 1rem; */
-  gap: 15px;
-  max-width: 1000px;
+  grid-template-rows: repeat(4, 1fr);grid-gap: 1rem;
+  /* gap: 15px; */
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  }
+  box-sizing: border-box;
+}
 
-  .one-spot-contain {
-    border: 2px solid #da2528;
-    background-color: #ffd78f;
-    padding: 15px;
-  }
+.one-spot-contain {
+  border: 2px solid #da2528;
+  background-color: #ffd78f;
+  padding: 15px;
+  width: 300px;
+}
 
-  .info {
-    width: 200px;
-    background-color: #ffd78f;
-  }
+.info {
+  width: 200px;
+  background-color: #ffffff;
+}
 
-  .name {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    border: 1px solid #e1e1e1;
-    border-radius: 8px;
-    overflow: hidden;
-  }
+.name {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  border: 1px solid #e1e1e1;
+  /* border-radius: 8px; */
+  overflow: hidden;
+}
 
-  .image {
-    width: 300px;
-    height: 200px;
-  }
+.image {
+  width: 300px;
+  height: 200px;
+}
 
-  .image:hover {
-    cursor: pointer;
-  }
+.image:hover {
+  cursor: pointer;
+}

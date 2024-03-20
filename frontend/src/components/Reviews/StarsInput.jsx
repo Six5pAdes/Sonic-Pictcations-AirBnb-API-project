@@ -1,49 +1,34 @@
 import { useState } from "react";
-import { FaRing } from "react-icons/fa6";
+// import { FaRing } from "react-icons/fa6";
 
-const StarsRatingInput = ({ rating, disabled, onChange }) => {
-    const [activeRating, setActiveRating] = useState(rating)
+const StarsRatingInput = ({ stars, setStars }) => {
+    const [activeRating, setActiveRating] = useState(0)
 
-    const handleIconClick = (iconIndex) => {
-        if (!disabled) {
-            onChange(iconIndex)
-            setActiveRating(iconIndex)
-        }
-    }
+    const handleRatingClick = (rating) => {
+        setActiveRating(rating);
+        setStars(rating);
+    };
 
-    const howManyStars = () => {
-        const ringIcons = []
+    const renderStars = () => {
+        const starElements = [];
         for (let i = 1; i <= 5; i++) {
-            if (i <= rating) {
-                const filled = i <= activeRating
-                ringIcons.push(
-                    <div
-                        key={i}
-                        className={filled ? 'filled' : 'empty'}
-                        onClick={() => handleIconClick(i)}
-                        style={{ cursor: disabled ? 'default' : 'pointer' }}
-                    ><FaRing /></div>)
-            } else {
-                ringIcons.push(
-                    <div
-                        key={i}
-                        className='empty'
-                    ><FaRing /></div>)
-            }
+            starElements.push(
+                <div
+                    key={i}
+                    onClick={() => handleRatingClick(i)}
+                    onMouseEnter={() => setActiveRating(i)}
+                    onMouseLeave={() => setActiveRating(stars)}>
+                    <i className={`${activeRating >= i ? "fas" : "far"} fa-ring`}></i>
+                </div>
+            );
         }
-        return ringIcons;
-    }
+        return starElements;
+    };
 
     return (
         <>
-            <input
-                type="number"
-                disabled={disabled}
-                value={rating}
-                onChange={onChange}
-            />
-            <div className='rating-input'>
-                {howManyStars()}
+            <div className="stars-input">
+                {renderStars()}
             </div>
         </>
     );

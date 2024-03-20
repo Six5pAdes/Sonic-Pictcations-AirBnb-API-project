@@ -23,7 +23,7 @@
   text-decoration: none;
 }
 
-#navbar {
+#navbar-left {
   list-style-type: none;
   display: flex;
   flex-direction: row;

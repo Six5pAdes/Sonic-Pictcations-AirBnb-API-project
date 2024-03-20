@@ -7,9 +7,9 @@ import './ReviewForm.css'
 
 const ReviewForm = ({ spot }) => {
     const dispatch = useDispatch()
-    const [reviewText, setReviewText] = useState()
+    const [reviewText, setReviewText] = useState("")
     const [stars, setStars] = useState(null)
-    const [errors, setErrors] = useModal()
+    const [errors, setErrors] = useState("")
     const { closeModal } = useModal()
 
     const handleSubmit = (e) => {

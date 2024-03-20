@@ -11,7 +11,7 @@ const CreateSpot = () => {
     const [state, setState] = useState("");
     const [description, setDescription] = useState("");
     const [title, setTitle] = useState("");
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState("");
     const [previewImage, setPreviewImage] = useState()
     const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
     const [errors, setErrors] = useState([]);
@@ -44,6 +44,7 @@ const CreateSpot = () => {
                             placeholder="Country"
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
+                            required
                         />
                     </label>
                     {errors.country && <p className="err-msg">{errors.country}</p>}
@@ -54,6 +55,7 @@ const CreateSpot = () => {
                             placeholder="Address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
+                            required
                         />
                     </label>
                     {errors.address && <p className="err-msg">{errors.address}</p>}
@@ -65,6 +67,7 @@ const CreateSpot = () => {
                                 placeholder="City"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
+                                required
                             />
                         </label>
                         {errors.city && <p className="err-msg">{errors.city}</p>}
@@ -76,6 +79,7 @@ const CreateSpot = () => {
                                 placeholder="State"
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
+                                required
                             />
                         </label>
                         {errors.state && <p className="err-msg">{errors.state}</p>}
@@ -89,6 +93,7 @@ const CreateSpot = () => {
                             placeholder="Please write at least 30 characters"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
+                            required
                         />
                     </label>
                     {errors.description && <p className="err-msg">{errors.description}</p>}
@@ -102,6 +107,7 @@ const CreateSpot = () => {
                             placeholder="Name of your spot"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            required
                         />
                     </label>
                     {errors.title && <p className="err-msg">{errors.title}</p>}
@@ -114,10 +120,11 @@ const CreateSpot = () => {
                         </small>
                         <span>
                             $ <input
-                                type="number"
+                                type="text"
                                 placeholder="Price per night (USD)"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
+                                required
                             />
                         </span>
                     </label>
@@ -132,6 +139,7 @@ const CreateSpot = () => {
                             placeholder="Preview Image Url"
                             value={previewImage}
                             onChange={(e) => setPreviewImage(e.target.value)}
+                            required
                         />
                         {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>}
                         <input

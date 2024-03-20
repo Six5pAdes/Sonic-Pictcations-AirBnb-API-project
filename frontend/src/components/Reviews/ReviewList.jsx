@@ -18,7 +18,7 @@ const formatDate = (date = new Date()) => {
 const ReviewList = ({ spot }) => {
     const dispatch = useDispatch()
     const { closeModal } = useModal()
-    const reviewObj = useSelector(state => state.reviewState[spot.id])
+    const reviewObj = useSelector(state => state.reviewStore[spot.id])
     const sessionObj = useSelector(state => state.session)
 
     const reviews = reviewObj ? Object.values(reviewObj) : []
@@ -63,26 +63,27 @@ const ReviewList = ({ spot }) => {
                 </div>
             }
             <ul>
-                {reviews.sort((s1, s2) => new Date(s2.createdAt) - new Date(s1.createdAt)).map((review = {}) => <li key={review.id}>
-                    <div>
-                        <div>{review.User.firstName}</div>
-                        <div>{formatDate(new Date(review.createdAt))}</div>
-                        <div>{review.review}</div>
-                        {(sessionObj.user && review.userId === sessionObj.user.id) && (
-                            <OpenModalMenuItem
-                                itemText='Delete'
-                                modalComponent={(
-                                    <div id="delete-options">
-                                        <h2>Confirm Delete</h2>
-                                        <span>Are you sure you want to delete this review?</span>
-                                        <button id="delete-confirm" type="button" onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
-                                        <button id="delete-cancel" type="button" onClick={{ closeModal }}>No (Keep Review)</button>
-                                    </div>
-                                )}
-                            />
-                        )}
-                    </div>
-                </li>
+                {reviews.sort((s1, s2) => new Date(s2.createdAt) - new Date(s1.createdAt)).map((review = {}) =>
+                    <li key={review.id}>
+                        <div>
+                            <div>{review.User.firstName}</div>
+                            <div>{formatDate(new Date(review.createdAt))}</div>
+                            <div>{review.review}</div>
+                            {(sessionObj.user && review.userId === sessionObj.user.id) && (
+                                <OpenModalMenuItem
+                                    itemText='Delete'
+                                    modalComponent={(
+                                        <div id="delete-options">
+                                            <h2>Confirm Delete</h2>
+                                            <span>Are you sure you want to delete this review?</span>
+                                            <button id="delete-confirm" type="button" onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
+                                            <button id="delete-cancel" type="button" onClick={closeModal}>No (Keep Review)</button>
+                                        </div>
+                                    )}
+                                />
+                            )}
+                        </div>
+                    </li>
                 )}
             </ul>
         </div>
