@@ -93,7 +93,7 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   if (response.ok) dispatch(removeSpot(spotId));
 };
 
-const initialState = { spots: {}, spot: {} };
+const initialState = { spots: {} };
 
 function spotReducer(state = initialState, action) {
   switch (action.type) {

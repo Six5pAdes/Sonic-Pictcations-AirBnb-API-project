@@ -44,48 +44,34 @@ export const deleteReview = (review) => async (dispatch) => {
   dispatch(removeReview(review));
 };
 
-const initialState = { spot: {}, user: {} };
+const initialState = {};
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case READ_REVIEWS: {
-      const newState = {
-        spot: { ...state.spot },
-        user: { ...state.user },
-      };
-      action.reviews.Reviews.forEach((review) => {
-        newState[review.id] = {
-          reviewData: review,
-          User: {
-            userData: review.User,
-          },
-          ReviewImages: review.ReviewImages,
-        };
-        newState[review.id] = {
-          reviewData: review,
-          User: {
-            userData: review.User,
-          },
-          Spot: {
-            spotData: review.Spot,
-          },
-          ReviewImages: review.ReviewImages,
-        };
+      if (!Array.isArray(action.reviews)) {
+        return state; // Return the current state if reviews are not in the expected format
+      }
+      const newState = {};
+      action.reviews.forEach((review) => {
+        newState[review.id] = review;
       });
       return newState;
     }
     case CREATE_REVIEW: {
-      const newState = {
+      const spotId = action.review.spotId;
+      const newReview = action.review;
+      const updatedSpotReview = state[spotId]
+        ? [...state[spotId], newReview]
+        : [newReview];
+      return {
         ...state,
-        spot: { ...state.spot },
-        user: { ...state.user },
+        [spotId]: updatedSpotReview,
       };
-      newState.user[action.review.id] = action.review;
-      return newState;
     }
     case REMOVE_REVIEW: {
       const newState = { ...state };
-      delete newState[action.review.id];
+      delete newState[action.reviewId];
       return newState;
     }
     default:

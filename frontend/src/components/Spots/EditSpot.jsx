@@ -5,15 +5,15 @@ import { editSpot } from "../../store/spot"
 
 const SpotUpdate = () => {
     const { spotId } = useParams()
-    const currSpot = useSelector(state => state.spots[spotId])
+    const currSpot = useSelector(state => state.spotStore[spotId])
 
-    const [country, setCountry] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [description, setDescription] = useState("");
-    const [title, setTitle] = useState("");
-    const [price, setPrice] = useState(0);
+    const [country, setCountry] = useState(currSpot.country || "");
+    const [address, setAddress] = useState(currSpot.address || "");
+    const [city, setCity] = useState(currSpot.city || "");
+    const [state, setState] = useState(currSpot.state || "");
+    const [description, setDescription] = useState(currSpot.description || "");
+    const [title, setTitle] = useState(currSpot.title || "");
+    const [price, setPrice] = useState(currSpot.price || 0);
     const [previewImage, setPreviewImage] = useState()
     const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
     const [errors, setErrors] = useState([]);

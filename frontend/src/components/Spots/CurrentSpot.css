@@ -6,6 +6,9 @@
     margin-left: 5px;
 }
 
+.location-name:hover {
+    cursor: pointer;
+}
 
 #confirm-delete {
     display: flex;

@@ -19,7 +19,7 @@ const ReviewForm = ({ spot }) => {
         return dispatch(leaveReview(spot.id, review))
             .then(closeModal)
             .catch(async () => {
-                setErrors("Review not sent, please fix and try again")
+                setErrors("Server currently down, please try again later")
             })
     }
 

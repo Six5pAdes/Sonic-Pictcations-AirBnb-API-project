@@ -35,16 +35,21 @@ const ManageSpot = () => {
             <button type='button' onClick={() => navigate('/spots/new')}>Create a New Spot</button>
             <br />
             <ul id='spots'>
-                {spots.map((spot) => {
+                {spots.map((spot) => (
                     <div key={spot.id} className='spot-card'>
                         <div
                             title={spot.name}
-                            onClick={() => navigate(`/spots/${spot.id}`)}
                             key={spot.id}>
                             <img
                                 src={spot.previewImage}
                                 className='spot-img' />
                             <div className='spot-info'>
+                                <p
+                                    className='location-name'
+                                    onClick={() => navigate(`/spots/${spot.id}`)}
+                                >
+                                    {spot.name}
+                                </p>
                                 <p>{spot.city}, {spot.state}</p>
                                 <p>
                                     <i className='fa-solid fa-ring'></i>
@@ -68,7 +73,7 @@ const ManageSpot = () => {
                             />
                         </div>
                     </div>
-                })}
+                ))}
             </ul>
         </div>
     )
