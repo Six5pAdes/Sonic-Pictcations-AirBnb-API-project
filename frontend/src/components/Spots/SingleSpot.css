@@ -15,7 +15,8 @@
         "a a b c"
         "a a d e";
     margin-bottom: 1rem;
-    max-width: 500px;
+    max-width: 1000px;
+    justify-content: center;
 }
 
 .spot-image-0 {
