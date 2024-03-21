@@ -40,3 +40,13 @@
     color: white;
     border: black solid 1px;
   }
+
+  .login-success {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    box-shadow: 5px 5px 5px grey;
+    background-color: #c6286d;
+    color: white;
+    border: black solid 1px;
+  }

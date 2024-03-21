@@ -18,30 +18,36 @@ export const removeReview = (reviewId) => ({
 });
 
 export const fetchReviews = (spotId) => async (dispatch) => {
-  const response = await fetch(`/api/spots/${spotId}/reviews`);
-  const data = await response.json();
-  dispatch(viewReviews(spotId, data));
-  return data;
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(viewReviews(spotId));
+    return data;
+  }
 };
 
 export const leaveReview = (spotId, review) => async (dispatch) => {
-  const response = await fetch(`/api/spots/${spotId}/reviews`, {
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: "POST",
     headers: { "Content-Type": "application-json" },
     body: JSON.stringify(review),
   });
-  const newReview = await response.json();
-  dispatch(createReview(newReview));
-  return newReview;
+  if (response.ok) {
+    const newReview = await response.json();
+    dispatch(createReview(newReview));
+    return newReview;
+  }
 };
 
 export const deleteReview = (review) => async (dispatch) => {
-  await csrfFetch(`/api/reviews/${review.id}`, {
+  const response = await csrfFetch(`/api/reviews/${review.id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ reviewId: review.id }),
   });
-  dispatch(removeReview(review));
+  if (response.ok) {
+    dispatch(removeReview(review));
+  }
 };
 
 const initialState = {};
@@ -49,25 +55,14 @@ const initialState = {};
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case READ_REVIEWS: {
-      if (!Array.isArray(action.reviews)) {
-        return state; // Return the current state if reviews are not in the expected format
-      }
       const newState = {};
-      action.reviews.forEach((review) => {
+      action.reviews.Reviews.forEach((review) => {
         newState[review.id] = review;
       });
       return newState;
     }
     case CREATE_REVIEW: {
-      const spotId = action.review.spotId;
-      const newReview = action.review;
-      const updatedSpotReview = state[spotId]
-        ? [...state[spotId], newReview]
-        : [newReview];
-      return {
-        ...state,
-        [spotId]: updatedSpotReview,
-      };
+      return { ...state, [action.review.id]: action.review };
     }
     case REMOVE_REVIEW: {
       const newState = { ...state };
