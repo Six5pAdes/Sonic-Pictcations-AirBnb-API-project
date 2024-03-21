@@ -24,12 +24,24 @@ function LoginFormModal() {
       });
   };
 
+
+  const disabledButton = () => {
+    if (credential.length < 4 || password.length < 6) {
+      return true;
+    }
+    return false;
+  }
+
+  const DemoUser = (e) => {
+    e.preventDefault()
+    return dispatch(
+      sessionActions.login({ credential: "Barry", password: "password2" })
+    ).then(closeModal);
+  }
+
   return (
     <div className='login-modal'>
       <h1 className='login-header'>Log In</h1>
-      {errors.credential && (
-        <p className='login-error' style={{ color: 'red' }}>{errors.credential}</p>
-      )}
       <form className='login-form' onSubmit={handleSubmit}>
         <label className='login-labels'>
           <input
@@ -51,21 +63,17 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.credential && <p>{errors.credential}</p>}
-        <button
-          className={(credential.length < 4 || password.length < 6)
-            ? 'login-button'
-            : 'login-button-allowed'}
-          type="submit"
-          disabled={credential.length < 4 || password.length < 6}>
-          Log In
-        </button>
-        <button className='login-button-allowed' onClick={() => {
-          setCredential('Demo-lition')
-          setPassword('password')
-        }}>
-          Log in as a Demo User
-        </button>
+        {errors.credential && (
+          <p className='login-error' style={{ color: 'red' }}>{errors.credential}</p>
+        )}
+        {disabledButton() ?
+          <button className='login-button' type="submit" disabled={credential.length < 4 || password.length < 6 ? true : false}>Log In</button>
+          :
+          <button className='login-success' type="submit" >Log In</button>
+        }
+        <a href="/" onClick={DemoUser} className="demo-user-link">
+          Demo User
+        </a>
       </form>
     </div>
   );

@@ -1,40 +1,61 @@
 .single-spot {
-    margin: 1rem;
+    margin: 2rem;
     display: flex;
     flex-direction: column;
 }
 
-.image {
+.info {
+    background-color: #FFE5B4;
+    margin-bottom: 15px;
+}
+
+.image-sec {
     display: grid;
     grid-template-areas:
         "a a b c"
         "a a d e";
     margin-bottom: 1rem;
-}
-
-.image>img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 500px;
 }
 
 .spot-image-0 {
     grid-area: a;
+    width: 350px;
+    height: 300px;
+    border: black;
+    border-width: 20px;
 }
 
 .spot-image-1 {
     grid-area: b;
+    width: 200px;
+    height: 150px;
+    border: black;
+    border-width: 20px;
 }
 
 .spot-image-2 {
     grid-area: c;
+    width: 200px;
+    height: 150px;
+    border: black;
+    border-width: 20px;
 }
 
 .spot-image-3 {
     grid-area: d;
+    width: 200px;
+    height: 150px;
+    border: black;
+    border-width: 20px;
 }
 
 .spot-image-4 {
     grid-area: e;
+    width: 200px;
+    height: 150px;
+    border: black;
+    border-width: 20px;
 }
 
 .desc {

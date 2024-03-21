@@ -15,6 +15,13 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const disabledButton = () => {
+    if (!email || !username || !firstName || !lastName || !password || !confirmPassword || username.length < 4 || password.length < 6) {
+      return true;
+    }
+    return false;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
@@ -31,7 +38,7 @@ function SignupFormModal() {
         .then(closeModal)
         .catch(async (res) => {
           const data = await res.json();
-          if (data?.errors) {
+          if (data && data.errors) {
             setErrors(data.errors);
           }
         });
@@ -42,21 +49,21 @@ function SignupFormModal() {
     });
   };
 
-  const invalidInfo = () => {
-    return (
-      !email.length ||
-      username.length < 4 ||
-      !firstName ||
-      !lastName ||
-      password.length < 6 ||
-      !confirmPassword
-    );
-  };
+  // const invalidInfo = () => {
+  //   return (
+  //     !email.length ||
+  //     username.length < 4 ||
+  //     !firstName ||
+  //     !lastName ||
+  //     password.length < 6 ||
+  //     !confirmPassword
+  //   );
+  // };
 
   return (
-    <div>
+    <div className="signupModalWrapper">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="signupForm" onSubmit={handleSubmit}>
         <label>
           <input
             placeholder='Email'
@@ -141,7 +148,10 @@ function SignupFormModal() {
             {errors.confirmPassword}
           </p>
         )}
-        <button type="submit" disabled={invalidInfo()} className="signup-button">Sign Up</button>
+        {disabledButton() ?
+          <button className="disabledSignupButton" disabled={true}>Sign Up</button> :
+          <button className="signupModalButton" type="submit">Sign Up</button>
+        }
       </form>
     </div>
   );

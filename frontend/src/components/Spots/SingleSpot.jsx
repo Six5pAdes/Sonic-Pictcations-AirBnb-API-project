@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { findOneSpot } from '../../store/spot';
 import { useParams } from 'react-router-dom';
+import ReviewList from '../Reviews/ReviewList';
 import './SingleSpot.css'
 
 const SpotDetails = () => {
@@ -9,6 +10,7 @@ const SpotDetails = () => {
     const { spotId } = useParams()
     const spotObj = useSelector(state => state.spotStore)
     const spot = spotObj[spotId]
+    // overwrite spotStore address
 
     useEffect(() => {
         dispatch(findOneSpot(spotId))
@@ -22,7 +24,7 @@ const SpotDetails = () => {
                 <h2>{spot.name}</h2>
                 <h3>{spot.city}, {spot.state}, {spot.country}</h3>
             </div>
-            <div className='image'>
+            <div className='image-sec'>
                 {spot.SpotImages.map((image, n) =>
                     <img src={image.url} key={image.id} className={`spot-image-${n}`} />
                 )}
@@ -47,7 +49,7 @@ const SpotDetails = () => {
                 numReviews={spot.numReviews}
                 avgRating={spot.avgRating}
             />
-            <ReviewInfo spot={spot} />
+            <ReviewList spot={spot} />
         </div>
     )
 }
@@ -55,8 +57,8 @@ const SpotDetails = () => {
 const ReviewInfo = ({ numReviews, avgRating }) => {
     let amount = numReviews === 1 ? "" : "s"
     return <p>
-        <i className='fa-solid fa-star'></i>
-        {avgRating} {numReviews !== 0 ? ` • ${numReviews} review${amount}` : null}
+        <i className='fa-solid fa-ring'></i>
+        {avgRating} {numReviews !== 0 ? ` • ${numReviews} review${amount}` : 'New'}
     </p>
 }
 

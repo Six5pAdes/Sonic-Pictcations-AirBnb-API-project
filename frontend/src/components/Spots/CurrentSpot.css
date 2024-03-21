@@ -1,0 +1,41 @@
+.edit-or-delete {
+    display: flex;
+}
+
+.edit-or-delete>*:last-child {
+    margin-left: 5px;
+}
+
+.location-name:hover {
+    cursor: pointer;
+}
+
+#confirm-delete {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    max-width: 300px;
+}
+
+#confirm-delete>h2 {
+    align-self: center;
+}
+
+#confirm-delete>button {
+    margin: 4px 4px;
+    padding: 4px 4px;
+}
+
+#delete-complete {
+    background-color: red;
+}
+
+#delete-cancel {
+    background-color: darkgray;
+}
+
+#spots {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

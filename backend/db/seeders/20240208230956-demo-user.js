@@ -45,7 +45,7 @@ module.exports = {
           lastName: "Hedgehog",
           email: "shadowhedgehog@gun.gov",
           username: "UltimateLifeform",
-          hashedPassword: bcrypt.hashSync("maria"),
+          hashedPassword: bcrypt.hashSync("maria1"),
         },
         {
           firstName: "Rouge",

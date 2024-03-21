@@ -1,1 +1,10 @@
 /* TODO: Add sitewide styles */
+* {
+    color: 	#3061e3;
+    /* background-color: #ffffff; */
+    font-weight: bolder;
+}
+
+.fa-ring {
+    color: #FFD700
+}

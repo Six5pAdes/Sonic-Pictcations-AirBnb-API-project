@@ -93,7 +93,7 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   if (response.ok) dispatch(removeSpot(spotId));
 };
 
-const initialState = { spots: {}, spot: {} };
+const initialState = { spots: {} };
 
 function spotReducer(state = initialState, action) {
   switch (action.type) {
@@ -105,7 +105,7 @@ function spotReducer(state = initialState, action) {
       return newState;
     }
     case FIND_SPOT: {
-      return { ...state, spot: action.spot };
+      return { ...state, [action.spot.id]: action.spot };
     }
     case ADD_SPOT:
       return { ...state, [action.spot.id]: action.spot };
