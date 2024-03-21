@@ -17,12 +17,12 @@ const SpotUpdate = () => {
     const [description, setDescription] = useState(currSpot.description || "");
     const [title, setTitle] = useState(currSpot.title || "");
     const [price, setPrice] = useState(currSpot.price || 0);
-    const [previewImage, setPreviewImage] = useState(currSpot.previewImage || "")
-    const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
+    // const [previewImage, setPreviewImage] = useState(currSpot.previewImage || "")
+    // const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
     const [errors, setErrors] = useState({});
     const [submit, setSubmit] = useState(false)
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
         const err = {}
         setSubmit(true)
@@ -64,7 +64,7 @@ const SpotUpdate = () => {
         }
         const spotData = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
 
-        const spotUpdated = dispatch(editSpot(spotData, spotId))
+        const spotUpdated = await dispatch(editSpot(spotData, spotId))
         if (spotUpdated.errors) setErrors({ ...spotUpdated.errors, ...errors })
         else navigate(`/spots/${spotUpdated.id}`)
 
@@ -176,7 +176,7 @@ const SpotUpdate = () => {
                     </label>
                     {errors.price && <p className="err-msg" style={{ color: "red" }}>{errors.price}</p>}
                 </div>
-                <div className="new-spot-form" id="new-spot-images">
+                {/* <div className="new-spot-form" id="new-spot-images">
                     <label className="spot-label">
                         Liven up your spot with photos
                         <small>Submit a link to at least one photo to publish your spot.</small>
@@ -186,7 +186,7 @@ const SpotUpdate = () => {
                             value={previewImage}
                             onChange={(e) => setPreviewImage(e.target.value)}
                         />
-                        {/* {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>} */}
+                        {/* {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>}
                         <input
                             type="text"
                             placeholder="Image Url"
@@ -212,7 +212,7 @@ const SpotUpdate = () => {
                             onChange={(e) => setImages({ ...images, [4]: e.target.value })}
                         />
                     </label>
-                </div>
+                </div> */}
 
                 <button id="submit-button" type="submit" disabled={submitDisabled}
                 >Update your Spot</button>

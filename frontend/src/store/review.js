@@ -21,9 +21,9 @@ export const fetchReviews = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
   if (response.ok) {
     const data = await response.json();
-    dispatch(viewReviews(spotId));
+    dispatch(viewReviews(data));
     return data;
-  }
+  } else throw new Error("Cannot receive reviews at this time");
 };
 
 export const leaveReview = (spotId, review) => async (dispatch) => {
@@ -39,27 +39,31 @@ export const leaveReview = (spotId, review) => async (dispatch) => {
   }
 };
 
-export const deleteReview = (review) => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews/${review.id}`, {
+export const deleteReview = (reviewId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ reviewId: review.id }),
+    body: JSON.stringify(reviewId),
   });
   if (response.ok) {
-    dispatch(removeReview(review));
+    dispatch(removeReview(reviewId));
   }
 };
 
 const initialState = {};
 
-const reviewReducer = (state = initialState, action) => {
+function reviewReducer(state = initialState, action) {
   switch (action.type) {
     case READ_REVIEWS: {
-      const newState = {};
-      action.reviews.Reviews.forEach((review) => {
-        newState[review.id] = review;
-      });
-      return newState;
+      const newReviews = { ...state };
+      try {
+        action.reviews.Reviews.forEach(
+          (eachReview) => (newReviews[eachReview.id] = eachReview)
+        );
+      } catch {
+        console.error("Error fetching reviews");
+      }
+      return newReviews;
     }
     case CREATE_REVIEW: {
       return { ...state, [action.review.id]: action.review };
@@ -72,6 +76,6 @@ const reviewReducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
+}
 
 export default reviewReducer;

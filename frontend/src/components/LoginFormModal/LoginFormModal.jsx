@@ -32,8 +32,8 @@ function LoginFormModal() {
     return false;
   }
 
-  const DemoUser = (e) => {
-    e.preventDefault()
+  const DemoUser = () => {
+    // e.preventDefault()
     return dispatch(
       sessionActions.login({ credential: "Barry", password: "password2" })
     ).then(closeModal);

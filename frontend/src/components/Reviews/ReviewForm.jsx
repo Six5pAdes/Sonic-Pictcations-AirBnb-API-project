@@ -12,11 +12,11 @@ const ReviewForm = ({ spot }) => {
     const [errors, setErrors] = useState("")
     const { closeModal } = useModal()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors('')
         const review = { review: reviewText, stars }
-        return dispatch(leaveReview(spot.id, review))
+        return await dispatch(leaveReview(spot.id, review))
             .then(closeModal)
             .catch(async () => {
                 setErrors("Server currently down, please try again later")

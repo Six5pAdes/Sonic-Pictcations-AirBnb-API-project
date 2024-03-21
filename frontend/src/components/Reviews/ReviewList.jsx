@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchReviews, deleteReview } from "../../store/review";
 import { useEffect } from "react";
-import ReviewForm from "./ReviewForm";
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
+import { useParams } from 'react-router-dom'
 import { useModal } from "../../context/Modal";
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
+import ReviewForm from "./ReviewForm";
 import './ReviewList.css'
 
 const formatDate = (date = new Date()) => {
@@ -15,78 +16,79 @@ const formatDate = (date = new Date()) => {
     return `${months[month]} ${year}`
 }
 
-const ReviewList = ({ spot }) => {
+const ReviewList = () => {
     const dispatch = useDispatch()
+    const { spotId } = useParams()
     const { closeModal } = useModal()
-    const reviewObj = useSelector(state => state.reviewStore[spot.id])
-    const sessionObj = useSelector(state => state.session)
-
-    const reviews = reviewObj ? Object.values(reviewObj) : []
+    const reviewObj = useSelector(state => state.reviewStore)
+    const sessionObj = useSelector(state => state.session.user)
 
     useEffect(() => {
-        dispatch(fetchReviews(spot.id))
-    }, [dispatch, spot.id])
+        dispatch(fetchReviews(spotId))
+    }, [dispatch, spotId])
 
-    let ownerUser = sessionObj.user && sessionObj.user.id === spot.ownerId
-    let reviewMessage = reviews.length === 0 && !ownerUser;
-    const reviewGiven = reviews.some(review => sessionObj.user && review.userId === sessionObj.user.id)
+    // let ownerUser = sessionObj.user && sessionObj.user.id === spot.ownerId
+    // let reviewMessage = reviews.length === 0 && !ownerUser;
+    // const reviewGiven = reviews.some(review => sessionObj.user && review.userId === sessionObj.user.id)
 
     const handleDelete = review => {
-        dispatch(deleteReview(spot.id, review))
+        dispatch(deleteReview(spotId, review))
         closeModal()
     }
 
-    if (reviewMessage) {
-        return <div id='list'>
-            {
-                (sessionObj.user && !ownerUser && !reviewGiven) &&
-                <div id="review-button">
-                    <OpenModalMenuItem
-                        itemText='Post Your Review!'
-                        modalComponent={<ReviewForm spot={spot} />}
-                    />
-                </div>
-            }
-            <p>Be the first to post a review!</p>
-        </div>
-    }
+    const reviews = Object.values(reviewObj)
+        .filter(review => review.spotId === parseInt(spotId))
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+    // if (!reviews.length) {
+    //     return <div id='list'>
+    //         <div id="review-button">
+    //             <OpenModalMenuItem
+    //                 itemText='Post Your Review!'
+    //                 modalComponent={<ReviewForm spotId={spotId} />}
+    //             />
+    //         </div>
+    //         <p>Be the first to post a review!</p>
+    //     </div>
+    // }
 
     return (
-        <div id="list">
-            {
-                (sessionObj.user && !ownerUser && !reviewGiven) &&
+        <section>
+            <div id='list'>
                 <div id="review-button">
                     <OpenModalMenuItem
                         itemText='Post Your Review!'
-                        modalComponent={<ReviewForm spot={spot} />}
+                        modalComponent={<ReviewForm spotId={spotId} />}
                     />
                 </div>
-            }
-            <ul>
-                {reviews.sort((s1, s2) => new Date(s2.createdAt) - new Date(s1.createdAt)).map((review = {}) =>
-                    <li key={review.id}>
-                        <div>
-                            <div>{review.User.firstName}</div>
-                            <div>{formatDate(new Date(review.createdAt))}</div>
-                            <div>{review.review}</div>
-                            {(sessionObj.user && review.userId === sessionObj.user.id) && (
-                                <OpenModalMenuItem
-                                    itemText='Delete'
-                                    modalComponent={(
-                                        <div id="delete-options">
-                                            <h2>Confirm Delete</h2>
-                                            <span>Are you sure you want to delete this review?</span>
-                                            <button id="delete-confirm" type="button" onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
-                                            <button id="delete-cancel" type="button" onClick={closeModal}>No (Keep Review)</button>
+                {/* <p>Be the first to post a review!</p> */}
+            </div>
+            <div id="reviews-container">
+                {reviews.map((review) => (
+                    <div key={review.id} className="review">
+                        <h3 className="review-name">{review.User?.firstName}</h3>
+                        <div>{formatDate(new Date(review.createdAt))}</div>
+                        <p className="review-comments">{review.review}</p>
+                        {sessionObj?.id === review.User?.id && (
+                            <OpenModalMenuItem
+                                buttonText='Delete'
+                                className='delete-button'
+                                modalComponent={
+                                    <div id='delete-container'>
+                                        <h1>Confirm Delete</h1>
+                                        <div className="delete-button-container">
+                                            <span className="confirm-text">Are you sure you want to delete this review?</span>
+                                            <button id='confirm-delete' className='delete-buttons' onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
+                                            <button id='no-delete' className='delete-buttons' onClick={closeModal}>No (Keep Review)</button>
                                         </div>
-                                    )}
-                                />
-                            )}
-                        </div>
-                    </li>
-                )}
-            </ul>
-        </div>
+                                    </div>
+                                }
+                            />
+                        )}
+                    </div>
+                ))}
+            </div>
+        </section>
     )
 }
 

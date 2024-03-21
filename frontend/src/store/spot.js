@@ -63,13 +63,13 @@ export const createSpot = (spot, spotImg) => async (dispatch) => {
         }),
       });
 
-      if (imgResponse.ok && !imgResponse.status(404)) {
+      if (imgResponse.ok && imgResponse.status !== 404) {
         const newImg = await imgResponse.json();
         newSpot.spotImg.push(newImg);
       }
     }
-    dispatch(findOneSpot(createSpot));
-    return createSpot;
+    dispatch(findOneSpot(newSpot));
+    return newSpot;
   }
 };
 

@@ -19,7 +19,7 @@ const CreateSpot = () => {
     const [errors, setErrors] = useState({});
     const [submit, setSubmit] = useState(false)
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
         const err = {}
         setSubmit(true)
@@ -66,7 +66,7 @@ const CreateSpot = () => {
         }
         if (Object.keys(err).length > 0) return err;
 
-        const imageUrls = [previewImage, images];
+        const imageUrls = [previewImage, ...Object.values(images)];
         for (let i = 0; i < imageUrls.length; i++) {
             const imageUrl = imageUrls[i];
             if (imageUrl) {
@@ -82,7 +82,7 @@ const CreateSpot = () => {
 
         const spot = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
         const imagesArr = [previewImage, images].filter(img => img);
-        const newSpot = dispatch(createSpot(spot, imagesArr))
+        const newSpot = await dispatch(createSpot(spot, imagesArr))
 
         if (newSpot && newSpot.id) navigate(`/spots/${newSpot.id}`)
         else setErrors({ ...newSpot.errors, ...errors })
