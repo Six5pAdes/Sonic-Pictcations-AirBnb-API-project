@@ -23,7 +23,7 @@ module.exports = {
       [
         {
           spotId: 1,
-          url: "https://soahcity.com/wp-content/uploads/2015/04/sweet-mountain-high-resolution-screen-4.png",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861941/Sonic_SweetMountain_pzajux.webp",
           preview: true,
         },
         {
@@ -38,7 +38,7 @@ module.exports = {
         },
         {
           spotId: 1,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://soahcity.com/wp-content/uploads/2015/04/sweet-mountain-high-resolution-screen-4.png",
           preview: true,
         },
         {
@@ -48,7 +48,7 @@ module.exports = {
         },
         {
           spotId: 2,
-          url: "https://d.wattpad.com/story_parts/834841742/images/15f003f20de07709407152262888.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861941/Tails_Adabat_ztqiso.webp",
           preview: true,
         },
         {
@@ -63,7 +63,7 @@ module.exports = {
         },
         {
           spotId: 2,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://d.wattpad.com/story_parts/834841742/images/15f003f20de07709407152262888.jpg",
           preview: true,
         },
         {
@@ -73,7 +73,7 @@ module.exports = {
         },
         {
           spotId: 3,
-          url: "https://www.speedrun.com/static/theme/9wx4eer5/background.jpg?v=d8eee53",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861940/Knuckles_MetalCity_yyl6q6.webp",
           preview: true,
         },
         {
@@ -88,7 +88,7 @@ module.exports = {
         },
         {
           spotId: 3,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://www.speedrun.com/static/theme/9wx4eer5/background.jpg?v=d8eee53",
           preview: true,
         },
         {
@@ -98,7 +98,7 @@ module.exports = {
         },
         {
           spotId: 4,
-          url: "https://images.gamebanana.com/img/ss/mods/5befcf55e41be.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861940/Amy_SunsetHeights_s5fmjn.webp",
           preview: true,
         },
         {
@@ -108,7 +108,7 @@ module.exports = {
         },
         {
           spotId: 4,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://images.gamebanana.com/img/ss/mods/5befcf55e41be.jpg",
           preview: true,
         },
         {
@@ -119,6 +119,11 @@ module.exports = {
         {
           spotId: 4,
           url: "https://iili.io/JX1mVnV.png",
+          preview: true,
+        },
+        {
+          spotId: 5,
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861939/Shadow_SpaceColARK_l5vucx.webp",
           preview: true,
         },
         {
@@ -142,13 +147,8 @@ module.exports = {
           preview: true,
         },
         {
-          spotId: 5,
-          url: "https://iili.io/JX1mVnV.png",
-          preview: true,
-        },
-        {
           spotId: 6,
-          url: "https://64.media.tumblr.com/2ed6a3e6835eb52fac16780b7a75e0e3/b42f32250efdaa28-65/s1280x1920/9b49aa1bd40936b2e3fc24b32f66ac70fabd48ae.png",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861939/Rouge_RadicalHighway_tv45nj.webp",
           preview: true,
         },
         {
@@ -163,7 +163,7 @@ module.exports = {
         },
         {
           spotId: 6,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://64.media.tumblr.com/2ed6a3e6835eb52fac16780b7a75e0e3/b42f32250efdaa28-65/s1280x1920/9b49aa1bd40936b2e3fc24b32f66ac70fabd48ae.png",
           preview: true,
         },
         {
@@ -173,7 +173,7 @@ module.exports = {
         },
         {
           spotId: 7,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRh-DkUwlYN2xT4ue1ceItZe97Jhvpt9Z3Qg&usqp=CAU",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861940/Cream_MusicPlant_kiarre.webp",
           preview: true,
         },
         {
@@ -183,7 +183,7 @@ module.exports = {
         },
         {
           spotId: 7,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRh-DkUwlYN2xT4ue1ceItZe97Jhvpt9Z3Qg&usqp=CAU",
           preview: true,
         },
         {
@@ -198,7 +198,7 @@ module.exports = {
         },
         {
           spotId: 8,
-          url: "https://44.media.tumblr.com/ea29506c67c3e4d6215aebef45b5ae44/6bbab52bab6cd8e4-ff/s500x750_f1/4b09a51df32b57b1331f23ad80f7b613bd2993eb.gif",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861940/Blaze_CoralCave_msswlw.webp",
           preview: true,
         },
         {
@@ -208,7 +208,7 @@ module.exports = {
         },
         {
           spotId: 8,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://44.media.tumblr.com/ea29506c67c3e4d6215aebef45b5ae44/6bbab52bab6cd8e4-ff/s500x750_f1/4b09a51df32b57b1331f23ad80f7b613bd2993eb.gif",
           preview: true,
         },
         {
@@ -223,7 +223,7 @@ module.exports = {
         },
         {
           spotId: 9,
-          url: "https://images.gamebanana.com/img/ss/mods/61eec952d99bb.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861940/Silver_CrisisCity_paixnk.webp",
           preview: true,
         },
         {
@@ -238,7 +238,7 @@ module.exports = {
         },
         {
           spotId: 9,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://images.gamebanana.com/img/ss/mods/61eec952d99bb.jpg",
           preview: true,
         },
         {
@@ -248,7 +248,7 @@ module.exports = {
         },
         {
           spotId: 10,
-          url: "https://www.anywhere.com/blog/images/1-Vz3Fnd0FX-uDW_iXYGZvzQ-1024x683.jpeg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861939/Big_MysticRuins_d0yxjf.webp",
           preview: true,
         },
         {
@@ -263,12 +263,17 @@ module.exports = {
         },
         {
           spotId: 10,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://www.anywhere.com/blog/images/1-Vz3Fnd0FX-uDW_iXYGZvzQ-1024x683.jpeg",
           preview: true,
         },
         {
           spotId: 10,
           url: "https://iili.io/JX1mVnV.png",
+          preview: true,
+        },
+        {
+          spotId: 11,
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861940/Eggman_FinalEgg_anfwje.webp",
           preview: true,
         },
         {
@@ -292,13 +297,8 @@ module.exports = {
           preview: true,
         },
         {
-          spotId: 11,
-          url: "https://iili.io/JX1mVnV.png",
-          preview: true,
-        },
-        {
           spotId: 12,
-          url: "https://pbs.twimg.com/media/Ff3LFMiUoAE1T3Q?format=jpg&name=large",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710861940/Sonic_KronosIsland_m2uzrw.webp",
           preview: true,
         },
         {
@@ -318,7 +318,7 @@ module.exports = {
         },
         {
           spotId: 12,
-          url: "https://iili.io/JX1mVnV.png",
+          url: "https://pbs.twimg.com/media/Ff3LFMiUoAE1T3Q?format=jpg&name=large",
           preview: true,
         },
       ],
