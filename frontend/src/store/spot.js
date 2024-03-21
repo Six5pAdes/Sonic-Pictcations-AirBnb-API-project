@@ -73,11 +73,11 @@ export const createSpot = (spot, spotImg) => async (dispatch) => {
   }
 };
 
-export const editSpot = (spot) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${spot.id}`, {
+export const editSpot = (spotFix, spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "PUT",
     header: { "Content-Type": "application/json" },
-    body: JSON.stringify(spot),
+    body: JSON.stringify(spotFix),
   });
   if (response.ok) {
     const reSpot = await response.json();

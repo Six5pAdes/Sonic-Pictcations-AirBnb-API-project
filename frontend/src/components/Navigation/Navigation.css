@@ -5,7 +5,7 @@
 #logo {
   width: 100px;
   height: 100px;
-  padding-right: 2px;
+  padding-left: 20px;
 }
 
 #navbar-left {
@@ -34,6 +34,8 @@
   justify-content: space-between;
   padding: 5px;
   border-bottom: 1px gray solid;
+  background-color: rgba(72, 224, 158, 0.29);
+  margin: 0%;
 }
 
 .profile-dropdown {

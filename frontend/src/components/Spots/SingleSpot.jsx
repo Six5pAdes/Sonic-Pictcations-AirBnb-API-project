@@ -42,7 +42,7 @@ const SpotDetails = () => {
                             avgRating={spot.avgRating}
                         />
                     </div>
-                    <button onClick={() => alert("Feature coming soon")}>Reserve</button>
+                    <button id='reserve-button' onClick={() => alert("Feature coming soon")}>Reserve</button>
                 </div>
             </div>
             <br />
@@ -59,8 +59,8 @@ const ReviewInfo = ({ numReviews, avgRating }) => {
     let amount = numReviews === 1 ? "" : "s"
     return <p>
         <i className='fa-solid fa-ring'></i>&nbsp;
-        {avgRating > 0 ? avgRating.toFixed(1) : 'New'}
-        {numReviews !== 0 ? ` • ${numReviews} review${amount}` : 'New'}
+        {avgRating > 0 ? avgRating.toFixed(1) : 'New'} •
+        {numReviews !== 0 ? ` ${numReviews} review${amount}` : ''}
     </p>
 }
 

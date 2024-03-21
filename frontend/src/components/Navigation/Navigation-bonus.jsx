@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
         <NavLink to="/">
           <img id='logo' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1710891390/Sonic_channel_ztj6xl.png' href='/' />
         </NavLink>
-        <h1>Sonic Pict-cations</h1>
+        <h1 className='site-title'>Sonic Pict-cations</h1>
       </li>
       <li id='navbar-right'>
         <ul>
@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
           )}
           {isLoaded && (
             <div>
-              <ProfileButton user={sessionUser} />
+              <ProfileButton id='prof-but' user={sessionUser} />
             </div>
           )}
         </ul>

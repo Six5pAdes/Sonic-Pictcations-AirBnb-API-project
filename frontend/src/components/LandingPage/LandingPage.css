@@ -1,15 +1,18 @@
-.allSpotsContain {
+.all-spots-contain {
   display: grid;
-  grid-template-rows: repeat(4, 1fr);grid-gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 40px;
   /* gap: 15px; */
-  max-width: 500px;
+  width: auto;
   margin: 0 auto;
-  padding: 20px;
+  padding-top: 20px;
+  padding-left: 10px;
   box-sizing: border-box;
 }
 
 .one-spot-contain {
   border: 2px solid #da2528;
+  border-radius: 1em;
   background-color: #FFE5B4;
   padding: 15px;
   width: 300px;
@@ -20,7 +23,7 @@
 }
 
 .info {
-  width: 200px;
+  width: auto;
   background-color: #ffffff;
 }
 
@@ -30,11 +33,18 @@
   text-align: center;
   border: 1px solid #319938;
   background-color: #ffffff;
-  /* border-radius: 8px; */
+  border-radius: 8px;
+  font-weight: bold;
   overflow: hidden;
+  /* max-width: 200px; */
 }
 
 .image {
   width: 300px;
   height: 200px;
+}
+
+.avg-rate {
+  display: flex;
+  justify-content: flex-end;
 }

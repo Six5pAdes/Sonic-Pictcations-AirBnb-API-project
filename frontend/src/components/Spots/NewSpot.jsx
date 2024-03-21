@@ -98,7 +98,7 @@ const CreateSpot = () => {
         if (submit && !country) validErrs.country = "Country is required"
         if (submit && !address) validErrs.address = "Address is required"
         if (submit && !city) validErrs.city = "City is required"
-        if (submit && description.length < 30) validErrs.description = "Description 30 or more characters"
+        if (submit && description.length < 30) validErrs.description = "Description needs 30 or more characters"
         if (submit && !state) validErrs.state = "State is required"
         if (submit && !title) validErrs.title = "Title is required"
         if (submit && !price) validErrs.price = "Price per night is required"

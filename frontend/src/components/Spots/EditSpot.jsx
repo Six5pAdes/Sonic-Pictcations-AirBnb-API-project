@@ -10,13 +10,13 @@ const SpotUpdate = () => {
     const dispatch = useDispatch();
     const currSpot = useSelector(state => state.spotStore[spotId])
 
-    const [country, setCountry] = useState(currSpot ? currSpot.country : "");
-    const [address, setAddress] = useState(currSpot ? currSpot.address : "");
-    const [city, setCity] = useState(currSpot ? currSpot.city : "");
-    const [state, setState] = useState(currSpot ? currSpot.state : "");
-    const [description, setDescription] = useState(currSpot ? currSpot.description : "");
-    const [title, setTitle] = useState(currSpot ? currSpot.title : "");
-    const [price, setPrice] = useState(currSpot ? currSpot.price : 0);
+    const [country, setCountry] = useState(currSpot.country || "");
+    const [address, setAddress] = useState(currSpot.address || "");
+    const [city, setCity] = useState(currSpot.city || "");
+    const [state, setState] = useState(currSpot.state || "");
+    const [description, setDescription] = useState(currSpot.description || "");
+    const [title, setTitle] = useState(currSpot.name || "");
+    const [price, setPrice] = useState(currSpot.price || 0);
     // const [previewImage, setPreviewImage] = useState(currSpot.previewImage || "")
     // const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
     const [errors, setErrors] = useState({});
@@ -64,27 +64,30 @@ const SpotUpdate = () => {
         }
         const spotData = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
 
-        const spotUpdated = await dispatch(editSpot(spotData, spotId))
-        if (spotUpdated.errors) setErrors({ ...spotUpdated.errors, ...errors })
-        else {
-            dispatch(editSpot(spotUpdated))
-            navigate(`/spots/${spotUpdated.id}`)
+        const spotUpdated = await dispatch(editSpot(spotData, spotId));
+        if (spotUpdated.errors) {
+            setErrors({ ...spotUpdated.errors, ...errors });
+        } else {
+            // Assuming `editSpot` action returns the updated spot data
+            // Dispatch action to update spot in Redux store
+            dispatch(editSpot(spotUpdated));
+            // Navigate to the updated spot's details page
+            navigate(`/spots/${spotUpdated.id}`);
         }
-
     }
     useEffect(() => {
         const validErrs = {}
         if (submit && !country) validErrs.country = "Country is required"
         if (submit && !address) validErrs.address = "Address is required"
         if (submit && !city) validErrs.city = "City is required"
-        if (submit && description.length < 30) validErrs.description = "Description 30 or more characters"
+        if (submit && description.length < 30) validErrs.description = "Description needs 30 or more characters"
         if (submit && !state) validErrs.state = "State is required"
         if (submit && !title) validErrs.title = "Title is required"
         if (submit && !price) validErrs.price = "Price per night is required"
         setErrors(validErrs)
     }, [country, address, city, description, state, title, price, submit])
 
-    const submitDisabled = false;
+    // const submitDisabled = false;
 
     return (
         <div id="spot-new">
@@ -170,7 +173,7 @@ const SpotUpdate = () => {
                         </small>
                         <span>
                             $ <input
-                                type="number"
+                                type="text"
                                 placeholder="Price per night (USD)"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
@@ -217,7 +220,8 @@ const SpotUpdate = () => {
                     </label>
                 </div> */}
 
-                <button id="submit-button" type="submit" disabled={submitDisabled}
+                <button id="submit-button" type="submit"
+                // disabled={submitDisabled}
                 >Update your Spot</button>
             </form>
         </div>

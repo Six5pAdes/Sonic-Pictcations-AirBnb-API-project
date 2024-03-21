@@ -78,10 +78,10 @@
     align-items: center;
 }
 
-/* .misc>button {
+#reserve-button {
     width: 100%;
     padding: 8px 5px;
-} */
+}
 
 .extraInfo {
     display: flex;

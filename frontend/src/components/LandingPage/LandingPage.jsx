@@ -27,11 +27,12 @@ const Landing = () => {
                         className='image'
                         src={spot.previewImage}
                     />
+                    <p className='name'>{spot.name}</p>
                     <div className='info'>
-                        <p className='name'>{spot.name}</p>
                         <p className='location'>{spot.city}, {spot.state}</p>
                         <p className='price'>{`$${spot.price} / night`}</p>
-                        <p>
+                        <br />
+                        <p className='avg-rate'>
                             <i className='fa-solid fa-ring'></i>&nbsp;
                             {spot.avgRating > 0 ? spot.avgRating.toFixed(1) : 'New'}
                         </p>

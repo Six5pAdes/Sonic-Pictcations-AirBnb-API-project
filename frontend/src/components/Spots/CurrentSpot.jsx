@@ -31,8 +31,8 @@ const ManageSpot = () => {
 
     return (
         <div id='this-spot'>
-            <h1>Manage Spots</h1>
-            <button type='button' onClick={() => navigate('/spots/new')}>Create a New Spot</button>
+            <h1 id='curr-title'>Manage Spots</h1>
+            <button type='button' id='new-spot-btn' onClick={() => navigate('/spots/new')}>Create a New Spot</button>
             <br />
             <ul id='spots'>
                 {spots.map((spot) => (
@@ -43,23 +43,23 @@ const ManageSpot = () => {
                             <img
                                 src={spot.previewImage}
                                 className='spot-img' />
+                            <p
+                                className='name'
+                                onClick={() => navigate(`/spots/${spot.id}`)}
+                            >
+                                {spot.name}
+                            </p>
                             <div className='spot-info'>
-                                <p
-                                    className='location-name'
-                                    onClick={() => navigate(`/spots/${spot.id}`)}
-                                >
-                                    {spot.name}
-                                </p>
                                 <p>{spot.city}, {spot.state}</p>
-                                <p>
-                                    <i className='fa-solid fa-ring'></i>
-                                    {spot.avgRating}
+                                <p className='price'>${spot.price} a night</p>
+                                <p className='avg-rate'>
+                                    <i className='fa-solid fa-ring'></i>&nbsp;
+                                    {spot.avgRating > 0 ? spot.avgRating.toFixed(1) : 'New'}
                                 </p>
                             </div>
-                            <p className='price'>${spot.price} a night</p>
                         </div>
                         <div className='edit-or-delete'>
-                            <button type='button' onClick={() => handleUpdate(spot.id)}>Update</button>
+                            <button id='update-btn' type='button' onClick={() => handleUpdate(spot.id)}>Update</button>
                             <OpenModalMenuItem
                                 itemText='Delete'
                                 modalComponent={(
