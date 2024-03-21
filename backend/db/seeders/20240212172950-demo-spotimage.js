@@ -178,7 +178,7 @@ module.exports = {
         },
         {
           spotId: 7,
-          url: "http://dioxaz.free.fr/tlfz/decors/sa2/musicplantbg01.png",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1710982953/musicplantbg01_wqasny.png",
           preview: true,
         },
         {
