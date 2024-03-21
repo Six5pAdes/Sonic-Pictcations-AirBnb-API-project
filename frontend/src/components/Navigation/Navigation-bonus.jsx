@@ -7,28 +7,27 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   return (
-    <ul id='navbar-left'>
-      <li>
+    <ul id='navbar-full'>
+      <li id='navbar-left'>
         <NavLink to="/">
           <img id='logo' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1710891390/Sonic_channel_ztj6xl.png' href='/' />
         </NavLink>
         <h1>Sonic Pict-cations</h1>
       </li>
-      <li>
-        <ul id='navbar-right'>
+      <li id='navbar-right'>
+        <ul>
           {sessionUser && (
-            <li>
+            <div>
               <NavLink to='/spots/new' id='navlink-right'>
                 Create a new Spot
               </NavLink>
-            </li>
+            </div>
           )}
           {isLoaded && (
-            <li>
+            <div>
               <ProfileButton user={sessionUser} />
-            </li>
+            </div>
           )}
-
         </ul>
       </li>
     </ul>

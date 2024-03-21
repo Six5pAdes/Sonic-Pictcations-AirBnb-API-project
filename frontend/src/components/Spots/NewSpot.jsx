@@ -81,7 +81,12 @@ const CreateSpot = () => {
         setErrors(err);
 
         const spot = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
-        const imagesArr = [previewImage, images].filter(img => img);
+        const imagesArr = [previewImage,
+            images[1] || defaultImageUrl,
+            images[2] || defaultImageUrl,
+            images[3] || defaultImageUrl,
+            images[4] || defaultImageUrl,
+        ].filter(img => img);
         const newSpot = await dispatch(createSpot(spot, imagesArr))
 
         if (newSpot && newSpot.id) navigate(`/spots/${newSpot.id}`)
@@ -100,6 +105,8 @@ const CreateSpot = () => {
         if (submit && !previewImage) validErrs.previewImage = "Preview Image is required"
         setErrors(validErrs)
     }, [country, address, city, description.length, state, title, price, previewImage, submit])
+
+    const defaultImageUrl = 'https://iili.io/JX1mVnV.png'
 
     return (
         <div id="spot-new">
@@ -144,7 +151,7 @@ const CreateSpot = () => {
                             State
                             <input
                                 type="text"
-                                placeholder="State"
+                                placeholder="STATE"
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
                             />
@@ -205,7 +212,16 @@ const CreateSpot = () => {
                             onChange={(e) => setPreviewImage(e.target.value)}
                         />
                         {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>}
-                        <input
+                        {[1, 2, 3, 4].map(i => (
+                            <input
+                                key={i}
+                                type="text"
+                                placeholder="Image Url"
+                                value={images[i]}
+                                onChange={(e) => setImages({ ...images, [i]: e.target.value })}
+                            />
+                        ))}
+                        {/* <input
                             type="text"
                             placeholder="Image Url"
                             value={images[1]}
@@ -228,7 +244,7 @@ const CreateSpot = () => {
                             placeholder="Image Url"
                             value={images[4]}
                             onChange={(e) => setImages({ ...images, [4]: e.target.value })}
-                        />
+                        /> */}
                     </label>
                 </div>
 

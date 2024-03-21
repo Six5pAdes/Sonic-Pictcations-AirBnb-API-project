@@ -67,7 +67,7 @@ const ManageSpot = () => {
                                         <h2>Confirm Delete</h2>
                                         <span>Are you sure you want to remove this spot?</span>
                                         <button id='delete-complete' type='button' onClick={() => handleDelete(spot.id)}>Yes (Delete Spot)</button>
-                                        <button id='delete-cancel' type='button' onClick={{ closeModal }}>No (Keep Spot)</button>
+                                        <button id='delete-cancel' type='button' onClick={closeModal}>No (Keep Spot)</button>
                                     </div>
                                 )}
                             />

@@ -3,9 +3,13 @@
 }
 
 #logo {
-  width: 125px;
-  height: 125px;
+  width: 100px;
+  height: 100px;
   padding-right: 2px;
+}
+
+#navbar-left {
+  justify-content: space-between;
 }
 
 #navbar-right {
@@ -23,7 +27,7 @@
   text-decoration: none;
 }
 
-#navbar-left {
+#navbar-full {
   list-style-type: none;
   display: flex;
   flex-direction: row;

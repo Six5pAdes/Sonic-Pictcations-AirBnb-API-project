@@ -10,13 +10,13 @@ const SpotUpdate = () => {
     const dispatch = useDispatch();
     const currSpot = useSelector(state => state.spotStore[spotId])
 
-    const [country, setCountry] = useState(currSpot.country || "");
-    const [address, setAddress] = useState(currSpot.address || "");
-    const [city, setCity] = useState(currSpot.city || "");
-    const [state, setState] = useState(currSpot.state || "");
-    const [description, setDescription] = useState(currSpot.description || "");
-    const [title, setTitle] = useState(currSpot.title || "");
-    const [price, setPrice] = useState(currSpot.price || 0);
+    const [country, setCountry] = useState(currSpot ? currSpot.country : "");
+    const [address, setAddress] = useState(currSpot ? currSpot.address : "");
+    const [city, setCity] = useState(currSpot ? currSpot.city : "");
+    const [state, setState] = useState(currSpot ? currSpot.state : "");
+    const [description, setDescription] = useState(currSpot ? currSpot.description : "");
+    const [title, setTitle] = useState(currSpot ? currSpot.title : "");
+    const [price, setPrice] = useState(currSpot ? currSpot.price : 0);
     // const [previewImage, setPreviewImage] = useState(currSpot.previewImage || "")
     // const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
     const [errors, setErrors] = useState({});
@@ -66,7 +66,10 @@ const SpotUpdate = () => {
 
         const spotUpdated = await dispatch(editSpot(spotData, spotId))
         if (spotUpdated.errors) setErrors({ ...spotUpdated.errors, ...errors })
-        else navigate(`/spots/${spotUpdated.id}`)
+        else {
+            dispatch(editSpot(spotUpdated))
+            navigate(`/spots/${spotUpdated.id}`)
+        }
 
     }
     useEffect(() => {

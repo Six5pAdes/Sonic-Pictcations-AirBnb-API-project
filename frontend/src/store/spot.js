@@ -93,12 +93,12 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   if (response.ok) dispatch(removeSpot(spotId));
 };
 
-const initialState = { spots: {} };
+const initialState = {};
 
 function spotReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_SPOTS: {
-      const newState = { ...state, spots: {}, spot: {} };
+      const newState = { ...state };
       action.spots.Spots.forEach((oneSpot) => {
         newState[oneSpot.id] = oneSpot;
       });
@@ -110,7 +110,7 @@ function spotReducer(state = initialState, action) {
     case ADD_SPOT:
       return { ...state, [action.spot.id]: action.spot };
     case EDIT_SPOT: {
-      return { ...state, spot: action.spot };
+      return { ...state, [action.spot.id]: action.spot };
     }
     case REMOVE_SPOT: {
       const newState = { ...state };
