@@ -56,13 +56,13 @@ const SpotDetails = () => {
 }
 
 const ReviewInfo = ({ numReviews, avgRating }) => {
-    let sOrNot = numReviews === 1 ? "" : "s";
+    // let sOrNot = numReviews === 1 ? "" : "s";
     let ratingDisplay = avgRating > 0 ? avgRating.toFixed(1) : 'New';
     return (
         <p>
             <i className='fa-solid fa-ring'></i>&nbsp;
             {ratingDisplay} •
-            {numReviews !== 0 ? ` ${numReviews} review${sOrNot}` : ''}
+            {numReviews !== 0 ? ` ${numReviews} review${numReviews !== 1 ? 's' : ''}` : ''}
         </p>
     );
 }

@@ -32,11 +32,13 @@ function LoginFormModal() {
     return false;
   }
 
-  const DemoUser = () => {
+  const demoUser = () => {
     // e.preventDefault()
-    return dispatch(
-      sessionActions.login({ credential: "Barry", password: "password2" })
-    ).then(closeModal);
+    // return dispatch(
+    //   sessionActions.login({ credential: "DemoUser", password: "password2" })
+    // ).then(closeModal);
+    setCredential("DemoUser")
+    setPassword("password3")
   }
 
   return (
@@ -71,7 +73,7 @@ function LoginFormModal() {
           :
           <button className='login-success' type="submit" >Log In</button>
         }
-        <a href="/" onClick={DemoUser} className="demo-user-link">
+        <a href="/" onClick={demoUser} className="demo-user-link">
           Demo User
         </a>
       </form>

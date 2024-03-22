@@ -29,7 +29,7 @@ export const fetchReviews = (spotId) => async (dispatch) => {
 export const leaveReview = (spotId, review) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: "POST",
-    headers: { "Content-Type": "application-json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(review),
   });
   if (response.ok) {
@@ -42,8 +42,8 @@ export const leaveReview = (spotId, review) => async (dispatch) => {
 export const deleteReview = (reviewId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(reviewId),
+    // headers: { "Content-Type": "application/json" },
+    // body: JSON.stringify(reviewId),
   });
   if (response.ok) {
     dispatch(removeReview(reviewId));
