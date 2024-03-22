@@ -62,6 +62,7 @@ const ManageSpot = () => {
                             <button id='update-btn' type='button' onClick={() => handleUpdate(spot.id)}>Update</button>
                             <OpenModalMenuItem
                                 itemText='Delete'
+                                className='delete-button'
                                 modalComponent={(
                                     <div id='confirm-delete'>
                                         <h2>Confirm Delete</h2>

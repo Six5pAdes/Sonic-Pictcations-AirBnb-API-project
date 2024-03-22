@@ -74,12 +74,12 @@ const ReviewList = () => {
                                 itemText='Delete'
                                 className='delete-button'
                                 modalComponent={
-                                    <div id='delete-container'>
-                                        <h2>Confirm Delete</h2>
-                                        <div className="delete-button-container">
-                                            <span className="confirm-text">Are you sure you want to delete this review?</span>
-                                            <button id='confirm-delete' className='delete-buttons' onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
-                                            <button id='no-delete' className='delete-buttons' onClick={closeModal}>No (Keep Review)</button>
+                                    <div id='confirm-delete'>
+                                        <div className="confirm-delete">
+                                            <h2>Confirm Delete</h2>
+                                            <span>Are you sure you want to delete this review?</span>
+                                            <button id='delete-complete' type="button" onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
+                                            <button id='delete-cancel' type="button" onClick={closeModal}>No (Keep Review)</button>
                                         </div>
                                     </div>
                                 }

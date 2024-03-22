@@ -41,10 +41,10 @@
     display: flex;
     flex-direction: column;
     padding: 8px;
-    max-width: 300px;
+    /* max-width: 300px; */
 }
 
-#confirm-delete>h2 {
+#confirm-delete>h2, span {
     align-self: center;
 }
 

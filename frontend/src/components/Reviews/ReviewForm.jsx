@@ -33,7 +33,7 @@ const ReviewForm = ({ spot }) => {
                 placeholder="Leave your review here..."
                 value={reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
-                required
+                // required
                 id="full-review"
             />
             <StarsRatingInput setStars={setStars} stars={stars} />
@@ -41,6 +41,7 @@ const ReviewForm = ({ spot }) => {
                 type="submit"
                 disabled={disabled}
                 onClick={handleSubmit}
+                id="submit-button"
             >
                 Submit Your Review
             </button>
