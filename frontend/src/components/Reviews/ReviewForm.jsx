@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from '../../context/Modal'
+import { useParams } from 'react-router-dom'
 import { leaveReview } from "../../store/review";
 import StarsRatingInput from "./StarsInput";
 import './ReviewForm.css'
 
-const ReviewForm = ({ spot }) => {
+const ReviewForm = () => {
     const dispatch = useDispatch()
+    const { spotId } = useParams()
     const [reviewText, setReviewText] = useState("")
     const [stars, setStars] = useState(null)
     const [errors, setErrors] = useState("")
@@ -16,7 +18,7 @@ const ReviewForm = ({ spot }) => {
         e.preventDefault()
         setErrors('')
         const review = { review: reviewText, stars }
-        return await dispatch(leaveReview(spot.id, review))
+        return await dispatch(leaveReview(spotId, review))
             .then(closeModal)
             .catch(async () => {
                 setErrors("Server currently down, please try again later")
@@ -33,7 +35,7 @@ const ReviewForm = ({ spot }) => {
                 placeholder="Leave your review here..."
                 value={reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
-                required
+                // required
                 id="full-review"
             />
             <StarsRatingInput setStars={setStars} stars={stars} />
@@ -41,6 +43,7 @@ const ReviewForm = ({ spot }) => {
                 type="submit"
                 disabled={disabled}
                 onClick={handleSubmit}
+                id="submit-button"
             >
                 Submit Your Review
             </button>

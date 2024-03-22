@@ -6,3 +6,7 @@
 #review-button {
     padding-bottom: 10px;
 }
+
+#review-button:hover {
+    cursor: pointer;
+}

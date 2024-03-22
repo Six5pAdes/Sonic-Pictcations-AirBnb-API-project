@@ -47,8 +47,8 @@ const SpotDetails = () => {
             </div>
             <br />
             <ReviewInfo
-                numReviews={spot.numReviews}
                 avgRating={spot.avgRating}
+                numReviews={spot.numReviews}
             />
             <ReviewList spot={spot} />
         </div>
@@ -56,12 +56,15 @@ const SpotDetails = () => {
 }
 
 const ReviewInfo = ({ numReviews, avgRating }) => {
-    let amount = numReviews === 1 ? "" : "s"
-    return <p>
-        <i className='fa-solid fa-ring'></i>&nbsp;
-        {avgRating > 0 ? avgRating.toFixed(1) : 'New'} •
-        {numReviews !== 0 ? ` ${numReviews} review${amount}` : ''}
-    </p>
+    // let sOrNot = numReviews === 1 ? "" : "s";
+    let ratingDisplay = avgRating > 0 ? avgRating.toFixed(1) : 'New';
+    return (
+        <p>
+            <i className='fa-solid fa-ring'></i>&nbsp;
+            {ratingDisplay} •
+            {numReviews !== 0 ? ` ${numReviews} review${numReviews !== 1 ? 's' : ''}` : ''}
+        </p>
+    );
 }
 
 export default SpotDetails

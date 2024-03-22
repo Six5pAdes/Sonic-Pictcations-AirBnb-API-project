@@ -83,6 +83,10 @@
     padding: 8px 5px;
 }
 
+#reserve-button:hover {
+    cursor: pointer;
+}
+
 .extraInfo {
     display: flex;
     flex-direction: row;

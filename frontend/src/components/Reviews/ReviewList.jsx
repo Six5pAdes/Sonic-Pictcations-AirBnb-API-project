@@ -28,7 +28,7 @@ const ReviewList = () => {
     }, [dispatch, spotId])
 
     const handleDelete = review => {
-        dispatch(deleteReview(spotId, review))
+        dispatch(deleteReview(review.id))
         closeModal()
     }
 
@@ -36,7 +36,7 @@ const ReviewList = () => {
         .filter(review => review.spotId === parseInt(spotId))
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
-    const isOwner = sessionObj && reviews.length > 0 && sessionObj.id === reviews[0].User.id
+    const isOwner = sessionObj && reviews.length > 0 && reviews[0].User && sessionObj.id === reviews[0].User.id
 
     // if (!reviews.length) {
     //     return <div id='list'>
@@ -65,22 +65,20 @@ const ReviewList = () => {
             </div>
             <div id="reviews-container">
                 {reviews.map((review) => (
-                    <div key={review.id} className="review">
+                    <div key={review?.id} className="review">
                         <h3 className="review-name">{review.User?.firstName}</h3>
-                        <div>{formatDate(new Date(review.createdAt))}</div>
-                        <p className="review-comments">{review.review}</p>
-                        {sessionObj?.id === review.User?.id && (
+                        <div>{formatDate(new Date(review?.createdAt))}</div>
+                        <p className="review-comments">{review?.review}</p>
+                        {sessionObj?.id === review?.User?.id && (
                             <OpenModalMenuItem
                                 itemText='Delete'
                                 className='delete-button'
                                 modalComponent={
-                                    <div id='delete-container'>
+                                    <div id='confirm-delete'>
                                         <h2>Confirm Delete</h2>
-                                        <div className="delete-button-container">
-                                            <span className="confirm-text">Are you sure you want to delete this review?</span>
-                                            <button id='confirm-delete' className='delete-buttons' onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
-                                            <button id='no-delete' className='delete-buttons' onClick={closeModal}>No (Keep Review)</button>
-                                        </div>
+                                        <span>Are you sure you want to delete this review?</span>
+                                        <button id='delete-complete' type="button" onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
+                                        <button id='delete-cancel' type="button" onClick={closeModal}>No (Keep Review)</button>
                                     </div>
                                 }
                             />
