@@ -49,7 +49,7 @@ function ProfileButton({ user }) {
       <button onClick={toggleMenu}>
         <i className="fas fa-bars-staggered" />
         &nbsp;
-        {/* <i className="fas fa-user-circle" /> */}
+        <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (

@@ -1,22 +1,29 @@
-.allSpotsContain {
+.all-spots-contain {
   display: grid;
-  grid-template-rows: repeat(4, 1fr);grid-gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 40px;
   /* gap: 15px; */
-  max-width: 500px;
+  width: auto;
   margin: 0 auto;
-  padding: 20px;
+  padding-top: 20px;
+  padding-left: 10px;
   box-sizing: border-box;
 }
 
 .one-spot-contain {
   border: 2px solid #da2528;
+  border-radius: 1em;
   background-color: #FFE5B4;
   padding: 15px;
   width: 300px;
 }
 
+.one-spot-contain:hover {
+  cursor: pointer;
+}
+
 .info {
-  width: 200px;
+  width: auto;
   background-color: #ffffff;
 }
 
@@ -25,8 +32,11 @@
   flex-direction: row;
   text-align: center;
   border: 1px solid #319938;
-  /* border-radius: 8px; */
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-weight: bold;
   overflow: hidden;
+  /* max-width: 200px; */
 }
 
 .image {
@@ -34,6 +44,7 @@
   height: 200px;
 }
 
-.image:hover {
-  cursor: pointer;
+.avg-rate {
+  display: flex;
+  justify-content: flex-end;
 }

@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createSpot } from "../../store/spot";
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import './NewSpot.css'
+import './SpotForm.css'
 
 const CreateSpot = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [country, setCountry] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -14,21 +16,97 @@ const CreateSpot = () => {
     const [price, setPrice] = useState("");
     const [previewImage, setPreviewImage] = useState()
     const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
-    const [errors, setErrors] = useState([]);
-    const navigate = useNavigate();
+    const [errors, setErrors] = useState({});
+    const [submit, setSubmit] = useState(false)
 
-    const dispatch = useDispatch();
-
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
-        const spot = { address, city, state, country, lat: 1, lng: 1, name: title, description, price, images: Object.values(images) }
-        dispatch(createSpot(spot))
-            .then(({ spot: newSpot }) => navigate(`/spots/${newSpot.id}`))
-            .catch(async (response) => {
-                const data = await response.json()
-                if (data && data.errors) setErrors(data.errors)
-            })
+        const err = {}
+        setSubmit(true)
+
+        if (!country) {
+            err.country = "Country is required"
+            setErrors(err)
+            return err
+        }
+        if (!address) {
+            err.address = "Address is required"
+            setErrors(err)
+            return err
+        }
+        if (!city) {
+            err.city = "City is required"
+            setErrors(err)
+            return err
+        }
+        if (!state) {
+            err.state = "State is required"
+            setErrors(err)
+            return err
+        }
+        if (description.length < 30) {
+            err.description = "Description needs 30 or more characters"
+            setErrors(err)
+            return err
+        }
+        if (!title) {
+            err.title = "Title is required"
+            setErrors(err)
+            return err
+        }
+        if (!price) {
+            err.price = "Price per night is required"
+            setErrors(err)
+            return err
+        }
+        if (!previewImage) {
+            err.previewImage = "Preview Image required"
+            setErrors(err)
+            return err
+        }
+        if (Object.keys(err).length > 0) return err;
+
+        const imageUrls = [previewImage, ...Object.values(images)];
+        for (let i = 0; i < imageUrls.length; i++) {
+            const imageUrl = imageUrls[i];
+            if (imageUrl) {
+                const end = imageUrl.split('.').pop().toLowerCase();
+                if (end !== 'png' && end !== 'jpg' && end !== 'jpeg') {
+                    err[`image${i + 1}`] = "Preview Image or Image URL needs to end in png, jpg or jpeg";
+                    setErrors(err);
+                    return err;
+                }
+            }
+        }
+        setErrors(err);
+
+        const spot = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
+        const imagesArr = [previewImage,
+            images[1] || defaultImageUrl,
+            images[2] || defaultImageUrl,
+            images[3] || defaultImageUrl,
+            images[4] || defaultImageUrl,
+        ].filter(img => img);
+        const newSpot = await dispatch(createSpot(spot, imagesArr))
+
+        if (newSpot && newSpot.id) navigate(`/spots/${newSpot.id}`)
+        else setErrors({ ...newSpot.errors, ...errors })
+
     }
+    useEffect(() => {
+        const validErrs = {}
+        if (submit && !country) validErrs.country = "Country is required"
+        if (submit && !address) validErrs.address = "Address is required"
+        if (submit && !city) validErrs.city = "City is required"
+        if (submit && description.length < 30) validErrs.description = "Description needs 30 or more characters"
+        if (submit && !state) validErrs.state = "State is required"
+        if (submit && !title) validErrs.title = "Title is required"
+        if (submit && !price) validErrs.price = "Price per night is required"
+        if (submit && !previewImage) validErrs.previewImage = "Preview Image is required"
+        setErrors(validErrs)
+    }, [country, address, city, description.length, state, title, price, previewImage, submit])
+
+    const defaultImageUrl = 'https://iili.io/JX1mVnV.png'
 
     return (
         <div id="spot-new">
@@ -44,10 +122,9 @@ const CreateSpot = () => {
                             placeholder="Country"
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
-                            required
                         />
                     </label>
-                    {errors.country && <p className="err-msg">{errors.country}</p>}
+                    {errors.country && <p className="err-msg" style={{ color: "red" }}>{errors.country}</p>}
                     <label className="spot-label">
                         Address
                         <input
@@ -55,7 +132,6 @@ const CreateSpot = () => {
                             placeholder="Address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                            required
                         />
                     </label>
                     {errors.address && <p className="err-msg">{errors.address}</p>}
@@ -67,7 +143,6 @@ const CreateSpot = () => {
                                 placeholder="City"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
-                                required
                             />
                         </label>
                         {errors.city && <p className="err-msg">{errors.city}</p>}
@@ -76,10 +151,9 @@ const CreateSpot = () => {
                             State
                             <input
                                 type="text"
-                                placeholder="State"
+                                placeholder="STATE"
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
-                                required
                             />
                         </label>
                         {errors.state && <p className="err-msg">{errors.state}</p>}
@@ -93,7 +167,6 @@ const CreateSpot = () => {
                             placeholder="Please write at least 30 characters"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            required
                         />
                     </label>
                     {errors.description && <p className="err-msg">{errors.description}</p>}
@@ -107,7 +180,6 @@ const CreateSpot = () => {
                             placeholder="Name of your spot"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            required
                         />
                     </label>
                     {errors.title && <p className="err-msg">{errors.title}</p>}
@@ -124,7 +196,6 @@ const CreateSpot = () => {
                                 placeholder="Price per night (USD)"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
-                                required
                             />
                         </span>
                     </label>
@@ -139,10 +210,18 @@ const CreateSpot = () => {
                             placeholder="Preview Image Url"
                             value={previewImage}
                             onChange={(e) => setPreviewImage(e.target.value)}
-                            required
                         />
                         {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>}
-                        <input
+                        {[1, 2, 3, 4].map(i => (
+                            <input
+                                key={i}
+                                type="text"
+                                placeholder="Image Url"
+                                value={images[i]}
+                                onChange={(e) => setImages({ ...images, [i]: e.target.value })}
+                            />
+                        ))}
+                        {/* <input
                             type="text"
                             placeholder="Image Url"
                             value={images[1]}
@@ -165,7 +244,7 @@ const CreateSpot = () => {
                             placeholder="Image Url"
                             value={images[4]}
                             onChange={(e) => setImages({ ...images, [4]: e.target.value })}
-                        />
+                        /> */}
                     </label>
                 </div>
 

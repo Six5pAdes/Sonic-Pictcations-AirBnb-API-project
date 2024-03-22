@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { editSpot } from "../../store/spot"
+import './SpotForm.css'
 
 const SpotUpdate = () => {
     const { spotId } = useParams()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const currSpot = useSelector(state => state.spotStore[spotId])
 
     const [country, setCountry] = useState(currSpot.country || "");
@@ -12,27 +15,79 @@ const SpotUpdate = () => {
     const [city, setCity] = useState(currSpot.city || "");
     const [state, setState] = useState(currSpot.state || "");
     const [description, setDescription] = useState(currSpot.description || "");
-    const [title, setTitle] = useState(currSpot.title || "");
+    const [title, setTitle] = useState(currSpot.name || "");
     const [price, setPrice] = useState(currSpot.price || 0);
-    const [previewImage, setPreviewImage] = useState()
-    const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
-    const [errors, setErrors] = useState([]);
-    const navigate = useNavigate();
+    // const [previewImage, setPreviewImage] = useState(currSpot.previewImage || "")
+    // const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
+    const [errors, setErrors] = useState({});
+    const [submit, setSubmit] = useState(false)
 
-    const dispatch = useDispatch();
-
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
-        const spot = { id: currSpot.id, address, city, state, country, lat: 1, lng: 1, name: title, description, price, images: Object.values(images) }
-        dispatch(editSpot(spot))
-            .then(({ spot: newSpot }) => navigate(`/spots/${newSpot.id}`))
-            .catch(async (response) => {
-                const data = await response.json()
-                if (data && data.errors) setErrors(data.errors)
-            })
-    }
+        const err = {}
+        setSubmit(true)
 
-    const submitDisabled = false;
+        if (!country) {
+            err.country = "Country is required"
+            setErrors(err)
+            return err
+        }
+        if (!address) {
+            err.address = "Address is required"
+            setErrors(err)
+            return err
+        }
+        if (!city) {
+            err.city = "City is required"
+            setErrors(err)
+            return err
+        }
+        if (!state) {
+            err.state = "State is required"
+            setErrors(err)
+            return err
+        }
+        if (description.length < 30) {
+            err.description = "Description needs 30 or more characters"
+            setErrors(err)
+            return err
+        }
+        if (!title) {
+            err.title = "Title is required"
+            setErrors(err)
+            return err
+        }
+        if (!price) {
+            err.price = "Price per night is required"
+            setErrors(err)
+            return err
+        }
+        const spotData = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
+
+        const spotUpdated = await dispatch(editSpot(spotData, spotId));
+        if (spotUpdated.errors) {
+            setErrors({ ...spotUpdated.errors, ...errors });
+        } else {
+            // Assuming `editSpot` action returns the updated spot data
+            // Dispatch action to update spot in Redux store
+            dispatch(editSpot(spotUpdated));
+            // Navigate to the updated spot's details page
+            navigate(`/spots/${spotUpdated.id}`);
+        }
+    }
+    useEffect(() => {
+        const validErrs = {}
+        if (submit && !country) validErrs.country = "Country is required"
+        if (submit && !address) validErrs.address = "Address is required"
+        if (submit && !city) validErrs.city = "City is required"
+        if (submit && description.length < 30) validErrs.description = "Description needs 30 or more characters"
+        if (submit && !state) validErrs.state = "State is required"
+        if (submit && !title) validErrs.title = "Title is required"
+        if (submit && !price) validErrs.price = "Price per night is required"
+        setErrors(validErrs)
+    }, [country, address, city, description, state, title, price, submit])
+
+    // const submitDisabled = false;
 
     return (
         <div id="spot-new">
@@ -50,7 +105,7 @@ const SpotUpdate = () => {
                             onChange={(e) => setCountry(e.target.value)}
                         />
                     </label>
-                    {errors.country && <p>{errors.country}</p>}
+                    {errors.country && <p className="err-msg" style={{ color: "red" }}>{errors.country}</p>}
                     <label className="spot-label">
                         Address
                         <input
@@ -60,7 +115,7 @@ const SpotUpdate = () => {
                             onChange={(e) => setAddress(e.target.value)}
                         />
                     </label>
-                    {errors.address && <p>{errors.address}</p>}
+                    {errors.address && <p className="err-msg" style={{ color: "red" }}>{errors.address}</p>}
                     <div id="city-and-state">
                         <label className="spot-label">
                             City
@@ -71,7 +126,7 @@ const SpotUpdate = () => {
                                 onChange={(e) => setCity(e.target.value)}
                             />
                         </label>
-                        {errors.city && <p>{errors.city}</p>}
+                        {errors.city && <p className="err-msg" style={{ color: "red" }}>{errors.city}</p>}
                         <span id="comma">,</span>
                         <label className="spot-label">
                             State
@@ -82,7 +137,7 @@ const SpotUpdate = () => {
                                 onChange={(e) => setState(e.target.value)}
                             />
                         </label>
-                        {errors.state && <p>{errors.state}</p>}
+                        {errors.state && <p className="err-msg" style={{ color: "red" }}>{errors.state}</p>}
                     </div>
                 </div>
                 <div className="new-spot-form">
@@ -95,7 +150,7 @@ const SpotUpdate = () => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </label>
-                    {errors.description && <p>{errors.description}</p>}
+                    {errors.description && <p className="err-msg" style={{ color: "red" }}>{errors.description}</p>}
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
@@ -108,7 +163,7 @@ const SpotUpdate = () => {
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </label>
-                    {errors.title && <p>{errors.title}</p>}
+                    {errors.title && <p className="err-msg" style={{ color: "red" }}>{errors.title}</p>}
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
@@ -118,16 +173,16 @@ const SpotUpdate = () => {
                         </small>
                         <span>
                             $ <input
-                                type="number"
+                                type="text"
                                 placeholder="Price per night (USD)"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
                             />
                         </span>
                     </label>
-                    {errors.price && <p>{errors.price}</p>}
+                    {errors.price && <p className="err-msg" style={{ color: "red" }}>{errors.price}</p>}
                 </div>
-                <div className="new-spot-form" id="new-spot-images">
+                {/* <div className="new-spot-form" id="new-spot-images">
                     <label className="spot-label">
                         Liven up your spot with photos
                         <small>Submit a link to at least one photo to publish your spot.</small>
@@ -137,7 +192,7 @@ const SpotUpdate = () => {
                             value={previewImage}
                             onChange={(e) => setPreviewImage(e.target.value)}
                         />
-                        {/* {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>} */}
+                        {/* {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>}
                         <input
                             type="text"
                             placeholder="Image Url"
@@ -163,9 +218,10 @@ const SpotUpdate = () => {
                             onChange={(e) => setImages({ ...images, [4]: e.target.value })}
                         />
                     </label>
-                </div>
+                </div> */}
 
-                <button id="submit-button" type="submit" disabled={submitDisabled}
+                <button id="submit-button" type="submit"
+                // disabled={submitDisabled}
                 >Update your Spot</button>
             </form>
         </div>

@@ -3,9 +3,13 @@
 }
 
 #logo {
-  width: 125px;
-  height: 125px;
-  padding-right: 2px;
+  width: 100px;
+  height: 100px;
+  padding-left: 20px;
+}
+
+#navbar-left {
+  justify-content: space-between;
 }
 
 #navbar-right {
@@ -23,13 +27,15 @@
   text-decoration: none;
 }
 
-#navbar-left {
+#navbar-full {
   list-style-type: none;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 5px;
   border-bottom: 1px gray solid;
+  background-color: rgba(72, 224, 158, 0.29);
+  margin: 0%;
 }
 
 .profile-dropdown {

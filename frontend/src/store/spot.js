@@ -63,21 +63,21 @@ export const createSpot = (spot, spotImg) => async (dispatch) => {
         }),
       });
 
-      if (imgResponse.ok && !imgResponse.status(404)) {
+      if (imgResponse.ok && imgResponse.status !== 404) {
         const newImg = await imgResponse.json();
         newSpot.spotImg.push(newImg);
       }
     }
-    dispatch(findOneSpot(createSpot));
-    return createSpot;
+    dispatch(findOneSpot(newSpot));
+    return newSpot;
   }
 };
 
-export const editSpot = (spot) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${spot.id}`, {
+export const editSpot = (spotFix, spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "PUT",
     header: { "Content-Type": "application/json" },
-    body: JSON.stringify(spot),
+    body: JSON.stringify(spotFix),
   });
   if (response.ok) {
     const reSpot = await response.json();
@@ -93,12 +93,12 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   if (response.ok) dispatch(removeSpot(spotId));
 };
 
-const initialState = { spots: {} };
+const initialState = {};
 
 function spotReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_SPOTS: {
-      const newState = { ...state, spots: {}, spot: {} };
+      const newState = { ...state };
       action.spots.Spots.forEach((oneSpot) => {
         newState[oneSpot.id] = oneSpot;
       });
@@ -110,7 +110,7 @@ function spotReducer(state = initialState, action) {
     case ADD_SPOT:
       return { ...state, [action.spot.id]: action.spot };
     case EDIT_SPOT: {
-      return { ...state, spot: action.spot };
+      return { ...state, [action.spot.id]: action.spot };
     }
     case REMOVE_SPOT: {
       const newState = { ...state };

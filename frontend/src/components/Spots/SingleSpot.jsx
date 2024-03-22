@@ -10,7 +10,6 @@ const SpotDetails = () => {
     const { spotId } = useParams()
     const spotObj = useSelector(state => state.spotStore)
     const spot = spotObj[spotId]
-    // overwrite spotStore address
 
     useEffect(() => {
         dispatch(findOneSpot(spotId))
@@ -20,9 +19,10 @@ const SpotDetails = () => {
 
     return (
         <div className='single-spot'>
-            <div className='info' >
+            <div className='location' >
                 <h2>{spot.name}</h2>
-                <h3>{spot.city}, {spot.state}, {spot.country}</h3>
+                <h3>{spot.city}, {spot.state}, </h3>
+                <h3>{spot.country}</h3>
             </div>
             <div className='image-sec'>
                 {spot.SpotImages.map((image, n) =>
@@ -42,9 +42,10 @@ const SpotDetails = () => {
                             avgRating={spot.avgRating}
                         />
                     </div>
-                    <button onClick={() => alert("Feature coming soon")}>Reserve</button>
+                    <button id='reserve-button' onClick={() => alert("Feature coming soon")}>Reserve</button>
                 </div>
             </div>
+            <br />
             <ReviewInfo
                 numReviews={spot.numReviews}
                 avgRating={spot.avgRating}
@@ -57,8 +58,9 @@ const SpotDetails = () => {
 const ReviewInfo = ({ numReviews, avgRating }) => {
     let amount = numReviews === 1 ? "" : "s"
     return <p>
-        <i className='fa-solid fa-ring'></i>
-        {avgRating} {numReviews !== 0 ? ` • ${numReviews} review${amount}` : 'New'}
+        <i className='fa-solid fa-ring'></i>&nbsp;
+        {avgRating > 0 ? avgRating.toFixed(1) : 'New'} •
+        {numReviews !== 0 ? ` ${numReviews} review${amount}` : ''}
     </p>
 }
 
