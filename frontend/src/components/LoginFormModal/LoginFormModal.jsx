@@ -24,7 +24,6 @@ function LoginFormModal() {
       });
   };
 
-
   const disabledButton = () => {
     if (credential.length < 4 || password.length < 6) {
       return true;
@@ -34,12 +33,19 @@ function LoginFormModal() {
 
   const demoUser = () => {
     // e.preventDefault()
-    // return dispatch(
-    //   sessionActions.login({ credential: "DemoUser", password: "password2" })
-    // ).then(closeModal);
-    setCredential("DemoUser")
-    setPassword("password3")
+    setErrors({})
+    return dispatch(
+      sessionActions.login({ credential: "DemoUser", password: "password3" })
+    ).then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json()
+        if (data && data.errors) setErrors(data.errors)
+      })
+    // setCredential("DemoUser")
+    // setPassword("password3")
   }
+
+  const badInfo = () => credential.length < 4 || password.length < 6
 
   return (
     <div className='login-modal'>
@@ -69,7 +75,9 @@ function LoginFormModal() {
           <p className='login-error' style={{ color: 'red' }}>{errors.credential}</p>
         )}
         {disabledButton() ?
-          <button className='login-button' type="submit" disabled={credential.length < 4 || password.length < 6 ? true : false}>Log In</button>
+          <button className='login-button' type="submit" disabled={badInfo()}>
+            Log In
+          </button>
           :
           <button className='login-success' type="submit" >Log In</button>
         }

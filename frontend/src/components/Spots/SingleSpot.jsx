@@ -38,8 +38,8 @@ const SpotDetails = () => {
                     <div className='cashNView'>
                         <p>${spot.price} / night</p>
                         <ReviewInfo
+                            avgStarRating={spot.avgStarRating}
                             numReviews={spot.numReviews}
-                            avgRating={spot.avgRating}
                         />
                     </div>
                     <button id='reserve-button' onClick={() => alert("Feature coming soon")}>Reserve</button>
@@ -47,7 +47,7 @@ const SpotDetails = () => {
             </div>
             <br />
             <ReviewInfo
-                avgRating={spot.avgRating}
+                avgStarRating={spot.avgStarRating}
                 numReviews={spot.numReviews}
             />
             <ReviewList spot={spot} />
@@ -55,14 +55,14 @@ const SpotDetails = () => {
     )
 }
 
-const ReviewInfo = ({ numReviews, avgRating }) => {
-    // let sOrNot = numReviews === 1 ? "" : "s";
-    let ratingDisplay = avgRating > 0 ? avgRating.toFixed(1) : 'New';
+const ReviewInfo = ({ numReviews, avgStarRating }) => {
+    let ratingDisplay = avgStarRating > 0 ? avgStarRating.toFixed(1) : 'New';
+    let sOrNot = numReviews !== 1 ? "s" : "";
     return (
         <p>
             <i className='fa-solid fa-ring'></i>&nbsp;
-            {ratingDisplay} •
-            {numReviews !== 0 ? ` ${numReviews} review${numReviews !== 1 ? 's' : ''}` : ''}
+            {ratingDisplay}
+            {numReviews !== 0 ? ` • ${numReviews} review${sOrNot}` : ''}
         </p>
     );
 }

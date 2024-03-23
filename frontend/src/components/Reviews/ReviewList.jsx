@@ -37,6 +37,7 @@ const ReviewList = () => {
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
     const isOwner = sessionObj && reviews.length > 0 && reviews[0].User && sessionObj.id === reviews[0].User.id
+    const sessionStatus = !!sessionObj
 
     // if (!reviews.length) {
     //     return <div id='list'>
@@ -53,7 +54,7 @@ const ReviewList = () => {
     return (
         <section>
             <div id='list'>
-                {!isOwner && (
+                {sessionStatus && !isOwner && (
                     <div id="review-button">
                         <OpenModalMenuItem
                             itemText='Post Your Review!'

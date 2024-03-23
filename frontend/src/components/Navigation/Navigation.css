@@ -8,22 +8,25 @@
   padding-left: 20px;
 }
 
+.site-title {
+  padding-top: 20px;
+}
+
 #navbar-left {
+  display: flex;
   justify-content: space-between;
+  padding: 10px;
 }
 
 #navbar-right {
   display: flex;
-  padding: 0;
   justify-content: space-between;
+  padding: 10px;
+  align-self: center;
 }
 
 #navlink-right {
   margin-right: 8px;
-  text-decoration: none;
-}
-
-#manage-spot-navlink {
   text-decoration: none;
 }
 
@@ -34,7 +37,7 @@
   justify-content: space-between;
   padding: 5px;
   border-bottom: 1px gray solid;
-  background-color: rgba(72, 224, 158, 0.29);
+  background-color: rgba(209, 208, 175, 0.807);
   margin: 0%;
 }
 
@@ -43,7 +46,7 @@
   position: relative;
 }
 
-#popup-menu {
+#popup {
   position: absolute;
   border: black solid 2px;
   border-radius: 5px;
@@ -56,11 +59,11 @@
   width: 100px;
 }
 
-#popup-menu>*:first-child {
+#popup>*:first-child {
   margin-bottom: 8px;
 }
 
-#profile-popup-menu {
+#profile-popup {
   position: absolute;
   border: black solid 2px;
   border-radius: 5px;
@@ -69,20 +72,21 @@
   padding: 4px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(154, 204, 243);
+  background-color: rgb(246, 247, 248);
+  justify-content: center;
 }
 
-#profile-popup-menu>*:nth-last-child(n + 2) {
+#profile-popup>*:nth-last-child(n + 2) {
   margin-bottom: 8px;
   border-bottom: 1px solid black;
 }
 
-#profile-popup-menu>*:last-child {
+#profile-popup>*:last-child {
   align-self: center;
 }
 
-#profile-popup-menu button {
-  background-color: red;
+#profile-popup button {
+  background-color: silver;
   align-self: center;
 }
 
@@ -91,6 +95,15 @@
   cursor: pointer;
 }
 
-#prof-but {
+#prof-button {
+  display: flex;
+  align-items: center;
+}
+
+#prof-button>* {
+  margin-right: 8px;
+}
+
+#prof-button:hover, #logout:hover, #popup button:hover {
   cursor: pointer;
 }

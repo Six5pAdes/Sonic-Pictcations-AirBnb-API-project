@@ -22,7 +22,7 @@ function ProfileButton({ user }) {
 
     const closeMenu = (e) => {
       if (
-        // ulRef.current &&
+        ulRef.current &&
         !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
@@ -53,20 +53,20 @@ function ProfileButton({ user }) {
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
-          <div>
-            <li>Hello, {user.firstName}
+          <div id='profile-popup'>
+            <li className='menu-content'>Hello, {user.firstName}
               <br />
               {user.email}
             </li>
             <li>
-              <NavLink to='spots/current'>Manage Spots</NavLink>
+              <NavLink id='nav-link' to='spots/current'>Manage Spots</NavLink>
             </li>
             <li>
-              <button onClick={logout}>Log Out</button>
+              <button id='logout' onClick={logout}>Log Out</button>
             </li>
           </div>
         ) : (
-          <div>
+          <div id='popup'>
             <OpenModalMenuItem
               itemText='Log In'
               onItemClick={closeMenu}

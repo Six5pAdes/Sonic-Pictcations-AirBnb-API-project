@@ -50,7 +50,7 @@ const ManageSpot = () => {
                                 {spot.name}
                             </p>
                             <div className='spot-info'>
-                                <p>{spot.city}, {spot.state}</p>
+                                <p className='location'>{spot.city}, {spot.state}</p>
                                 <p className='price'>${spot.price} a night</p>
                                 <p className='avg-rate'>
                                     <i className='fa-solid fa-ring'></i>&nbsp;

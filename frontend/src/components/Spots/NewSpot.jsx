@@ -45,22 +45,22 @@ const CreateSpot = () => {
             return err
         }
         if (description.length < 30) {
-            err.description = "Description needs 30 or more characters"
+            err.description = "Description needs a minimum of 30 characters"
             setErrors(err)
             return err
         }
         if (!title) {
-            err.title = "Title is required"
+            err.title = "Name is required"
             setErrors(err)
             return err
         }
         if (!price) {
-            err.price = "Price per night is required"
+            err.price = "Price is required"
             setErrors(err)
             return err
         }
         if (!previewImage) {
-            err.previewImage = "Preview Image required"
+            err.previewImage = "Preview Image is required."
             setErrors(err)
             return err
         }
@@ -72,7 +72,7 @@ const CreateSpot = () => {
             if (imageUrl) {
                 const end = imageUrl.split('.').pop().toLowerCase();
                 if (end !== 'png' && end !== 'jpg' && end !== 'jpeg') {
-                    err[`image${i + 1}`] = "Preview Image or Image URL needs to end in png, jpg or jpeg";
+                    err[`image${i + 1}`] = "Image URL needs to end in .png, .jpg or .jpeg.";
                     setErrors(err);
                     return err;
                 }
@@ -143,6 +143,7 @@ const CreateSpot = () => {
                                 placeholder="City"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
+                                id="city"
                             />
                         </label>
                         {errors.city && <p className="err-msg">{errors.city}</p>}
@@ -154,6 +155,7 @@ const CreateSpot = () => {
                                 placeholder="STATE"
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
+                                id="state"
                             />
                         </label>
                         {errors.state && <p className="err-msg">{errors.state}</p>}
@@ -196,6 +198,7 @@ const CreateSpot = () => {
                                 placeholder="Price per night (USD)"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
+                                id="price"
                             />
                         </span>
                     </label>
