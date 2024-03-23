@@ -124,6 +124,7 @@ const SpotUpdate = () => {
                                 placeholder="City"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
+                                id="city"
                             />
                         </label>
                         {errors.city && <p className="err-msg" style={{ color: "red" }}>{errors.city}</p>}
@@ -135,6 +136,7 @@ const SpotUpdate = () => {
                                 placeholder="State"
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
+                                id="state"
                             />
                         </label>
                         {errors.state && <p className="err-msg" style={{ color: "red" }}>{errors.state}</p>}
@@ -177,6 +179,7 @@ const SpotUpdate = () => {
                                 placeholder="Price per night (USD)"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
+                                id="price"
                             />
                         </span>
                     </label>
