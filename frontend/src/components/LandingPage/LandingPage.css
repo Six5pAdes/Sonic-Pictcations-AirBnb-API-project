@@ -18,10 +18,6 @@
   width: 300px;
 }
 
-.one-spot-contain:hover {
-  cursor: pointer;
-}
-
 .info {
   width: auto;
   background-color: #ffffff;
@@ -40,6 +36,10 @@
   /* max-width: 200px; */
 }
 
+.location, .price {
+  margin-left: 5px;
+}
+
 .image {
   width: 300px;
   height: 200px;
@@ -48,4 +48,8 @@
 .avg-rate {
   display: flex;
   justify-content: flex-end;
+}
+
+.image:hover, .name:hover {
+  cursor: pointer;
 }

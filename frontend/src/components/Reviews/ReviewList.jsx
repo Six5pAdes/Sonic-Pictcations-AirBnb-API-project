@@ -38,6 +38,8 @@ const ReviewList = () => {
 
     const isOwner = sessionObj && reviews.length > 0 && reviews[0].User && sessionObj.id === reviews[0].User.id
     const sessionStatus = !!sessionObj
+    const reviewAdded = sessionObj && reviews.some(review => review.User?.id === sessionObj?.id)
+    const ownReview = sessionStatus && !isOwner && !reviewAdded
 
     // if (!reviews.length) {
     //     return <div id='list'>
@@ -54,7 +56,7 @@ const ReviewList = () => {
     return (
         <section>
             <div id='list'>
-                {sessionStatus && !isOwner && (
+                {ownReview && (
                     <div id="review-button">
                         <OpenModalMenuItem
                             itemText='Post Your Review!'

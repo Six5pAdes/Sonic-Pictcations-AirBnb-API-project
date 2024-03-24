@@ -3,8 +3,8 @@
 }
 
 .spot-card {
-    border: 2px solid maroon;
-    background-color: silver;
+    border: 2px solid rgb(49,153,56);
+    background-color: #FFE5B4;
     border-radius: 8px;
     margin-right: 15px;
     padding: 15px;
@@ -18,7 +18,7 @@
     margin-left: 45px;
 }
 
-.edit-or-delete>*:last-child, #update-btn, .spot-info, .price, .location {
+.edit-or-delete>*:last-child, #update-btn, .spot-info, .spot-price, .spot-location {
     margin-left: 5px;
     margin-bottom: 5px;
 }
@@ -31,10 +31,6 @@
 .name:hover {
     cursor: pointer;
     text-decoration: underline;
-}
-
-.edit-or-delete>*:last-child, #update-btn {
-    cursor: pointer;
 }
 
 .spot-img {
@@ -54,20 +50,38 @@
 }
 
 #confirm-delete>button {
-    margin: 4px 4px;
-    padding: 4px 4px;
+    /* margin: 4px 4px; */
+    padding: 10px;
 }
 
 #delete-complete {
     background-color: red;
+    box-shadow: 5px 5px 5px grey;
+    color: white;
+    border: black solid 1px;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
 }
 
 #delete-cancel {
     background-color: darkgray;
+    box-shadow: 5px 5px 5px grey;
+    color: white;
+    border: black solid 1px;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
 }
 
 #spots {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.spot-img:hover, #new-spot-btn:hover, .edit-or-delete>*:last-child, #update-btn, #delete-complete, #delete-cancel {
+    cursor: pointer;
 }

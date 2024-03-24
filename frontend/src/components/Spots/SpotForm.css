@@ -33,11 +33,12 @@
 
 #city-and-state {
     display: flex;
+    justify-content: center;
 }
 
-#city, #state {
+/* #city, #state {
     width: 220px;
-}
+} */
 
 #comma {
     padding-left: 4px;
@@ -46,7 +47,6 @@
 }
 
 #full-form>h2 {
-    margin: 0;
     padding-bottom: 10px;
 }
 
@@ -54,6 +54,6 @@ h3 {
     margin: 0;
 }
 
-#price {
-    width: 425px;
-}
+/* #price {
+    width: 100%;
+} */
