@@ -42,17 +42,20 @@ function SignupFormModal() {
     });
   };
 
-  const disabledButton = email === '' || username === '' || firstName === '' || lastName === '' || password === '' || confirmPassword === '' || username.length < 4 || password.length < 6
-  // const invalidInfo = () => {
-  //   return (
-  //     !email.length ||
-  //     username.length < 4 ||
-  //     !firstName ||
-  //     !lastName ||
-  //     password.length < 6 ||
-  //     !confirmPassword
-  //   );
-  // };
+  const disabledButton = () => {
+    return (email === '' || username === '' || firstName === '' || lastName === '' || password === '' || confirmPassword === '' || username.length < 4 || password.length < 6)
+  }
+
+  const invalidInfo = () => {
+    return (
+      !email.length ||
+      username.length < 4 ||
+      !firstName ||
+      !lastName ||
+      password.length < 6 ||
+      !confirmPassword
+    );
+  };
 
   return (
     <div className="signupModalWrapper">
@@ -64,7 +67,7 @@ function SignupFormModal() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+          // required
           />
         </label>
         {errors.email && (
@@ -78,7 +81,7 @@ function SignupFormModal() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
+          // required
           />
         </label>
         {errors.username && (
@@ -92,7 +95,7 @@ function SignupFormModal() {
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            required
+          // required
           />
         </label>
         {errors.firstName && (
@@ -106,7 +109,7 @@ function SignupFormModal() {
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            required
+          // required
           />
         </label>
         {errors.lastName && (
@@ -120,7 +123,7 @@ function SignupFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+          // required
           />
         </label>
         {errors.password && (
@@ -134,7 +137,7 @@ function SignupFormModal() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
+          // required
           />
         </label>
         {errors.confirmPassword && (
@@ -142,11 +145,11 @@ function SignupFormModal() {
             {errors.confirmPassword}
           </p>
         )}
-        {/* {disabledButton() ? */}
-        {/* <button className="disabledSignupButton" disabled={true} type="submit">Sign Up</button> */}
-        {/* : */}
-        <button className="signupModalButton" disabled={disabledButton} type="submit">Sign Up</button>
-        {/* } */}
+        {disabledButton() ?
+          <button className="disabledSignupButton" disabled={true} type="submit">Sign Up</button>
+          :
+          <button className="signupModalButton" disabled={invalidInfo()} type="submit">Sign Up</button>
+        }
       </form>
     </div>
   );

@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      <button id='prof-but' onClick={toggleMenu}>
         <i className="fas fa-bars-staggered" />
         &nbsp;
         <i className="fas fa-user-circle" />

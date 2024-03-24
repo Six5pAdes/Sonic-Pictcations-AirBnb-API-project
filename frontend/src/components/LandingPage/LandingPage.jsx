@@ -21,13 +21,15 @@ const Landing = () => {
                 <div
                     key={spot.id}
                     className='one-spot-contain'
-                    onClick={() => navigate(`spots/${spot.id}`)}
                 >
                     <img
                         className='image'
+                        onClick={() => navigate(`spots/${spot.id}`)}
                         src={spot.previewImage}
                     />
-                    <p className='name'>{spot.name}</p>
+                    <p className='name'
+                        onClick={() => navigate(`spots/${spot.id}`)}
+                    >{spot.name}</p>
                     <div className='info'>
                         <p className='location'>{spot.city}, {spot.state}</p>
                         <p className='price'>{`$${spot.price} / night`}</p>

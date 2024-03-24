@@ -6,7 +6,7 @@
 
 .location {
     /* background-color: #FFE5B4; */
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .image-sec {
@@ -14,52 +14,52 @@
     grid-template-areas:
         "a a b c"
         "a a d e";
-    margin-bottom: 1rem;
-    max-width: 1000px;
+    margin-bottom: 3em;
+    /* max-width: 1000px; */
     justify-content: space-evenly;
 }
 
 .spot-image-0 {
     grid-area: a;
     width: 550px;
-    height: 400px;
+    height: 450px;
     border: 1px solid #319938;
     margin-right: 20px;
 }
 
 .spot-image-1 {
     grid-area: b;
-    width: 275px;
-    height: 175px;
+    width: 300px;
+    height: 200px;
     border: 1px solid #319938;
-    margin-left: 20px;
+    margin-top: 10px;
     margin-right: 20px;
 }
 
 .spot-image-2 {
     grid-area: c;
-    width: 275px;
-    height: 175px;
+    width: 300px;
+    height: 200px;
     border: 1px solid #319938;
-    margin-left: 20px;
+    margin-top: 10px;
     margin-right: 20px;
 }
 
 .spot-image-3 {
     grid-area: d;
-    width: 275px;
-    height: 175px;
+    width: 300px;
+    height: 200px;
     border: 1px solid #319938;
-    margin-left: 20px;
+    margin-top: 10px;
     margin-right: 20px;
 }
 
 .spot-image-4 {
     grid-area: e;
-    width: 275px;
-    height: 175px;
+    width: 300px;
+    height: 200px;
     border: 1px solid #319938;
-    margin-left: 20px;
+    margin-top: 10px;
     margin-right: 20px;
 }
 

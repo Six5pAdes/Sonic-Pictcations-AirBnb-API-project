@@ -12,23 +12,25 @@ function Navigation({ isLoaded }) {
         <NavLink to="/">
           <img id='logo' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1710891390/Sonic_channel_ztj6xl.png' href='/' />
         </NavLink>
-        <h1 className='site-title'>Sonic Pict-cations</h1>
+        <NavLink to='/' className='site-title'>Sonic Pict-cations</NavLink>
       </li>
       <li id='navbar-right'>
-        <ul>
-          <div id='prof-button'>
+        <div id='nav-links-contain'>
+          <ul>
             {sessionUser && (
-              <NavLink to='/spots/new' id='navlink-right'>
-                Create a new Spot
-              </NavLink>
+              <div id='create-spot-link'>
+                <NavLink to='/spots/new' id='navlink-right' >
+                  Create a new Spot
+                </NavLink>
+              </div>
             )}
-          </div>
-          {isLoaded && (
-            <div>
-              <ProfileButton id='prof-but' user={sessionUser} />
-            </div>
-          )}
-        </ul>
+            {isLoaded && (
+              <div>
+                <ProfileButton user={sessionUser} />
+              </div>
+            )}
+          </ul>
+        </div>
       </li>
     </ul>
   );

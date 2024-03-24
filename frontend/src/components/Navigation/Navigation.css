@@ -10,19 +10,32 @@
 
 .site-title {
   padding-top: 20px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 #navbar-left {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px;
+  align-items: center;
 }
 
 #navbar-right {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  align-self: center;
+  align-items: center;
+}
+
+#nav-links-contain {
+  display: flex;
+  align-items: center;
+}
+
+#create-spot-link {
+  margin-right: 20px;
 }
 
 #navlink-right {
@@ -55,7 +68,7 @@
   padding: 8px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(154, 204, 243);
+  background-color: rgb(246, 247, 248);
   width: 100px;
 }
 
@@ -104,6 +117,6 @@
   margin-right: 8px;
 }
 
-#prof-button:hover, #logout:hover, #popup button:hover {
+#profile-dropdown:hover, #logout:hover, #prof-but:hover, #popup>*:hover {
   cursor: pointer;
 }
