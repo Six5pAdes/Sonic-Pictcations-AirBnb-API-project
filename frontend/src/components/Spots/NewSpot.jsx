@@ -124,7 +124,7 @@ const CreateSpot = () => {
                             onChange={(e) => setCountry(e.target.value)}
                         />
                     </label>
-                    {errors.country && <p className="err-msg" style={{ color: "red" }}>{errors.country}</p>}
+                    {errors.country && <p className="err-msg">{errors.country}</p>}
                     <label className="spot-label">
                         Address
                         <input
@@ -220,7 +220,7 @@ const CreateSpot = () => {
                                 key={i}
                                 type="text"
                                 placeholder="Image Url"
-                                value={images[i]}
+                                value={images[i] || ''}
                                 onChange={(e) => setImages({ ...images, [i]: e.target.value })}
                             />
                         ))}
