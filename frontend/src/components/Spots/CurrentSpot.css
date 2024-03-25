@@ -1,5 +1,14 @@
-.edit-or-delete {
-    display: flex;
+#spots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 40px;
+    width: auto;
+    margin: 0 auto;
+    padding-top: 20px;
+    /* padding-left: 10px; */
+    box-sizing: border-box;
+    /* flex-direction: row;
+    flex-wrap: wrap; */
 }
 
 .spot-card {
@@ -16,6 +25,10 @@
 
 #curr-title, #new-spot-btn {
     margin-left: 45px;
+}
+
+.edit-or-delete {
+    display: flex;
 }
 
 .edit-or-delete>*:last-child, #update-btn, .spot-info, .spot-price, .spot-location {
@@ -74,12 +87,6 @@
     margin-top: 20px;
     width: 100%;
     height: 50px;
-}
-
-#spots {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
 }
 
 .spot-img:hover, #new-spot-btn:hover, .edit-or-delete>*:last-child, #update-btn, #delete-complete, #delete-cancel {
