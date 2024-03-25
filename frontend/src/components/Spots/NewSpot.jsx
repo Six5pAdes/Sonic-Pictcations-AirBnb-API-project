@@ -14,7 +14,7 @@ const CreateSpot = () => {
     const [description, setDescription] = useState("");
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
-    const [previewImage, setPreviewImage] = useState()
+    const [previewImage, setPreviewImage] = useState("")
     const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
     const [errors, setErrors] = useState({});
     const [submit, setSubmit] = useState(false)
