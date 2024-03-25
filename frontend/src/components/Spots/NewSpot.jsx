@@ -114,7 +114,7 @@ const CreateSpot = () => {
                 <h2>Create a New Spot</h2>
                 <div>
                     <h3>Where&apos;s your place located?</h3>
-                    <p>Guests will only get your exact address once they booked a reservation.</p>
+                    <small>Guests will only get your exact address once they booked a reservation.</small>
                     <label className="spot-label">
                         Country
                         <input
@@ -163,7 +163,7 @@ const CreateSpot = () => {
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
-                        Describe your place to guests
+                        <h3> Describe your place to guests </h3>
                         <small>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</small>
                         <textarea
                             placeholder="Please write at least 30 characters"
@@ -175,7 +175,7 @@ const CreateSpot = () => {
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
-                        Create a title for your spot
+                        <h3>Create a title for your spot</h3>
                         <small>Catch guests&apos; attention with a spot title that highlights what makes your place special.</small>
                         <input
                             type="text"
@@ -188,7 +188,7 @@ const CreateSpot = () => {
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
-                        Set a base price for your spot
+                        <h3>Set a base price for your spot</h3>
                         <small>
                             Competitive pricing can help your listing stand out and rank higher in search results.
                         </small>
@@ -206,7 +206,7 @@ const CreateSpot = () => {
                 </div>
                 <div className="new-spot-form" id="new-spot-images">
                     <label className="spot-label">
-                        Liven up your spot with photos
+                        <h3>Liven up your spot with photos</h3>
                         <small>Submit a link to at least one photo to publish your spot.</small>
                         <input
                             type="text"

@@ -21,6 +21,7 @@ const Landing = () => {
                 <div
                     key={spot.id}
                     className='one-spot-contain'
+                    title={spot.name}
                 >
                     <img
                         className='image'

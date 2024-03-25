@@ -17,7 +17,7 @@ const SpotUpdate = () => {
     const [description, setDescription] = useState(currSpot.description || "");
     const [title, setTitle] = useState(currSpot.name || "");
     const [price, setPrice] = useState(currSpot.price || 0);
-    // const [previewImage, setPreviewImage] = useState(currSpot.previewImage || "")
+    const [previewImage, setPreviewImage] = useState(currSpot.previewImage || "")
     // const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
     const [errors, setErrors] = useState({});
     const [submit, setSubmit] = useState(false)
@@ -95,7 +95,7 @@ const SpotUpdate = () => {
                 <h2>Update your Spot</h2>
                 <div>
                     <h3>Where&apos;s your place located?</h3>
-                    <p>Guests will only get your exact address once they booked a reservation.</p>
+                    <small>Guests will only get your exact address once they booked a reservation.</small>
                     <label className="spot-label">
                         Country
                         <input
@@ -144,7 +144,7 @@ const SpotUpdate = () => {
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
-                        Describe your place to guests
+                        <h3>Describe your place to guests</h3>
                         <small>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</small>
                         <textarea
                             placeholder="Please write at least 30 characters"
@@ -156,7 +156,7 @@ const SpotUpdate = () => {
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
-                        Create a title for your spot
+                        <h3>Create a title for your spot</h3>
                         <small>Catch guests&apos; attention with a spot title that highlights what makes your place special.</small>
                         <input
                             type="text"
@@ -169,7 +169,7 @@ const SpotUpdate = () => {
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
-                        Set a base price for your spot
+                        <h3>Set a base price for your spot</h3>
                         <small>
                             Competitive pricing can help your listing stand out and rank higher in search results.
                         </small>
@@ -185,9 +185,9 @@ const SpotUpdate = () => {
                     </label>
                     {errors.price && <p className="err-msg" style={{ color: "red" }}>{errors.price}</p>}
                 </div>
-                {/* <div className="new-spot-form" id="new-spot-images">
+                <div className="new-spot-form" id="new-spot-images">
                     <label className="spot-label">
-                        Liven up your spot with photos
+                        <h3>Liven up your spot with photos</h3>
                         <small>Submit a link to at least one photo to publish your spot.</small>
                         <input
                             type="text"
@@ -195,8 +195,8 @@ const SpotUpdate = () => {
                             value={previewImage}
                             onChange={(e) => setPreviewImage(e.target.value)}
                         />
-                        {/* {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>}
-                        <input
+                        {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>}
+                        {/* <input
                             type="text"
                             placeholder="Image Url"
                             value={images[1]}
@@ -219,9 +219,9 @@ const SpotUpdate = () => {
                             placeholder="Image Url"
                             value={images[4]}
                             onChange={(e) => setImages({ ...images, [4]: e.target.value })}
-                        />
+    /> */}
                     </label>
-                </div> */}
+                </div>
 
                 <button id="submit-button" type="submit"
                 // disabled={submitDisabled}
