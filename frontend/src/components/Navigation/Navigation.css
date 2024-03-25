@@ -35,6 +35,7 @@
 }
 
 #create-spot-link {
+  display: inline-block;
   margin-right: 20px;
 }
 
@@ -101,6 +102,13 @@
 #profile-popup button {
   background-color: silver;
   align-self: center;
+}
+
+#prof-but {
+  border-radius: 20px;
+  height: 30px;
+  position: static;
+  display: inline-block;
 }
 
 #nav-link {
