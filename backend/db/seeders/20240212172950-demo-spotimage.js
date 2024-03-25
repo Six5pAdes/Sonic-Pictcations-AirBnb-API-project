@@ -183,7 +183,7 @@ module.exports = {
         },
         {
           spotId: 7,
-          url: "",
+          url: "https://iili.io/JX1mVnV.png",
           preview: true,
         },
         {
