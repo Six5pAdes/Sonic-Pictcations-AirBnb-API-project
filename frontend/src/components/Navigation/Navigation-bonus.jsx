@@ -10,7 +10,7 @@ function Navigation({ isLoaded }) {
     <ul id='navbar-full'>
       <li id='navbar-left'>
         <NavLink to="/">
-          <img id='logo' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1710891390/Sonic_channel_ztj6xl.png' href='/' />
+          <img id='logo' src='https://res.cloudinary.com/dqygc4mcu/image/upload/v1710891390/Sonic_jul_2015_ztj6xl.png' href='/' />
         </NavLink>
         <NavLink to='/' className='site-title'>Sonic Pict-cations</NavLink>
       </li>
