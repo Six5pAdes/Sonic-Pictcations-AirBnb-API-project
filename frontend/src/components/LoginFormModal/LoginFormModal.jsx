@@ -35,14 +35,12 @@ function LoginFormModal() {
     // e.preventDefault()
     setErrors({})
     return dispatch(
-      sessionActions.login({ credential: "DemoUser", password: "password3" })
+      sessionActions.login({ credential: "DemoUser", password: "password" })
     ).then(closeModal)
       .catch(async (res) => {
         const data = await res.json()
         if (data && data.errors) setErrors(data.errors)
       })
-    // setCredential("DemoUser")
-    // setPassword("password3")
   }
 
   const badInfo = () => credential.length < 4 || password.length < 6
@@ -58,7 +56,7 @@ function LoginFormModal() {
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            required
+          // required
           />
         </label>
         <label className='login-labels'>
@@ -68,7 +66,7 @@ function LoginFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+          // required
           />
         </label>
         {errors.credential && (
@@ -81,9 +79,8 @@ function LoginFormModal() {
           :
           <button className='login-success' type="submit" >Log In</button>
         }
-        <a href="/" onClick={demoUser} className="demo-user-link">
-          Demo User
-        </a>
+        <button className='login-success' onClick={demoUser}>Demo User</button>
+        <button className='login-success' onClick={closeModal}>Cancel</button>
       </form>
     </div>
   );

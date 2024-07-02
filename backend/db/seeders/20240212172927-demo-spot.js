@@ -175,6 +175,32 @@ module.exports = {
             "One of the five Starfall Islands, an ancient civilization once inhabited this grand location.",
           price: 49,
         },
+        {
+          ownerId: 12,
+          address: "5 Infinite Loop",
+          city: "Irvine",
+          state: "California",
+          country: "United States of America",
+          lat: 79.87899,
+          lng: 8.50734,
+          name: "Ouranos Island",
+          description:
+            "One of the five Starfall Islands, as well as the the most frighteningly peaceful.",
+          price: 39,
+        },
+        {
+          ownerId: 12,
+          address: "3 Infinite Loop",
+          city: "Irvine",
+          state: "California",
+          country: "United States of America",
+          lat: 80.07307,
+          lng: 10.07307,
+          name: "Chaos Island",
+          description:
+            "Another one of the five Starfall Islands, an active volcano is the only piece of nature that still thrives here.",
+          price: 59,
+        },
       ],
       { validate: true }
     );
