@@ -321,6 +321,56 @@ module.exports = {
           url: "https://pbs.twimg.com/media/Ff3LFMiUoAE1T3Q?format=jpg&name=large",
           preview: true,
         },
+        {
+          spotId: 13,
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337830/Sonic%20Channel/Sage_Ouranos_l8kasg.jpg",
+          preview: true,
+        },
+        {
+          spotId: 13,
+          url: "https://static1.dualshockersimages.com/wordpress/wp-content/uploads/2023/03/sonic-frontiers-ouranos-island-jukebox-note-1-between-climbable-ramp-green-container.jpg",
+          preview: true,
+        },
+        {
+          spotId: 13,
+          url: "https://staging.cohostcdn.org/attachment/c2eff7c3-04b8-4cab-bc07-0a56d7c35339/2023-07_ouranos_x1200.jpg?width=675&auto=webp&dpr=1",
+          preview: true,
+        },
+        {
+          spotId: 13,
+          url: "https://iili.io/JX1mVnV.png",
+          preview: true,
+        },
+        {
+          spotId: 13,
+          url: "https://iili.io/JX1mVnV.png",
+          preview: true,
+        },
+        {
+          spotId: 14,
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711394508/sonic_channel/sage_chaos_island_hvdpta.jpg",
+          preview: true,
+        },
+        {
+          spotId: 14,
+          url: "https://i.pinimg.com/736x/7a/6d/ca/7a6dca20f717c8ab788bee0cdda01332.jpg",
+          preview: true,
+        },
+        {
+          spotId: 14,
+          url: "https://iili.io/JX1mVnV.png",
+          preview: true,
+        },
+        {
+          spotId: 14,
+          url: "https://iili.io/JX1mVnV.png",
+          preview: true,
+        },
+        {
+          spotId: 14,
+          url: "https://iili.io/JX1mVnV.png",
+          preview: true,
+        },
       ],
       { validate: true }
     );

@@ -1,10 +1,14 @@
 /* TODO: Add sitewide styles */
 * {
     color: 	#3061e3;
-    /* background-color: #ffffff; */
-    /* font-weight: bolder; */
+    font-family: 'Roboto', serif;
+    margin: 0;
 }
 
 .fa-ring {
     color: #FFD700
+}
+
+button:hover {
+    cursor: pointer;
 }

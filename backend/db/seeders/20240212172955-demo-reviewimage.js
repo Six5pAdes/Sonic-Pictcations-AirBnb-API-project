@@ -69,6 +69,14 @@ module.exports = {
           reviewId: 12,
           url: "https://c4.wallpaperflare.com/wallpaper/281/771/582/sonic-sega-pc-gaming-sonic-frontiers-video-game-art-hd-wallpaper-thumb.jpg",
         },
+        {
+          reviewId: 13,
+          url: "https://m.media-amazon.com/images/M/MV5BZGI0NDM1ODMtZjA1Ni00MTdmLWE4MTQtOGNjZmMzY2NmN2E1XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg",
+        },
+        {
+          reviewId: 14,
+          url: "https://pbs.twimg.com/media/GGjCv7oWwAA6d2w?format=jpg&name=4096x4096",
+        },
       ],
       { validate: true }
     );
