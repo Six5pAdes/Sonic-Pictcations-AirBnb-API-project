@@ -159,7 +159,7 @@ module.exports = {
           lng: 139.46525,
           name: "Final Egg",
           description:
-            "One out of many bases under the Eggman Empire, a sky-piercing tower acting as an eyesore in the Mystic Ruins.",
+            "One out of many bases under the Eggman Empire, a sky-piercing tower in the Mystic Ruins.",
           price: 19,
         },
         {
@@ -185,7 +185,7 @@ module.exports = {
           lng: 8.50734,
           name: "Ouranos Island",
           description:
-            "One of the five Starfall Islands, as well as the the most frighteningly peaceful.",
+            "The largest of the five Starfall Islands, it acts as the resting place for the most fearsome of the islands' mechanical guardians.",
           price: 39,
         },
         {

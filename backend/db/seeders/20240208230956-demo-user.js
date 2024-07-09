@@ -120,6 +120,7 @@ module.exports = {
             "GoodFuture",
             "Fishman",
             "DrEggman",
+            "DemoUser",
           ],
         },
       },

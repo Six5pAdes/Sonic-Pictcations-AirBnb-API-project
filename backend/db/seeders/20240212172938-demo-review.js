@@ -99,7 +99,7 @@ module.exports = {
         },
         {
           spotId: 12,
-          userId: 1,
+          userId: 4,
           review:
             "Amazing place to visit, I just wish I could've come here the first time when I had a physical body.",
           stars: 4,
@@ -108,7 +108,7 @@ module.exports = {
           spotId: 13,
           userId: 1,
           review:
-            "I really enjoyed running along this island. Maybe someday, I'll come back again.",
+            "I really enjoyed running around on this island. Maybe someday, I'll come back again.",
           stars: 3,
         },
         {
@@ -136,7 +136,7 @@ module.exports = {
       options,
       {
         spotId: {
-          [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
         },
       },
       {}
