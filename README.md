@@ -1,4 +1,11 @@
-# AirBnB Clone
+# Sonic Pict-cations
+
+This is [Sonic Pict-cations](https://airbnb-api-project-9ym0.onrender.com/), a social marketplace for renting out vacation spots! <br/>
+Cloned from the minimalist approach of AirBnB, and themed around the colorful universe of Sonic the Hedgehog.
+
+## Preview
+<img width="1440" alt="Sonic Pict-cations" src="https://github.com/Six5pAdes/Sonic-Pictcations-AirBnb-API-project/assets/138395132/10bb8e0d-036f-41cc-aef5-5bc24ea3d7b4">
+
 
 ## Database Schema Design
 
