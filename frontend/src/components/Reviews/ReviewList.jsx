@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useModal } from "../../context/Modal";
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import ReviewForm from "./ReviewForm";
+import EditReview from "./EditReview";
 import './ReviewList.css'
 
 const formatDate = (date = new Date()) => {
@@ -73,18 +74,25 @@ const ReviewList = () => {
                         <div>{formatDate(new Date(review?.createdAt))}</div>
                         <p className="review-comments">{review?.review}</p>
                         {sessionObj?.id === review?.User?.id && (
-                            <OpenModalMenuItem
-                                itemText='Delete'
-                                className='delete-button'
-                                modalComponent={
-                                    <div id='confirm-delete'>
-                                        <h2>Confirm Delete</h2>
-                                        <span>Are you sure you want to delete this review?</span>
-                                        <button id='delete-complete' type="button" onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
-                                        <button id='delete-cancel' type="button" onClick={closeModal}>No (Keep Review)</button>
-                                    </div>
-                                }
-                            />
+                            <>
+                                <OpenModalMenuItem
+                                    itemText='Edit'
+                                    className='edit-button'
+                                    modalComponent={<EditReview reviewId={review.id} />}
+                                />
+                                <OpenModalMenuItem
+                                    itemText='Delete'
+                                    className='delete-button'
+                                    modalComponent={
+                                        <div id='confirm-delete'>
+                                            <h2>Confirm Delete</h2>
+                                            <span>Are you sure you want to delete this review?</span>
+                                            <button id='delete-complete' type="button" onClick={() => handleDelete(review)}>Yes (Delete Review)</button>
+                                            <button id='delete-cancel' type="button" onClick={closeModal}>No (Keep Review)</button>
+                                        </div>
+                                    }
+                                />
+                            </>
                         )}
                     </div>
                 ))}

@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf.js";
 
 const READ_REVIEWS = "reviews/READ_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
+const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 
 export const viewReviews = (reviews) => ({
@@ -10,6 +11,10 @@ export const viewReviews = (reviews) => ({
 });
 export const createReview = (review) => ({
   type: CREATE_REVIEW,
+  review,
+});
+export const updateReview = (review) => ({
+  type: UPDATE_REVIEW,
   review,
 });
 export const removeReview = (reviewId) => ({
@@ -36,6 +41,19 @@ export const leaveReview = (spotId, review) => async (dispatch) => {
     const newReview = await response.json();
     dispatch(createReview(newReview));
     return newReview;
+  }
+};
+
+export const editReview = (reviewId, review) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${reviewId}/edit`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(review),
+  });
+  if (response.ok) {
+    const updatedReview = await response.json();
+    dispatch(updateReview(updatedReview));
+    return updatedReview;
   }
 };
 
@@ -66,6 +84,11 @@ function reviewReducer(state = initialState, action) {
       return newReviews;
     }
     case CREATE_REVIEW: {
+      const newState = { ...state };
+      newState[action.review.id] = action.review;
+      return newState;
+    }
+    case UPDATE_REVIEW: {
       const newState = { ...state };
       newState[action.review.id] = action.review;
       return newState;
