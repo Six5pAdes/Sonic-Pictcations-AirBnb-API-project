@@ -88,6 +88,9 @@ const SpotUpdate = () => {
     }, [country, address, city, description, state, title, price, submit])
 
     // const submitDisabled = false;
+    const handleCancel = () => {
+        navigate(-1)
+    }
 
     return (
         <div id="spot-new">
@@ -223,9 +226,10 @@ const SpotUpdate = () => {
                     </label>
                 </div>
 
-                <button id="submit-button" type="submit"
-                // disabled={submitDisabled}
-                >Update your Spot</button>
+                <div className="buttons">
+                    <button id="submit-button" type="submit">Create Spot</button>
+                    <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
+                </div>
             </form>
         </div>
     )

@@ -108,6 +108,10 @@ const CreateSpot = () => {
 
     const defaultImageUrl = 'https://iili.io/JX1mVnV.png'
 
+    const handleCancel = () => {
+        navigate(-1)
+    }
+
     return (
         <div id="spot-new">
             <form onSubmit={handleSubmit} id='full-form'>
@@ -251,7 +255,10 @@ const CreateSpot = () => {
                     </label>
                 </div>
 
-                <button id="submit-button" type="submit">Create Spot</button>
+                <div className="buttons">
+                    <button id="submit-button" type="submit">Create Spot</button>
+                    <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
+                </div>
             </form>
         </div>
     )

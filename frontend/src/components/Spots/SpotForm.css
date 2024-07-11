@@ -57,3 +57,13 @@ h3 {
 .err-msg {
     color: red
 }
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+#cancel-button {
+    margin-left: 10px;
+}
