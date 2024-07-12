@@ -17,13 +17,6 @@ function Navigation({ isLoaded }) {
       <li id='navbar-right'>
         <div id='nav-links-contain'>
           <ul>
-            {sessionUser && (
-              <div id='create-spot-link'>
-                <NavLink to='/spots/new' id='navlink-right' >
-                  Create a new Spot
-                </NavLink>
-              </div>
-            )}
             {isLoaded && (
               <div>
                 <ProfileButton user={sessionUser} />

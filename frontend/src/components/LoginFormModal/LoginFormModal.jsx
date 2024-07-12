@@ -80,7 +80,6 @@ function LoginFormModal() {
           <button className='login-success' type="submit" >Log In</button>
         }
         <button className='login-success' onClick={demoUser}>Demo User</button>
-        <button className='login-success' onClick={closeModal}>Cancel</button>
       </form>
     </div>
   );

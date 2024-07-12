@@ -35,10 +35,10 @@
     color: red;
 }
 
-.disabledSignupButton {
+.disabled {
     font-size: 18px;
     margin-top: 10px;
-    width: 25rem;
+    width: fit-content;
     height: 50px;
     color: white;
     border: 1px black solid;
@@ -46,15 +46,15 @@
     background-color: #afdfdf;
 }
 
-.signupModalButton {
+.success {
     font-size: 18px;
     margin-top: 10px;
     height: 50px;
     color: white;
-    border: 3px black solid;
+    border: 1px black solid;
     box-shadow: 5px 5px 5px grey;
     background-color: #c6286d;
-    width: 25rem;
+    width: fit-content;
 }
 
 .signupModalButton:hover {

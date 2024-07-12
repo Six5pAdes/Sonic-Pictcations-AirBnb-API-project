@@ -11,16 +11,26 @@
     flex-wrap: wrap; */
 }
 
+#new-spot-btn {
+    background-color: #3061e3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
 .spot-card {
-    border: 2px solid rgb(49,153,56);
-    background-color: #FFE5B4;
-    border-radius: 8px;
     margin-right: 15px;
     padding: 15px;
 }
 
-.spot-info {
+.spot-card:hover {
+    border: 2px solid #da2528;
+    border-radius: 1em;
     background-color: #FFE5B4;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px grey;
 }
 
 #curr-title, #new-spot-btn {
@@ -29,6 +39,15 @@
 
 .edit-or-delete {
     display: flex;
+}
+
+.edit-or-delete button {
+    background-color: #3061e3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 .edit-or-delete>*:last-child, #update-btn, .spot-info, .spot-price, .spot-location {

@@ -10,6 +10,7 @@
     align-items: center;
     width: 95%;
     gap: 10px;
+    margin-top: 20px;
   }
 
   .login-labels {
@@ -30,7 +31,7 @@
   .login-button {
     font-size: 18px;
     margin-top: 10px;
-    width: 100%;
+    width: fit-content;
     height: 50px;
     box-shadow: 5px 5px 5px grey;
     background-color: #afdfdf;
@@ -41,12 +42,12 @@
   .login-success {
     font-size: 18px;
     margin-top: 10px;
-    width: 100%;
+    width: fit-content;
     height: 50px;
     box-shadow: 5px 5px 5px grey;
     background-color: #c6286d;
     color: white;
-    border: black solid 3px;
+    border: black solid 1px;
   }
 
   .login-success:hover {

@@ -45,12 +45,7 @@ const ManageSpot = () => {
                                 className='spot-img'
                                 onClick={() => navigate(`/spots/${spot.id}`)}
                             />
-                            <p
-                                className='name'
-                                onClick={() => navigate(`/spots/${spot.id}`)}
-                            >
-                                {spot.name}
-                            </p>
+                            <p className='name'>{spot.name}</p>
                             <div className='spot-info'>
                                 <p className='spot-location'>{spot.city}, {spot.state}</p>
                                 <p className='spot-price'>${spot.price} a night</p>

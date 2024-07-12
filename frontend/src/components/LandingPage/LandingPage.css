@@ -2,25 +2,29 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 40px;
-  /* gap: 15px; */
   width: auto;
   margin: 0 auto;
   padding-top: 20px;
   padding-left: 10px;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .one-spot-contain {
-  border: 2px solid #da2528;
-  border-radius: 1em;
-  background-color: #FFE5B4;
   padding: 15px;
   width: 300px;
 }
 
+.one-spot-contain:hover {
+  border: 2px solid #da2528;
+  border-radius: 1em;
+  background-color: #FFE5B4;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px grey;
+}
+
 .info {
   width: auto;
-  background-color: #FFE5B4;
 }
 
 .name {
@@ -43,6 +47,7 @@
 .image {
   width: 300px;
   height: 200px;
+  border-radius: 5px;
 }
 
 .avg-rate {

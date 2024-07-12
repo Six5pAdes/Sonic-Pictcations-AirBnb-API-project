@@ -73,6 +73,24 @@
   width: 100px;
 }
 
+#popup button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  justify-items: center;
+  width: 100%;
+}
+
+#popup button:hover {
+  background-color: gainsboro;
+  border-radius: 0;
+  color: #272d5a;
+}
+
 #popup>*:first-child {
   margin-bottom: 8px;
 }
@@ -106,7 +124,8 @@
 
 #prof-but {
   border-radius: 20px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   position: static;
   display: inline-block;
 }

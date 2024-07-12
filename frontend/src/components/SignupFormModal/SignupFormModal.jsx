@@ -146,9 +146,9 @@ function SignupFormModal() {
           </p>
         )}
         {disabledButton() ?
-          <button className="disabledSignupButton" disabled={true} type="submit">Sign Up</button>
+          <button className="disabled" disabled={true} type="submit">Sign Up</button>
           :
-          <button className="signupModalButton" disabled={invalidInfo()} type="submit">Sign Up</button>
+          <button className="success" disabled={invalidInfo()} type="submit">Sign Up</button>
         }
       </form>
     </div>

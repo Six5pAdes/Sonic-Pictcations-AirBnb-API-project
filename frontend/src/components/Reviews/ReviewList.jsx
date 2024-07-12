@@ -74,7 +74,7 @@ const ReviewList = () => {
                         <div>{formatDate(new Date(review?.createdAt))}</div>
                         <p className="review-comments">{review?.review}</p>
                         {sessionObj?.id === review?.User?.id && (
-                            <>
+                            <div className="edit-or-delete">
                                 <OpenModalMenuItem
                                     itemText='Edit'
                                     className='edit-button'
@@ -92,7 +92,7 @@ const ReviewList = () => {
                                         </div>
                                     }
                                 />
-                            </>
+                            </div>
                         )}
                     </div>
                 ))}

@@ -1,3 +1,12 @@
+#review-button button {
+    background-color: #3061e3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
 .review {
     border: 3px solid rgb(49,153,56);
     border-radius: 10px;
@@ -9,7 +18,6 @@
 #review-button {
     padding-bottom: 10px;
 }
-
 
 .delete-button:hover, #review-button>*:hover {
     cursor: pointer;

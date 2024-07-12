@@ -1,25 +1,26 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from '../../context/Modal'
-import { useParams } from 'react-router-dom'
 import { editReview } from "../../store/review";
+import { findOneSpot } from "../../store/spot";
 import StarsRatingInput from "./StarsInput";
 import './ReviewForm.css'
 
-const EditReview = () => {
-    const { reviewId } = useParams()
+const EditReview = ({ reviewId, initialReview = '', initialRating, spotId }) => {
     const dispatch = useDispatch()
-    const [reviewText, setReviewText] = useState("")
-    const [stars, setStars] = useState(null)
+    const currentUser = useSelector(state => state.session.user)
+    const [reviewText, setReviewText] = useState(initialReview)
+    const [stars, setStars] = useState(initialRating)
     const [errors, setErrors] = useState("")
     const { closeModal } = useModal()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors('')
-        const review = { review: reviewText, stars }
-        return await dispatch(editReview(reviewId, review))
+        const updatedReview = { review: reviewText, stars, spotId, userId: currentUser.id }
+        return await dispatch(editReview(updatedReview, reviewId))
             .then(closeModal)
+            .then(() => dispatch(findOneSpot(spotId)))
             .catch(async () => {
                 setErrors("Server currently down, please try again later")
             })
@@ -35,7 +36,6 @@ const EditReview = () => {
                 placeholder="Edit your review here..."
                 value={reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
-                // required
                 id="full-review"
             />
             <StarsRatingInput setStars={setStars} stars={stars} />
@@ -43,7 +43,7 @@ const EditReview = () => {
                 type="submit"
                 disabled={disabled}
                 onClick={handleSubmit}
-                id="submit-button"
+                className={disabled ? "disabled" : "success"}
             >
                 Submit Your Review
             </button>
