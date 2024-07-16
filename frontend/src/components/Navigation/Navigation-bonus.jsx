@@ -18,7 +18,7 @@ function Navigation({ isLoaded }) {
         <div id='nav-links-contain'>
           <ul>
             {isLoaded && (
-              <div>
+              <div className='prof-sec'>
                 <ProfileButton user={sessionUser} />
               </div>
             )}

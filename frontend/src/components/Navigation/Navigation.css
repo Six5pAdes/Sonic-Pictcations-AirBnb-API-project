@@ -3,8 +3,8 @@
 }
 
 #logo {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   padding-left: 20px;
 }
 
@@ -13,6 +13,11 @@
   text-decoration: none;
   font-size: 25px;
   font-weight: bold;
+}
+
+.site-title:hover {
+  color: black;
+  text-decoration: underline;
 }
 
 #navbar-left {
@@ -34,11 +39,6 @@
   align-items: center;
 }
 
-#create-spot-link {
-  display: inline-block;
-  margin-right: 20px;
-}
-
 #navlink-right {
   margin-right: 8px;
   text-decoration: none;
@@ -58,6 +58,10 @@
 .profile-dropdown {
   list-style-type: none;
   position: relative;
+}
+
+.prof-sec {
+  padding-right: 20px;
 }
 
 #popup {
