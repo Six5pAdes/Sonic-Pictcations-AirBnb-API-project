@@ -5,10 +5,7 @@
     width: auto;
     margin: 0 auto;
     padding-top: 20px;
-    /* padding-left: 10px; */
     box-sizing: border-box;
-    /* flex-direction: row;
-    flex-wrap: wrap; */
 }
 
 #new-spot-btn {
@@ -34,7 +31,8 @@
 }
 
 #curr-title, #new-spot-btn {
-    margin-left: 45px;
+    margin-top: 20px;
+    margin-left: 55px;
 }
 
 .edit-or-delete {
@@ -48,6 +46,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     margin-top: 10px;
+    margin-right: 5px;
 }
 
 .edit-or-delete>*:last-child, #update-btn, .spot-info, .spot-price, .spot-location {
@@ -74,7 +73,6 @@
     display: flex;
     flex-direction: column;
     padding: 8px;
-    /* max-width: 300px; */
 }
 
 #confirm-delete>h2, span {
@@ -82,7 +80,6 @@
 }
 
 #confirm-delete>button {
-    /* margin: 4px 4px; */
     padding: 10px;
 }
 
