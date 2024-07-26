@@ -17,7 +17,7 @@ const formatDate = (date = new Date()) => {
     return `${months[month]} ${year}`
 }
 
-const ReviewList = () => {
+const ReviewList = ({ spotOwner }) => {
     const dispatch = useDispatch()
     const { spotId } = useParams()
     const { closeModal } = useModal()
@@ -37,10 +37,10 @@ const ReviewList = () => {
         .filter(review => review.spotId === parseInt(spotId))
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
-    const isOwner = sessionObj && reviews.length > 0 && reviews[0].User && sessionObj.id === reviews[0].User.id
+    // const isOwner = sessionObj && reviews.length > 0 && reviews[0].User && sessionObj.id === reviews[0].User.id
     const sessionStatus = !!sessionObj
     const reviewAdded = sessionObj && reviews.some(review => review.User?.id === sessionObj?.id)
-    const ownReview = sessionStatus && !isOwner && !reviewAdded
+    const ownReview = sessionStatus && sessionObj.id !== spotOwner && !reviewAdded
 
     // if (!reviews.length) {
     //     return <div id='list'>

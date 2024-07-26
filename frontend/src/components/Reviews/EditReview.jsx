@@ -17,7 +17,12 @@ const EditReview = ({ reviewId, initialReview = '', initialRating, spotId }) => 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors('')
-        const updatedReview = { review: reviewText, stars, spotId, userId: currentUser.id }
+        const updatedReview = {
+            review: reviewText,
+            stars: stars,
+            spotId: spotId,
+            userId: currentUser.id
+        }
         return await dispatch(editReview(updatedReview, reviewId))
             .then(closeModal)
             .then(() => dispatch(findOneSpot(spotId)))
@@ -29,25 +34,27 @@ const EditReview = ({ reviewId, initialReview = '', initialRating, spotId }) => 
     const disabled = reviewText.length < 10 || stars === null;
 
     return (
-        <form onSubmit={handleSubmit} id="review-form">
+        <div id="review-contain">
             <h2>Edit Your Review</h2>
             {errors && (<p>{errors}</p>)}
-            <textarea
-                placeholder="Edit your review here..."
-                value={reviewText}
-                onChange={(e) => setReviewText(e.target.value)}
-                id="full-review"
-            />
-            <StarsRatingInput setStars={setStars} stars={stars} />
-            <button
-                type="submit"
-                disabled={disabled}
-                onClick={handleSubmit}
-                className={disabled ? "disabled" : "success"}
-            >
-                Submit Your Review
-            </button>
-        </form>
+            <form onSubmit={handleSubmit} id="review-form">
+                <textarea
+                    placeholder="Edit your review here..."
+                    value={reviewText}
+                    onChange={(e) => setReviewText(e.target.value)}
+                    id="full-review"
+                />
+                <StarsRatingInput setStars={setStars} stars={stars} />
+                <button
+                    type="submit"
+                    disabled={disabled}
+                    onClick={handleSubmit}
+                    className={disabled ? "disabled" : "success"}
+                >
+                    Submit Your Review
+                </button>
+            </form>
+        </div>
     )
 }
 

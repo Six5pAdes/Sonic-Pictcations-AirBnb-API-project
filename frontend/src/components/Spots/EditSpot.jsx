@@ -18,7 +18,7 @@ const SpotUpdate = () => {
     const [title, setTitle] = useState(currSpot.name || "");
     const [price, setPrice] = useState(currSpot.price || 0);
     const [previewImage, setPreviewImage] = useState(currSpot.previewImage || "")
-    // const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
+    const [images, setImages] = useState({ 1: "", 2: "", 3: "", 4: "" });
     const [errors, setErrors] = useState({});
     const [submit, setSubmit] = useState(false)
 
@@ -62,9 +62,29 @@ const SpotUpdate = () => {
             setErrors(err)
             return err
         }
-        const spotData = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
 
-        const spotUpdated = await dispatch(editSpot(spotData, spotId));
+        const imageUrls = [previewImage, ...Object.values(images)];
+        for (let i = 0; i < imageUrls.length; i++) {
+            const imageUrl = imageUrls[i];
+            if (imageUrl) {
+                const end = imageUrl.split('.').pop().toLowerCase();
+                if (end !== 'png' && end !== 'jpg' && end !== 'jpeg') {
+                    err[`image${i + 1}`] = "Image URL needs to end in .png, .jpg or .jpeg.";
+                    setErrors(err);
+                    return err;
+                }
+            }
+        }
+
+        const spotData = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
+        const imagesArr = [previewImage,
+            images[1] || defaultImageUrl,
+            images[2] || defaultImageUrl,
+            images[3] || defaultImageUrl,
+            images[4] || defaultImageUrl,
+        ].filter(img => img);
+
+        const spotUpdated = await dispatch(editSpot(spotData, imagesArr, spotId));
         if (spotUpdated.errors) {
             setErrors({ ...spotUpdated.errors, ...errors });
         } else {
@@ -86,6 +106,8 @@ const SpotUpdate = () => {
         if (submit && !price) validErrs.price = "Price per night is required"
         setErrors(validErrs)
     }, [country, address, city, description, state, title, price, submit])
+
+    const defaultImageUrl = 'https://iili.io/JX1mVnV.png'
 
     // const submitDisabled = false;
     const handleCancel = () => {
@@ -199,7 +221,7 @@ const SpotUpdate = () => {
                             onChange={(e) => setPreviewImage(e.target.value)}
                         />
                         {errors.previewImage && <p className="err-msg">{errors.previewImage}</p>}
-                        {/* <input
+                        <input
                             type="text"
                             placeholder="Image Url"
                             value={images[1]}
@@ -222,7 +244,7 @@ const SpotUpdate = () => {
                             placeholder="Image Url"
                             value={images[4]}
                             onChange={(e) => setImages({ ...images, [4]: e.target.value })}
-    /> */}
+                        />
                     </label>
                 </div>
 

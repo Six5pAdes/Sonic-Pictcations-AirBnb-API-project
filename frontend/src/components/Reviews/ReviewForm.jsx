@@ -28,25 +28,27 @@ const ReviewForm = () => {
     const disabled = reviewText.length < 10 || stars === null;
 
     return (
-        <form onSubmit={handleSubmit} id="review-form">
+        <div id="review-contain">
             <h2>How was your stay?</h2>
             {errors && (<p>{errors}</p>)}
-            <textarea
-                placeholder="Leave your review here..."
-                value={reviewText}
-                onChange={(e) => setReviewText(e.target.value)}
-                id="full-review"
-            />
-            <StarsRatingInput setStars={setStars} stars={stars} />
-            <button
-                type="submit"
-                disabled={disabled}
-                onClick={handleSubmit}
-                className={disabled ? "disabled" : "success"}
-            >
-                Submit Your Review
-            </button>
-        </form>
+            <form onSubmit={handleSubmit} id="review-form">
+                <textarea
+                    placeholder="Leave your review here (at least 10 characters)..."
+                    value={reviewText}
+                    onChange={(e) => setReviewText(e.target.value)}
+                    id="full-review"
+                />
+                <StarsRatingInput setStars={setStars} stars={stars} />
+                <button
+                    type="submit"
+                    disabled={disabled}
+                    onClick={handleSubmit}
+                    className={disabled ? "disabled" : "success"}
+                >
+                    Submit Your Review
+                </button>
+            </form>
+        </div>
     )
 }
 

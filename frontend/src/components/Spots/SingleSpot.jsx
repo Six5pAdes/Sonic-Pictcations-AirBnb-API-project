@@ -50,7 +50,7 @@ const SpotDetails = () => {
                 avgStarRating={spot.avgStarRating}
                 numReviews={spot.numReviews}
             />
-            <ReviewList spot={spot} />
+            <ReviewList spot={spot} spotOwner={spot.Owner.id} />
         </div>
     )
 }

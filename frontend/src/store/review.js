@@ -84,14 +84,16 @@ function reviewReducer(state = initialState, action) {
       return newReviews;
     }
     case CREATE_REVIEW: {
-      const newState = { ...state };
-      newState[action.review.id] = action.review;
-      return newState;
+      return {
+        ...state,
+        [action.review.id]: action.review,
+      };
     }
     case UPDATE_REVIEW: {
-      const newState = { ...state };
-      newState[action.review.id] = action.review;
-      return newState;
+      return {
+        ...state,
+        [action.review.id]: action.review,
+      };
     }
     case REMOVE_REVIEW: {
       const newState = { ...state };
