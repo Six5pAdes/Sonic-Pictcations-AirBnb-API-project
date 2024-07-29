@@ -23,12 +23,15 @@ const EditReview = ({ reviewId, initialReview = '', initialRating, spotId }) => 
             spotId: spotId,
             userId: currentUser.id
         }
-        return await dispatch(editReview(updatedReview, reviewId))
-            .then(closeModal)
-            .then(() => dispatch(findOneSpot(spotId)))
-            .catch(async () => {
-                setErrors("Server currently down, please try again later")
-            })
+        const result = await dispatch(
+            editReview(updatedReview, reviewId)
+        );
+        if (result.errors) {
+            setErrors("Failed to update the review");
+        } else {
+            closeModal();
+            dispatch(findOneSpot(spotId));
+        }
     }
 
     const disabled = reviewText.length < 10 || stars === null;
@@ -39,7 +42,7 @@ const EditReview = ({ reviewId, initialReview = '', initialRating, spotId }) => 
             {errors && (<p>{errors}</p>)}
             <form onSubmit={handleSubmit} id="review-form">
                 <textarea
-                    placeholder="Edit your review here..."
+                    placeholder="Edit your review here (at least 10 characters)..."
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
                     id="full-review"
