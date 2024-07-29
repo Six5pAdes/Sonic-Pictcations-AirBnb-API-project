@@ -48,7 +48,14 @@ function ProfileButton({ user }) {
   return (
     <>
       <button id='prof-but' onClick={toggleMenu}>
-        <i className="fas fa-user-circle" />
+        {user ? (
+          <i className="fas fa-user-circle" />
+        ) : (
+          <>
+            <i className="fas fa-sign-in-alt" />
+            <p className="greeting">Welcome! Sign in here.</p>
+          </>
+        )}
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (

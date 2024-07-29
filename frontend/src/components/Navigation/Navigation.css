@@ -127,9 +127,9 @@
 }
 
 #prof-but {
-  border-radius: 20px;
-  width: 50px;
-  height: 50px;
+  border-radius: 10px;
+  width: fit-content;
+  height: 40px;
   position: static;
   display: inline-block;
 }
