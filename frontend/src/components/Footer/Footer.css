@@ -10,7 +10,6 @@
 
 .contactme-txt {
     margin: 0;
-    color: whitesmoke;
     text-align: center;
     padding: 10px 0 5px 0;
 }
@@ -34,7 +33,6 @@
 }
 
 .footer-link {
-    color: whitesmoke;
     text-decoration: none;
     padding: 5px 0;
 }
@@ -46,14 +44,13 @@
 }
 
 .sonic-git {
-    color: black;
     font-size: 18px;
     padding-bottom: 10px;
+    text-decoration: underline;
 }
 
 .sonic-git:hover {
     font-weight: bolder;
-    text-decoration: underline;
 }
 
 .github-logo {
@@ -72,7 +69,6 @@
 }
 
 #copyright {
-    color: whitesmoke;
     text-align: center;
     padding: 10px 0;
 }
