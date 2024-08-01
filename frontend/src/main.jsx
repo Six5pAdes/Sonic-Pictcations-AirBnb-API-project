@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
+import Footer from './components/Footer/Footer';
 import './index.css';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <App />
         {/* <Carrot /> */}
         {/* <Modal /> */}
+        <Footer />
       </Provider>
     </ModalProvider>
   </React.StrictMode>

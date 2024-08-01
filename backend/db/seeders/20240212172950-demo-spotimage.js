@@ -273,7 +273,7 @@ module.exports = {
         },
         {
           spotId: 11,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337834/Sonic%20Channel/Eggman_FinalEgg_vsti96.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337834/Sonic%20Channel/Eggman_Sage_FinalEgg_vsti96.jpg",
           preview: true,
         },
         {

@@ -81,6 +81,7 @@ const CreateSpot = () => {
         setErrors(err);
 
         const spot = { address, city, state, country, lat: 1, lng: 1, name: title, description, price }
+        const defaultImageUrl = 'https://iili.io/JX1mVnV.png'
         const imagesArr = [previewImage,
             images[1] || defaultImageUrl,
             images[2] || defaultImageUrl,
@@ -105,8 +106,6 @@ const CreateSpot = () => {
         if (submit && !previewImage) validErrs.previewImage = "Preview Image is required"
         setErrors(validErrs)
     }, [country, address, city, description.length, state, title, price, previewImage, submit])
-
-    const defaultImageUrl = 'https://iili.io/JX1mVnV.png'
 
     const handleCancel = () => {
         navigate(-1)

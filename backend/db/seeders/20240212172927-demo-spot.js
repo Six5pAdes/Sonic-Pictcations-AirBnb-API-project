@@ -32,7 +32,7 @@ module.exports = {
           name: "Sweet Mountain",
           description:
             "Planet formerly occupied by the Eggman Empire, aesthetically decadent.",
-          price: 7741,
+          price: 19,
         },
         {
           ownerId: 2,
@@ -44,7 +44,7 @@ module.exports = {
           lng: 30.71419,
           name: "Adabat",
           description: "Floating village situated in Southeast Asia.",
-          price: 2595,
+          price: 25,
         },
         {
           ownerId: 3,
@@ -56,7 +56,7 @@ module.exports = {
           lng: -34.12504,
           name: "Metal City",
           description: "Sleek urban city, perfect for street races.",
-          price: 474,
+          price: 44,
         },
         {
           ownerId: 4,
@@ -69,7 +69,7 @@ module.exports = {
           name: "Sunset Heights",
           description:
             "Quaint little town painted in hues of the sunset, still recovering from the Eggman Empire's invasion.",
-          price: 108,
+          price: 8,
         },
         {
           ownerId: 5,
@@ -160,7 +160,7 @@ module.exports = {
           name: "Final Egg",
           description:
             "One out of many bases under the Eggman Empire, a sky-piercing tower in the Mystic Ruins.",
-          price: 19,
+          price: 199,
         },
         {
           ownerId: 1,
@@ -186,7 +186,7 @@ module.exports = {
           name: "Ouranos Island",
           description:
             "The largest of the five Starfall Islands, it acts as the resting place for the most fearsome of the islands' mechanical guardians.",
-          price: 39,
+          price: 90,
         },
         {
           ownerId: 12,
@@ -199,7 +199,7 @@ module.exports = {
           name: "Chaos Island",
           description:
             "Another one of the five Starfall Islands, an active volcano is the only piece of nature that still thrives here.",
-          price: 59,
+          price: 90,
         },
       ],
       { validate: true }
