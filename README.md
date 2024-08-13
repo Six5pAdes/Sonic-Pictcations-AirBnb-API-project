@@ -4,7 +4,7 @@ This is [Sonic Pict-cations](https://airbnb-api-project-9ym0.onrender.com/), a s
 Cloned from the minimalist approach of AirBnB, and themed around the colorful universe of Sonic the Hedgehog.
 
 ## Preview
-<img width="1440" alt="Sonic Pict-cations" src="https://github.com/Six5pAdes/Sonic-Pictcations-AirBnb-API-project/assets/138395132/10bb8e0d-036f-41cc-aef5-5bc24ea3d7b4">
+<img width="1440" alt="Sonic Pict-cations" src="https://github.com/user-attachments/assets/1c5b849c-d626-48d3-b008-d7a37929946d">
 
 
 ## Database Schema Design
