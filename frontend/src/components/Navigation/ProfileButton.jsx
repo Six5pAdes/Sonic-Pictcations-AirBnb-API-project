@@ -67,7 +67,7 @@ function ProfileButton({ user }) {
             <li>
               {sessionUser && (
                 <div id='create-spot-link'>
-                  <NavLink to='/spots/new' id='navlink-right' >
+                  <NavLink to='/spots/new' id='nav-link' >
                     Create a new Spot
                   </NavLink>
                 </div>

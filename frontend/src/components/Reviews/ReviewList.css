@@ -7,6 +7,10 @@
     margin-top: 10px;
 }
 
+#review-button button:hover {
+    background-color: rgb(255,215,143);
+}
+
 .review {
     border: 3px solid rgb(49,153,56);
     border-radius: 10px;

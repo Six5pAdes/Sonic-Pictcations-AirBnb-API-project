@@ -39,7 +39,7 @@
   align-items: center;
 }
 
-#navlink-right {
+#nav-link {
   margin-right: 8px;
   text-decoration: none;
 }
@@ -122,8 +122,16 @@
 }
 
 #profile-popup button {
-  background-color: silver;
+  background-color: #3061e3;
   align-self: center;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#profile-popup button:hover {
+  background-color: rgb(255,215,143);
 }
 
 #prof-but {
@@ -142,6 +150,11 @@
 #nav-link {
   text-decoration: none;
   cursor: pointer;
+}
+
+#nav-link:hover {
+  text-decoration: underline;
+  background-color: gainsboro;
 }
 
 #prof-button {

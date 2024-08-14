@@ -17,6 +17,10 @@
     margin-top: 10px;
 }
 
+#new-spot-btn:hover {
+    background-color: rgb(255,215,143);
+}
+
 .spot-card {
     margin-right: 15px;
     padding: 15px;
@@ -47,6 +51,10 @@
     border-radius: 5px;
     margin-top: 10px;
     margin-right: 5px;
+}
+
+.edit-or-delete button:hover {
+    background-color: rgb(255,215,143);
 }
 
 .edit-or-delete>*:last-child, #update-btn, .spot-info, .spot-price, .spot-location {
