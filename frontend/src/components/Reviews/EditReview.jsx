@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { useModal } from '../../context/Modal'
 import { editReview } from "../../store/review";
 import { findOneSpot } from "../../store/spot";
 import StarsRatingInput from "./StarsInput";
 import './ReviewForm.css'
 
-const EditReview = ({ reviewId, initialReview = '', initialRating, spotId }) => {
+const EditReview = () => {
+    const { spotId } = useParams();
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
-    const [reviewText, setReviewText] = useState(initialReview)
-    const [stars, setStars] = useState(initialRating)
+    const [reviewText, setReviewText] = useState(currentUser.review || "")
+    const [stars, setStars] = useState(currentUser.stars || null)
     const [errors, setErrors] = useState("")
     const { closeModal } = useModal()
 
@@ -24,7 +26,7 @@ const EditReview = ({ reviewId, initialReview = '', initialRating, spotId }) => 
             userId: currentUser.id
         }
         const result = await dispatch(
-            editReview(updatedReview, reviewId)
+            editReview(updatedReview, spotId)
         );
         if (result.errors) {
             setErrors("Failed to update the review");

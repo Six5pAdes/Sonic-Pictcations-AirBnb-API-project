@@ -155,7 +155,7 @@ const CreateSpot = () => {
                             State
                             <input
                                 type="text"
-                                placeholder="STATE"
+                                placeholder="State"
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
                                 id="state"

@@ -18,6 +18,7 @@
 }
 
 #new-spot-btn:hover {
+    color: #3061e3;
     background-color: rgb(255,215,143);
 }
 
@@ -49,15 +50,16 @@
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-right: 5px;
 }
 
 .edit-or-delete button:hover {
+    color: #3061e3;
     background-color: rgb(255,215,143);
 }
 
-.edit-or-delete>*:last-child, #update-btn, .spot-info, .spot-price, .spot-location {
+.spot-info, .spot-price, .spot-location {
     margin-left: 5px;
     margin-bottom: 5px;
 }

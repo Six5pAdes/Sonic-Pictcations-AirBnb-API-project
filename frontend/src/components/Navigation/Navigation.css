@@ -13,6 +13,7 @@
   text-decoration: none;
   font-size: 25px;
   font-weight: bold;
+  color: #3061e3;
 }
 
 .site-title:hover {
@@ -92,7 +93,7 @@
 #popup button:hover {
   background-color: gainsboro;
   border-radius: 0;
-  color: #272d5a;
+  color: #3061e3;
 }
 
 #popup>*:first-child {
@@ -143,12 +144,14 @@
 }
 
 #prof-but:hover {
+  color: #3061e3;
   box-shadow: 1px 1px 5px 1px #FFD700;
   border: none;
 }
 
 #nav-link {
   text-decoration: none;
+  color: #3061e3;
   cursor: pointer;
 }
 

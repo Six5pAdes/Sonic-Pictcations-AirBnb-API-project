@@ -249,7 +249,7 @@ const SpotUpdate = () => {
                 </div>
 
                 <div className="buttons">
-                    <button id="submit-button" type="submit">Create Spot</button>
+                    <button id="submit-button" type="submit">Update Spot</button>
                     <button id="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
                 </div>
             </form>
