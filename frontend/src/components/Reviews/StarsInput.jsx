@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { FaRing } from "react-icons/fa6";
 
 const StarsRatingInput = ({ stars, setStars }) => {
-    const [activeRating, setActiveRating] = useState(0)
+    const [activeRating, setActiveRating] = useState(stars)
 
     const handleRatingClick = (rating) => {
         setActiveRating(rating);

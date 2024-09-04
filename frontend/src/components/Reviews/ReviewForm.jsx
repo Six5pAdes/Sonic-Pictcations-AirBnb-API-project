@@ -47,6 +47,13 @@ const ReviewForm = () => {
                 >
                     Submit Your Review
                 </button>
+                <button
+                    type="button"
+                    onClick={closeModal}
+                    className="success"
+                >
+                    Cancel Your Review
+                </button>
             </form>
         </div>
     )

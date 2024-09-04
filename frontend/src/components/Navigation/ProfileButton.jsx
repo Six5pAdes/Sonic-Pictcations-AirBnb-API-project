@@ -49,7 +49,11 @@ function ProfileButton({ user }) {
     <>
       <button id='prof-but' onClick={toggleMenu}>
         {user ? (
-          <i className="fas fa-user-circle" />
+          <>
+            <i className="fas fa-bars" />
+            <i className="fas fa-user-circle" />
+            <p className='menu-content'>My Profile</p>
+          </>
         ) : (
           <>
             <i className="fas fa-sign-in-alt" />

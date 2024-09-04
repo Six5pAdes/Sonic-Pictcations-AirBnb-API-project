@@ -172,3 +172,7 @@
 #profile-dropdown:hover, #logout:hover, #prof-but:hover, #popup>*:hover {
   cursor: pointer;
 }
+
+.fa-bars {
+  padding-right: 10px;
+}

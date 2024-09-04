@@ -116,7 +116,7 @@ const CreateSpot = () => {
             <form onSubmit={handleSubmit} id='full-form'>
                 <h2>Create a New Spot</h2>
                 <div>
-                    <h3>Where&apos;s your place located?</h3>
+                    <h3 id="blue">Where&apos;s your place located?</h3>
                     <small>Guests will only get your exact address once they booked a reservation.</small>
                     <label className="spot-label">
                         Country
@@ -166,7 +166,7 @@ const CreateSpot = () => {
                 </div>
                 <div className="new-spot-form">
                     <label className="spot-label">
-                        <h3> Describe your place to guests </h3>
+                        <h3>Describe your place to guests</h3>
                         <small>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</small>
                         <textarea
                             placeholder="Please write at least 30 characters"
