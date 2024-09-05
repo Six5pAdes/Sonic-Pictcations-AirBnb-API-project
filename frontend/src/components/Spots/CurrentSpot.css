@@ -1,3 +1,8 @@
+#this-spot {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 #spots {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -18,8 +23,8 @@
 }
 
 #new-spot-btn:hover {
-    color: #3061e3;
-    background-color: rgb(255,215,143);
+    color: black;
+    box-shadow: 1px 1px 5px 1px black;
 }
 
 .spot-card {
@@ -33,6 +38,7 @@
     background-color: #FFE5B4;
     cursor: pointer;
     box-shadow: 5px 5px 5px grey;
+    color: #3061e3;
 }
 
 #curr-title, #new-spot-btn {
@@ -55,8 +61,8 @@
 }
 
 .edit-or-delete button:hover {
-    color: #3061e3;
-    background-color: rgb(255,215,143);
+    color: black;
+    box-shadow: 1px 1px 5px 1px black;
 }
 
 .spot-info, .spot-price, .spot-location {
@@ -82,6 +88,7 @@
 #confirm-delete {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 8px;
 }
 
@@ -95,26 +102,25 @@
 
 #delete-complete {
     background-color: red;
-    box-shadow: 5px 5px 5px grey;
     color: white;
-    border: black solid 1px;
-    font-size: 18px;
-    margin-top: 20px;
-    width: 100%;
-    height: 50px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 300px;
 }
 
 #delete-cancel {
     background-color: darkgray;
-    box-shadow: 5px 5px 5px grey;
     color: white;
-    border: black solid 1px;
-    font-size: 18px;
-    margin-top: 20px;
-    width: 100%;
-    height: 50px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 300px;
 }
 
-.spot-img:hover, #new-spot-btn:hover, .edit-or-delete>*:last-child, #update-btn, #delete-complete, #delete-cancel {
-    cursor: pointer;
+#delete-complete:hover, #delete-cancel:hover {
+    color: black;
+    box-shadow: 1px 1px 5px 1px black;
 }

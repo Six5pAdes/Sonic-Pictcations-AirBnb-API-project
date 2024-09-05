@@ -39,16 +39,17 @@ const ManageSpot = () => {
                     <div key={spot.id} className='spot-card'>
                         <div
                             title={spot.name}
-                            key={spot.id}>
+                            onClick={() => navigate(`/spots/${spot.id}`)}
+                        >
                             <img
                                 src={spot.previewImage}
                                 className='spot-img'
-                                onClick={() => navigate(`/spots/${spot.id}`)}
                             />
                             <p className='name'>{spot.name}</p>
                             <div className='spot-info'>
                                 <p className='spot-location'>{spot.city}, {spot.state}</p>
-                                <p className='spot-price'>${spot.price} a night</p>
+                                <p className='spot-price'>{`$${spot.price} / night`}</p>
+                                <br />
                                 <p className='avg-rate'>
                                     <i className='fa-solid fa-ring'></i>&nbsp;
                                     {spot.avgRating > 0 ? spot.avgRating.toFixed(1) : 'New'}

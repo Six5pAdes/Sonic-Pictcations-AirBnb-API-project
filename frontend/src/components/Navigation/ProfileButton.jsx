@@ -71,17 +71,17 @@ function ProfileButton({ user }) {
             <li>
               {sessionUser && (
                 <div id='create-spot-link'>
-                  <NavLink to='/spots/new' id='nav-link' >
-                    Create a new Spot
+                  <NavLink to='/spots/new' className='nav-link' >
+                    Create a New Spot
                   </NavLink>
                 </div>
               )}
             </li>
             <li>
-              <NavLink id='nav-link' to='spots/current'>Manage Spots</NavLink>
+              <NavLink className='nav-link' to='spots/current'>Manage Spots</NavLink>
             </li>
             <li>
-              <button id='logout' onClick={logout}>Log Out</button>
+              <NavLink className='nav-link' onClick={logout}>Log Out</NavLink>
             </li>
           </div>
         ) : (

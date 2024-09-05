@@ -40,11 +40,6 @@
   align-items: center;
 }
 
-#nav-link {
-  margin-right: 8px;
-  text-decoration: none;
-}
-
 #navbar-full {
   list-style-type: none;
   display: flex;
@@ -85,19 +80,22 @@
   cursor: pointer;
   padding: 0;
   margin: 0;
-  text-align: center;
   justify-items: center;
   width: 100%;
+  font-size: medium;
 }
 
 #popup button:hover {
-  background-color: gainsboro;
   border-radius: 0;
   color: #3061e3;
 }
 
 #popup>*:first-child {
-  margin-bottom: 8px;
+  border-bottom: 1px solid black;
+}
+
+#popup>*:last-child {
+  margin-top: 8px;
 }
 
 #profile-popup {
@@ -111,6 +109,7 @@
   flex-direction: column;
   background-color: rgb(246, 247, 248);
   justify-content: center;
+  width: fit-content;
 }
 
 #profile-popup>*:nth-last-child(n + 2) {
@@ -120,6 +119,11 @@
 
 #profile-popup>*:last-child {
   align-self: center;
+}
+
+#profile-popup li {
+  width: 100%;
+  text-align: center;
 }
 
 #profile-popup button {
@@ -132,13 +136,14 @@
 }
 
 #profile-popup button:hover {
-  background-color: rgb(255,215,143);
+  color: black;
+  box-shadow: 1px 1px 5px 1px black;
 }
 
 #prof-but {
   border-radius: 10px;
   width: fit-content;
-  height: 40px;
+  height: 50px;
   position: static;
   display: inline-block;
 }
@@ -149,15 +154,16 @@
   border: none;
 }
 
-#nav-link {
+.nav-link {
+  margin-right: 8px;
   text-decoration: none;
-  color: #3061e3;
+  color: black;
   cursor: pointer;
+  text-align: center;
 }
 
-#nav-link:hover {
-  text-decoration: underline;
-  background-color: gainsboro;
+.nav-link:hover {
+  color: #3061e3;
 }
 
 #prof-button {
@@ -175,4 +181,8 @@
 
 .fa-bars {
   padding-right: 10px;
+}
+
+.fa-bars, .fa-user-circle, .fa-sign-in-alt {
+  font-size: 15px;
 }

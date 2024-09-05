@@ -84,7 +84,8 @@
 }
 
 #reserve-button:hover {
-    cursor: pointer;
+    color: black;
+    box-shadow: 1px 1px 5px 1px black;
 }
 
 .extraInfo {
@@ -107,9 +108,4 @@
     padding: 10px 20px;
     border-radius: 5px;
     margin-top: 10px;
-}
-
-#reserve-button:hover {
-    color: #3061e3;
-    background-color: rgb(255,215,143);
 }

@@ -8,8 +8,8 @@
 }
 
 #review-button button:hover {
-    color: #3061e3;
-    background-color: rgb(255,215,143);
+    color: black;
+    box-shadow: 1px 1px 5px 1px black;
 }
 
 .review {

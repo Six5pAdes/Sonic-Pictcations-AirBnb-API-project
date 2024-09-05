@@ -29,27 +29,26 @@
   }
 
   .login-button {
-    font-size: 18px;
-    margin-top: 10px;
-    width: fit-content;
-    height: 50px;
-    box-shadow: 5px 5px 5px grey;
     background-color: #afdfdf;
     color: white;
-    border: black solid 1px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 300px;
   }
 
   .login-success {
-    font-size: 18px;
-    margin-top: 10px;
-    width: fit-content;
-    height: 50px;
-    box-shadow: 5px 5px 5px grey;
     background-color: #c6286d;
     color: white;
-    border: black solid 1px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 300px;
   }
 
   .login-success:hover {
-    cursor: pointer;
+    color: black;
+    box-shadow: 1px 1px 5px 1px black;
   }
