@@ -5,7 +5,7 @@ import { useModal } from '../../context/Modal'
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import { accessSpots, deleteSpot } from '../../store/spot'
 import '../LandingPage/LandingPage.css'
-import './CurrentSpot.css'
+import './ManageSpot.css'
 
 const ManageSpot = () => {
     const dispatch = useDispatch()

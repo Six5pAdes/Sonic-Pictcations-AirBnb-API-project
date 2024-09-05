@@ -9,7 +9,7 @@ import { Modal } from './context/Modal';
 import Landing from './components/LandingPage/LandingPage';
 import SpotDetails from './components/Spots/SingleSpot'
 import CreateSpot from './components/Spots/NewSpot'
-import ManageSpot from './components/Spots/CurrentSpot'
+import ManageSpot from './components/Spots/ManageSpot'
 import SpotUpdate from './components/Spots/EditSpot'
 
 function Layout() {

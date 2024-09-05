@@ -42,7 +42,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     margin-top: 10px;
-    width: 300px;
+    width: 100%;
 }
 
 .success {
@@ -52,7 +52,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     margin-top: 10px;
-    width: 300px;
+    width: 100%;
 }
 
 .success:hover {

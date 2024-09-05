@@ -21,8 +21,7 @@ const SpotDetails = () => {
         <div className='single-spot'>
             <div className='location' >
                 <h2>{spot.name}</h2>
-                <h3>{spot.city}, {spot.state}, </h3>
-                <h3>{spot.country}</h3>
+                <h3>{spot.city}, {spot.state}, {spot.country}</h3>
             </div>
             <div className='image-sec'>
                 {spot.SpotImages.map((image, n) =>
@@ -46,11 +45,13 @@ const SpotDetails = () => {
                 </div>
             </div>
             <br />
-            <ReviewInfo
-                avgStarRating={spot.avgStarRating}
-                numReviews={spot.numReviews}
-            />
-            <ReviewList spot={spot} spotOwner={spot.Owner.id} />
+            <div className='reviews'>
+                <ReviewInfo
+                    avgStarRating={spot.avgStarRating}
+                    numReviews={spot.numReviews}
+                />
+                <ReviewList spot={spot} spotOwner={spot.Owner.id} />
+            </div>
         </div>
     )
 }

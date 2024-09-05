@@ -8,18 +8,18 @@ import './ReviewForm.css'
 
 const EditReview = ({ reviewId }) => {
     const dispatch = useDispatch()
-    const review = useSelector(state => state.reviewStore[reviewId])
-    const [reviewText, setReviewText] = useState("")
-    const [stars, setStars] = useState(0)
+    const currReview = useSelector(state => state.reviewStore[reviewId])
+    const [reviewText, setReviewText] = useState(currReview.review || "")
+    const [stars, setStars] = useState(currReview.stars || null)
     const [errors, setErrors] = useState("")
     const { closeModal } = useModal()
 
     useEffect(() => {
-        if (review) {
-            setReviewText(review.review);
-            setStars(review.stars);
+        if (currReview) {
+            setReviewText(currReview.review);
+            setStars(currReview.stars);
         }
-    }, [review]);
+    }, [currReview]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,7 +33,7 @@ const EditReview = ({ reviewId }) => {
             setErrors("Failed to update the review");
         } else {
             closeModal();
-            dispatch(findOneSpot(review.spotId));
+            dispatch(findOneSpot(currReview.spotId));
         }
     };
 

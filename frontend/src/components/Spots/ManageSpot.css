@@ -107,7 +107,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     margin-top: 10px;
-    width: 300px;
+    width: 100%;
 }
 
 #delete-cancel {
@@ -117,7 +117,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     margin-top: 10px;
-    width: 300px;
+    width: 100%;
 }
 
 #delete-complete:hover, #delete-cancel:hover {
