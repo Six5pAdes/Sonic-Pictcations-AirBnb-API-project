@@ -1,0 +1,17 @@
+.review {
+    border-top: 3px solid rgb(49,153,56);
+    border-bottom: 3px solid rgb(49,153,56);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+#review-button {
+    padding-bottom: 10px;
+}
+
+.delete-button:hover, #review-button>*:hover {
+    cursor: pointer;
+}
