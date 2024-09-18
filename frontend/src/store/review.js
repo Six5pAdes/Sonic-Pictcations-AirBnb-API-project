@@ -1,12 +1,17 @@
 import { csrfFetch } from "./csrf.js";
 
 const READ_REVIEWS = "reviews/READ_REVIEWS";
+const READ_USER_REVIEWS = "reviews/READ_USER_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 
 export const viewReviews = (reviews) => ({
   type: READ_REVIEWS,
+  reviews,
+});
+export const viewUserReviews = (reviews) => ({
+  type: READ_USER_REVIEWS,
   reviews,
 });
 export const createReview = (review) => ({
@@ -29,6 +34,17 @@ export const fetchReviews = (spotId) => async (dispatch) => {
     dispatch(viewReviews(data));
     return data;
   } else throw new Error("Cannot receive reviews at this time");
+};
+
+export const fetchUserReviews = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/current`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(viewUserReviews(data));
+    return data;
+  } else {
+    throw new Error("Cannot retrieve user's reviews at this time");
+  }
 };
 
 export const leaveReview = (spotId, review) => async (dispatch) => {
@@ -80,6 +96,17 @@ function reviewReducer(state = initialState, action) {
         );
       } catch {
         console.error("Error fetching reviews");
+      }
+      return newReviews;
+    }
+    case READ_USER_REVIEWS: {
+      const newReviews = { ...state };
+      try {
+        action.reviews.Reviews.forEach(
+          (eachReview) => (newReviews[eachReview.id] = eachReview)
+        );
+      } catch {
+        console.error("Error fetching user's reviews");
       }
       return newReviews;
     }

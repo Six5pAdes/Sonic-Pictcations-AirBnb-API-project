@@ -71,7 +71,7 @@ const ReviewList = ({ spotOwner }) => {
                 {reviews.map((review) => (
                     <div key={review?.id} className="review">
                         <h3 className="review-name">{review.User?.firstName}</h3>
-                        <div>{formatDate(new Date(review?.createdAt))}</div>
+                        <div className="spot-date">{formatDate(new Date(review?.createdAt))}</div>
                         <p className="review-comments">{review?.review}</p>
                         {sessionObj?.id === review?.User?.id && (
                             <div className="edit-or-delete">

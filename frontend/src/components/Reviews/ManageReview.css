@@ -12,6 +12,17 @@
     padding-bottom: 10px;
 }
 
+.spot-date {
+    font-size: 1em;
+    color: rgb(105, 100, 108);
+}
+
+.spot-name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #3061e3;
+}
+
 .delete-button:hover, #review-button>*:hover {
     cursor: pointer;
 }

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
-import { fetchReviews, deleteReview } from "../../store/review";
+import { fetchUserReviews, deleteReview } from "../../store/review";
 import EditReview from "./EditReview";
 import "./ManageReview.css";
 
@@ -22,14 +22,13 @@ const ManageReview = () => {
     const { closeModal } = useModal();
 
     useEffect(() => {
-        dispatch(fetchReviews());
+        dispatch(fetchUserReviews());
     }, [dispatch]);
 
     const userId = useSelector((state) =>
         state.session.user ? state.session.user.id : null
     );
     const sessionObj = useSelector((state) => state.session.user);
-    const spots = useSelector((state) => Object.values(state.spotStore).filter(spot => spot.ownerId === userId));
     const reviews = useSelector((state) =>
         Object.values(state.reviewStore).filter(
             (review) => review.userId === userId
@@ -38,8 +37,8 @@ const ManageReview = () => {
 
     if (!userId) navigate("/");
 
-    const handleDelete = (reviewId) => {
-        dispatch(deleteReview(reviewId));
+    const handleDelete = (review) => {
+        dispatch(deleteReview(review.id));
         closeModal();
     };
 
@@ -49,10 +48,11 @@ const ManageReview = () => {
             <ul id="reviews">
                 {reviews.map((review) => (
                     <div key={review?.id} className="review">
-                        {spots.map((spot) => {
-                            <h3 className="review-name">{spot.name}</h3>
-                        }, [spots])}
-                        <div>{formatDate(new Date(review?.createdAt))}</div>
+                        <h3
+                            className="spot-name"
+                            onClick={() => navigate(`/spots/${review?.Spot?.id}`)}
+                        >{review?.Spot?.name}</h3>
+                        <div className="spot-date">{formatDate(new Date(review?.createdAt))}</div>
                         <p className="review-comments">{review?.review}</p>
                         {sessionObj?.id === review?.User?.id && (
                             <div className="edit-or-delete">
