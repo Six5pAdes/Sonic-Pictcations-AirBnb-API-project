@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { NavLink, useNavigate } from 'react-router-dom'
 import OpenModalMenuItem from './OpenModalMenuItem'
@@ -11,7 +11,7 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   const navigate = useNavigate()
-  const sessionUser = useSelector(state => state.session.user);
+  // const sessionUser = useSelector(state => state.session.user);
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep click from bubbling up to document and triggering closeMenu
@@ -68,7 +68,7 @@ function ProfileButton({ user }) {
               <br />
               {user.email}
             </li>
-            <li>
+            {/* <li>
               {sessionUser && (
                 <div id='create-spot-link'>
                   <NavLink to='/spots/new' className='nav-link' >
@@ -76,11 +76,10 @@ function ProfileButton({ user }) {
                   </NavLink>
                 </div>
               )}
-            </li>
+            </li> */}
             <li>
               <NavLink className='nav-link' to='spots/current'>Manage Spots</NavLink>
-            </li>
-            <li>
+              <br />
               <NavLink className='nav-link' to='reviews/current'>Manage Reviews</NavLink>
             </li>
             <li>

@@ -19,6 +19,13 @@ function Navigation({ isLoaded }) {
           <ul>
             {isLoaded && (
               <div className='prof-sec'>
+                {sessionUser && (
+                  <div id='create-spot-link'>
+                    <NavLink to='/spots/new' className='new-spot' >
+                      Create a New Spot
+                    </NavLink>
+                  </div>
+                )}
                 <ProfileButton user={sessionUser} />
               </div>
             )}

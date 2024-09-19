@@ -57,7 +57,7 @@ const ManageReview = () => {
                         {sessionObj?.id === review?.User?.id && (
                             <div className="edit-or-delete">
                                 <OpenModalMenuItem
-                                    itemText='Edit'
+                                    itemText='Update'
                                     className='edit-button'
                                     modalComponent={<EditReview reviewId={review.id} />}
                                 />

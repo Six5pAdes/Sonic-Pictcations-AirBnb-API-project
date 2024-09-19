@@ -12,14 +12,16 @@ const EditReview = ({ reviewId }) => {
     const [reviewText, setReviewText] = useState(currReview.review || "")
     const [stars, setStars] = useState(currReview.stars || null)
     const [errors, setErrors] = useState("")
+    const [spot, setSpot] = useState({})
     const { closeModal } = useModal()
 
     useEffect(() => {
         if (currReview) {
             setReviewText(currReview.review);
             setStars(currReview.stars);
+            dispatch(findOneSpot(currReview.spotId)).then(res => setSpot(res));
         }
-    }, [currReview]);
+    }, [currReview, dispatch]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,7 +43,7 @@ const EditReview = ({ reviewId }) => {
 
     return (
         <div id="review-contain">
-            <h2>Edit Your Review</h2>
+            <h2>How was your stay at {spot.name}?</h2>
             {errors && (<p>{errors}</p>)}
             <form onSubmit={handleSubmit} id="review-form">
                 <textarea

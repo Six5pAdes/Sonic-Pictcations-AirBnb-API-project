@@ -11,6 +11,7 @@
 .site-title {
   padding-top: 20px;
   text-decoration: none;
+  font-family: 'marker felt', sans-serif;
   font-size: 25px;
   font-weight: bold;
   color: #3061e3;
@@ -56,7 +57,13 @@
   position: relative;
 }
 
+.profile-dropdown:hover #profile-popup {
+  display: block;
+}
+
 .prof-sec {
+  display: flex;
+  justify-content: space-between;
   padding-right: 20px;
 }
 
@@ -65,7 +72,7 @@
   border: black solid 2px;
   border-radius: 5px;
   right: 0;
-  top: 5px;
+  top: 100%;
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -95,7 +102,7 @@
 }
 
 #popup>*:last-child {
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 #profile-popup {
@@ -103,8 +110,8 @@
   border: black solid 2px;
   border-radius: 5px;
   right: 0;
-  top: 5px;
-  padding: 4px;
+  top: 100%;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   background-color: rgb(246, 247, 248);
@@ -113,7 +120,7 @@
 }
 
 #profile-popup>*:nth-last-child(n + 2) {
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   border-bottom: 1px solid black;
 }
 
@@ -123,7 +130,7 @@
 
 #profile-popup li {
   width: 100%;
-  text-align: center;
+  text-align: start;
 }
 
 #profile-popup button {
@@ -165,6 +172,22 @@
 .nav-link:hover {
   color: #3061e3;
 }
+
+.new-spot {
+  display: flex;
+  color: white;
+  background-color: #3061e3;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 5px;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.new-spot:hover {
+  color: #FFD700;
+  box-shadow: 1px 1px 5px 1px black;}
 
 #prof-button {
   display: flex;

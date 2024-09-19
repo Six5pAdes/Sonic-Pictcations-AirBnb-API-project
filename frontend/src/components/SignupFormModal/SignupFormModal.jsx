@@ -43,7 +43,7 @@ function SignupFormModal() {
   };
 
   const disabledButton = () => {
-    return (email === '' || username === '' || firstName === '' || lastName === '' || password === '' || confirmPassword === '' || username.length < 4 || password.length < 6)
+    return (email === '' || username === '' || firstName === '' || lastName === '' || password === '' || confirmPassword === '' || username.length < 4 || password.length < 6 || confirmPassword !== password)
   }
 
   const invalidInfo = () => {
@@ -53,7 +53,7 @@ function SignupFormModal() {
       !firstName ||
       !lastName ||
       password.length < 6 ||
-      !confirmPassword
+      confirmPassword !== password
     );
   };
 
@@ -61,8 +61,9 @@ function SignupFormModal() {
     <div className="signupModalWrapper">
       <h1>Sign Up</h1>
       <form className="signupForm" onSubmit={handleSubmit}>
-        <label>
+        <label className="signupLabel">
           <input
+            className="signupInput"
             placeholder='Email'
             type="text"
             value={email}
@@ -75,8 +76,9 @@ function SignupFormModal() {
             {errors.email}
           </p>
         )}
-        <label>
+        <label className="signupLabel">
           <input
+            className="signupInput"
             placeholder='Username'
             type="text"
             value={username}
@@ -89,8 +91,9 @@ function SignupFormModal() {
             {errors.username}
           </p>
         )}
-        <label>
+        <label className="signupLabel">
           <input
+            className="signupInput"
             placeholder='First Name'
             type="text"
             value={firstName}
@@ -103,8 +106,9 @@ function SignupFormModal() {
             {errors.firstName}
           </p>
         )}
-        <label>
+        <label className="signupLabel">
           <input
+            className="signupInput"
             placeholder='Last Name'
             type="text"
             value={lastName}
@@ -117,8 +121,9 @@ function SignupFormModal() {
             {errors.lastName}
           </p>
         )}
-        <label>
+        <label className="signupLabel">
           <input
+            className="signupInput"
             placeholder='Password'
             type="password"
             value={password}
@@ -131,8 +136,9 @@ function SignupFormModal() {
             {errors.password}
           </p>
         )}
-        <label>
+        <label className="signupLabel">
           <input
+            className="signupInput"
             placeholder='Confirm Password'
             type="password"
             value={confirmPassword}

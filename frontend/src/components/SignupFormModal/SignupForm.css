@@ -2,25 +2,31 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
 
 .signupModalWrapper > h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 25px; */
+    padding-top: 25px;
 }
 
 .signupForm {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 95%;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-.signupForm input {
-    width: 25rem;
-    margin: 5px 20px;
+.signupLabel {
+    width: 100%;
+}
+
+.signupInput {
+    width: 98%;
     background-color: #dee7e4;
 }
 
@@ -41,7 +47,7 @@
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100%;
 }
 
@@ -51,11 +57,11 @@
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100%;
 }
 
 .success:hover {
-    color: black;
+    color: #FFD700;
     box-shadow: 1px 1px 5px 1px black;
 }
