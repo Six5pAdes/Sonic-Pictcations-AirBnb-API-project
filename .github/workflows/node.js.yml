@@ -32,14 +32,11 @@ jobs:
     - name: Run Build
       run: npm run build:ci --if-present
 
-    - name: Configure Git
+    - name: Commit and push changes
       run: |
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-
-    - name: Commit and push changes
-      run: |
-        git add .
+        git add -A
         git commit -m "update build files" || echo "No changes to commit"
         git remote set-url origin https://${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git push
