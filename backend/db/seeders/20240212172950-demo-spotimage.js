@@ -123,7 +123,7 @@ module.exports = {
         },
         {
           spotId: 5,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337830/Sonic%20Channel/Shadow_SpaceColARK_whvxgx.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733162166/Shadow_Maria_ARK_whvxgx.jpg",
           preview: true,
         },
         {
