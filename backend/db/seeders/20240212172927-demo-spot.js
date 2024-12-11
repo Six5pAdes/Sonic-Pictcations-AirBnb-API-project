@@ -120,7 +120,7 @@ module.exports = {
           lng: 77.83593,
           name: "Coral Cave",
           description:
-            "Underground grotto with a plentiful amount of gleaming crystals, previously a site for mining.",
+            "Underground grotto with a plentiful amount of gleaming crystals, previously a mining site.",
           price: 63,
         },
         {
@@ -159,7 +159,7 @@ module.exports = {
           lng: 139.46525,
           name: "Final Egg",
           description:
-            "One out of many bases under the Eggman Empire, a sky-piercing tower in the Mystic Ruins.",
+            "One of many bases under the Eggman Empire, a sky-piercing tower in the Mystic Ruins.",
           price: 199,
         },
         {

@@ -25,7 +25,7 @@ module.exports = {
           spotId: 1,
           userId: 4,
           review:
-            "The food here is okay. I'm glad Sonic gave me the recommendation, but everything here is too sweet, even for my sweet tooth. It doesn't help that Eggman's influence is still here.",
+            "The food here is okay. I'm glad Sonic gave me the recommendation, but a lot of stuff here is too sweet, even for my sweet tooth. It doesn't help that Eggman's influence is still here.",
           stars: 2,
         },
         {
@@ -39,7 +39,7 @@ module.exports = {
           spotId: 3,
           userId: 6,
           review:
-            "The city is nice and all, but there are no treasures here. Just empty modern architecture. Nonetheless, I wouldn't mind vacationing here while on a 'business trip.' 😘",
+            "The city is nice and all, but there are no treasures here. Just some empty modern architecture. Nonetheless, I wouldn't mind vacationing here while on a 'business trip.' 😘",
           stars: 1,
         },
         {
@@ -60,7 +60,7 @@ module.exports = {
           spotId: 6,
           userId: 8,
           review:
-            "I must admit, the night sky here is indeed beautiful. I can still see the moon even with all of the noise and light pollution.",
+            "I must admit, the night sky here is indeed beautiful. I can still see the moon even with all of the light and noise pollution.",
           stars: 4,
         },
         {
@@ -81,7 +81,7 @@ module.exports = {
           spotId: 9,
           userId: 5,
           review:
-            "I see that in spite of our efforts, this place is still fragmented. But I know that with time, it will be whole again.",
+            "I see in spite of our efforts, this place is still fragmented. But I know that with time, it will be whole again.",
           stars: 1,
         },
         {
@@ -101,7 +101,7 @@ module.exports = {
           spotId: 12,
           userId: 4,
           review:
-            "Amazing place to visit, I just wish I could've come here the first time when I had a physical body.",
+            "Amazing place to visit. I just wish I could forget my time here and re-experience it for the first time with a physical body.",
           stars: 4,
         },
         {
