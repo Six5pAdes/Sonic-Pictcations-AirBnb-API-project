@@ -23,7 +23,7 @@ module.exports = {
       [
         {
           spotId: 1,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337829/Sonic%20Channel/Sonic_SweetMountain_j47n66.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948481/sonic_pict/Sonic_sweetmountain_ct6zm9.jpg",
           preview: true,
         },
         {
@@ -48,7 +48,7 @@ module.exports = {
         },
         {
           spotId: 2,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337828/Sonic%20Channel/Tails_Adabat_i2mcdu.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948477/sonic_pict/Tails_adabat_codd8t.jpg",
           preview: true,
         },
         {
@@ -73,7 +73,7 @@ module.exports = {
         },
         {
           spotId: 3,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337835/Sonic%20Channel/Knuckles_MetalCity_thoyzn.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948627/sonic_pict/Knuckles_metalcity_jv9cxx.jpg",
           preview: true,
         },
         {
@@ -98,7 +98,7 @@ module.exports = {
         },
         {
           spotId: 4,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337827/Sonic%20Channel/Amy_SunsetHeights_r2soex.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948452/sonic_pict/Amy_sunsetheights_pwqxzd.jpg",
           preview: true,
         },
         {
@@ -148,7 +148,7 @@ module.exports = {
         },
         {
           spotId: 6,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337832/Sonic%20Channel/Rouge_RadicalHighway_yygw4h.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948552/sonic_pict/Rouge_radicalhighway_eqxffu.jpg",
           preview: true,
         },
         {
@@ -173,7 +173,7 @@ module.exports = {
         },
         {
           spotId: 7,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337834/Sonic%20Channel/Cream_MusicPlant_lqq2g0.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948618/sonic_pict/Cream_musicplant_qrokop.jpg",
           preview: true,
         },
         {
@@ -198,7 +198,7 @@ module.exports = {
         },
         {
           spotId: 8,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337836/Sonic%20Channel/Blaze_CoralCave_ghp96z.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948637/sonic_pict/Blaze_coralcave_tubfgc.jpg",
           preview: true,
         },
         {
@@ -223,7 +223,7 @@ module.exports = {
         },
         {
           spotId: 9,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337827/Sonic%20Channel/Silver_CrisisCity_wheqtc.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948473/sonic_pict/Silver_crisiscity_wsehls.jpg",
           preview: true,
         },
         {
@@ -248,7 +248,7 @@ module.exports = {
         },
         {
           spotId: 10,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337831/Sonic%20Channel/Big_MysticRuins_lbdmcf.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948522/sonic_pict/Big_mysticruins_ftipy2.jpg",
           preview: true,
         },
         {
@@ -273,7 +273,7 @@ module.exports = {
         },
         {
           spotId: 11,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337834/Sonic%20Channel/Eggman_Sage_FinalEgg_vsti96.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948589/sonic_pict/Eggman_Sage_finalegg_s9bowr.jpg",
           preview: true,
         },
         {
@@ -298,7 +298,7 @@ module.exports = {
         },
         {
           spotId: 12,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337837/Sonic%20Channel/Sonic_Kronos_jcwfes.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948571/sonic_pict/Sonic_kronosisland_clj9xl.jpg",
           preview: true,
         },
         {
@@ -323,7 +323,7 @@ module.exports = {
         },
         {
           spotId: 13,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711337830/Sonic%20Channel/Sage_Ouranos_l8kasg.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948443/sonic_pict/Sage_ouranosisland_aa9dlx.jpg",
           preview: true,
         },
         {
@@ -348,7 +348,7 @@ module.exports = {
         },
         {
           spotId: 14,
-          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1711394508/sonic_channel/sage_chaos_island_hvdpta.jpg",
+          url: "https://res.cloudinary.com/dqygc4mcu/image/upload/v1733948458/sonic_pict/Sage_chaosisland_unmufa.jpg",
           preview: true,
         },
         {
