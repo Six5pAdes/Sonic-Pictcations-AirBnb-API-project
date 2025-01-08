@@ -63,6 +63,12 @@
     margin-right: 5px;
 }
 
+.extraInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .desc {
     flex-grow: 2;
 }
@@ -78,22 +84,6 @@
     width: 300px;
 }
 
-#reserve-button {
-    width: 100%;
-    padding: 8px 5px;
-}
-
-#reserve-button:hover {
-    color: #FFD700;
-    box-shadow: 1px 1px 5px 1px black;
-}
-
-.extraInfo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
 .cashNView {
     display: flex;
     flex-direction: row;
@@ -104,10 +94,16 @@
 #reserve-button {
     background-color: #3061e3;
     color: white;
+    width: 100%;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    margin-top: 10px;
+    margin: 10px;
+}
+
+#reserve-button:hover {
+    color: #FFD700;
+    box-shadow: 1px 1px 5px 1px black;
 }
 
 .reviews {

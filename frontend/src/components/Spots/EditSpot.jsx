@@ -115,11 +115,11 @@ const SpotUpdate = () => {
     }
 
     return (
-        <div id="spot-new">
+        <div className="spot-contain">
             <form onSubmit={handleSubmit} id='full-form'>
                 <h2>Update your Spot</h2>
                 <div>
-                    <h3>Where&apos;s your place located?</h3>
+                    <h3 className='blue'>Where&apos;s your place located?</h3>
                     <small>Guests will only get your exact address once they booked a reservation.</small>
                     <label className="spot-label">
                         Country

@@ -12,6 +12,7 @@
     margin: 0;
     text-align: center;
     padding: 10px 0 5px 0;
+    color: #3061e3;
 }
 
 .footer-top {
@@ -70,6 +71,7 @@
 }
 
 #copyright {
+    color: #3061e3;
     text-align: center;
     padding: 10px 0;
 }
