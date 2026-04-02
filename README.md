@@ -1,11 +1,11 @@
 # Sonic Pict-cations
 
-This is [Sonic Pict-cations](https://airbnb-api-project-9ym0.onrender.com/), a social marketplace for renting out vacation spots! <br/>
+This is [Sonic Pict-cations](https://sonic-pictcations.onrender.com), a social marketplace for renting out vacation spots! <br/>
 Cloned from the minimalist approach of AirBnB, and themed around the colorful universe of Sonic the Hedgehog.
 
 ## Preview
-<img width="1440" alt="Sonic Pict-cations" src="https://github.com/user-attachments/assets/1c5b849c-d626-48d3-b008-d7a37929946d">
 
+<img width="1440" alt="Sonic Pict-cations" src="https://github.com/user-attachments/assets/1c5b849c-d626-48d3-b008-d7a37929946d">
 
 ## Database Schema Design
 
@@ -24,7 +24,6 @@ All endpoints that require a current user to be logged in.
 
 - Request: endpoints that require authentication
 - Error Response: Require authentication
-
   - Status Code: 401
   - Headers:
     - Content-Type: application/json
@@ -43,7 +42,6 @@ correct role(s) or permission(s).
 
 - Request: endpoints that require proper authorization
 - Error Response: Require proper authorization
-
   - Status Code: 403
   - Headers:
     - Content-Type: application/json
@@ -61,13 +59,11 @@ Returns the information about the current user that is logged in.
 
 - Require Authentication: false
 - Request
-
   - Method: GET
   - URL: /api/session
   - Body: none
 
 - Successful Response when there is a logged in user
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -86,7 +82,6 @@ Returns the information about the current user that is logged in.
     ```
 
 - Successful Response when there is no logged in user
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -105,7 +100,6 @@ information.
 
 - Require Authentication: false
 - Request
-
   - Method: POST
   - URL: /api/session
   - Headers:
@@ -120,7 +114,6 @@ information.
     ```
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -139,7 +132,6 @@ information.
     ```
 
 - Error Response: Invalid credentials
-
   - Status Code: 401
   - Headers:
     - Content-Type: application/json
@@ -152,7 +144,6 @@ information.
     ```
 
 - Error response: Body validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
@@ -175,7 +166,6 @@ user's information.
 
 - Require Authentication: false
 - Request
-
   - Method: POST
   - URL: /api/users
   - Headers:
@@ -193,7 +183,6 @@ user's information.
     ```
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -212,7 +201,6 @@ user's information.
     ```
 
 - Error response: User already exists with the specified email
-
   - Status Code: 500
   - Headers:
     - Content-Type: application/json
@@ -228,7 +216,6 @@ user's information.
     ```
 
 - Error response: User already exists with the specified username
-
   - Status Code: 500
   - Headers:
     - Content-Type: application/json
@@ -244,7 +231,6 @@ user's information.
     ```
 
 - Error response: Body validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
@@ -270,13 +256,11 @@ Returns all the spots.
 
 - Require Authentication: false
 - Request
-
   - Method: GET
   - URL: /api/spots
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -312,13 +296,11 @@ Returns all the spots owned (created) by the current user.
 
 - Require Authentication: true
 - Request
-
   - Method: GET
   - URL: /api/spots/current
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -354,13 +336,11 @@ Returns the details of a spot specified by its id.
 
 - Require Authentication: false
 - Request
-
   - Method: GET
   - URL: /api/spots/:spotId
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -404,7 +384,6 @@ Returns the details of a spot specified by its id.
     ```
 
 - Error response: Couldn't find a Spot with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -422,7 +401,6 @@ Creates and returns a new spot.
 
 - Require Authentication: true
 - Request
-
   - Method: POST
   - URL: /api/spots
   - Headers:
@@ -444,7 +422,6 @@ Creates and returns a new spot.
     ```
 
 - Successful Response
-
   - Status Code: 201
   - Headers:
     - Content-Type: application/json
@@ -469,7 +446,6 @@ Creates and returns a new spot.
     ```
 
 - Error Response: Body validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
@@ -499,7 +475,6 @@ Create and return a new image for a spot specified by id.
 - Require Authentication: true
 - Require proper authorization: Spot must belong to the current user
 - Request
-
   - Method: POST
   - URL: /api/spots/:spotId/images
   - Headers:
@@ -514,7 +489,6 @@ Create and return a new image for a spot specified by id.
     ```
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -529,7 +503,6 @@ Create and return a new image for a spot specified by id.
     ```
 
 - Error response: Couldn't find a Spot with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -548,7 +521,6 @@ Updates and returns an existing spot.
 - Require Authentication: true
 - Require proper authorization: Spot must belong to the current user
 - Request
-
   - Method: PUT
   - URL: /api/spots/:spotId
   - Headers:
@@ -570,7 +542,6 @@ Updates and returns an existing spot.
     ```
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -595,7 +566,6 @@ Updates and returns an existing spot.
     ```
 
 - Error Response: Body validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
@@ -619,7 +589,6 @@ Updates and returns an existing spot.
     ```
 
 - Error response: Couldn't find a Spot with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -638,13 +607,11 @@ Deletes an existing spot.
 - Require Authentication: true
 - Require proper authorization: Spot must belong to the current user
 - Request
-
   - Method: DELETE
   - URL: /api/spots/:spotId
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -657,7 +624,6 @@ Deletes an existing spot.
     ```
 
 - Error response: Couldn't find a Spot with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -677,13 +643,11 @@ Returns all the reviews written by the current user.
 
 - Require Authentication: true
 - Request
-
   - Method: GET
   - URL: /api/reviews/current
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -735,13 +699,11 @@ Returns all the reviews that belong to a spot specified by id.
 
 - Require Authentication: false
 - Request
-
   - Method: GET
   - URL: /api/spots/:spotId/reviews
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -775,7 +737,6 @@ Returns all the reviews that belong to a spot specified by id.
     ```
 
 - Error response: Couldn't find a Spot with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -793,7 +754,6 @@ Create and return a new review for a spot specified by id.
 
 - Require Authentication: true
 - Request
-
   - Method: POST
   - URL: /api/spots/:spotId/reviews
   - Headers:
@@ -808,7 +768,6 @@ Create and return a new review for a spot specified by id.
     ```
 
 - Successful Response
-
   - Status Code: 201
   - Headers:
     - Content-Type: application/json
@@ -827,7 +786,6 @@ Create and return a new review for a spot specified by id.
     ```
 
 - Error Response: Body validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
@@ -844,7 +802,6 @@ Create and return a new review for a spot specified by id.
     ```
 
 - Error response: Couldn't find a Spot with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -857,7 +814,6 @@ Create and return a new review for a spot specified by id.
     ```
 
 - Error response: Review from the current user already exists for the Spot
-
   - Status Code: 500
   - Headers:
     - Content-Type: application/json
@@ -876,7 +832,6 @@ Create and return a new image for a review specified by id.
 - Require Authentication: true
 - Require proper authorization: Review must belong to the current user
 - Request
-
   - Method: POST
   - URL: /api/reviews/:reviewId/images
   - Headers:
@@ -890,7 +845,6 @@ Create and return a new image for a review specified by id.
     ```
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -904,7 +858,6 @@ Create and return a new image for a review specified by id.
     ```
 
 - Error response: Couldn't find a Review with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -918,7 +871,6 @@ Create and return a new image for a review specified by id.
 
 - Error response: Cannot add any more images because there is a maximum of 10
   images per resource
-
   - Status Code: 403
   - Headers:
     - Content-Type: application/json
@@ -937,7 +889,6 @@ Update and return an existing review.
 - Require Authentication: true
 - Require proper authorization: Review must belong to the current user
 - Request
-
   - Method: PUT
   - URL: /api/reviews/:reviewId
   - Headers:
@@ -952,7 +903,6 @@ Update and return an existing review.
     ```
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -971,7 +921,6 @@ Update and return an existing review.
     ```
 
 - Error Response: Body validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
@@ -988,7 +937,6 @@ Update and return an existing review.
     ```
 
 - Error response: Couldn't find a Review with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -1007,13 +955,11 @@ Delete an existing review.
 - Require Authentication: true
 - Require proper authorization: Review must belong to the current user
 - Request
-
   - Method: DELETE
   - URL: /api/reviews/:reviewId
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1026,7 +972,6 @@ Delete an existing review.
     ```
 
 - Error response: Couldn't find a Review with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -1046,13 +991,11 @@ Return all the bookings that the current user has made.
 
 - Require Authentication: true
 - Request
-
   - Method: GET
   - URL: /api/bookings/current
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1093,13 +1036,11 @@ Return all the bookings for a spot specified by id.
 
 - Require Authentication: true
 - Request
-
   - Method: GET
   - URL: /api/spots/:spotId/bookings
   - Body: none
 
 - Successful Response: If you ARE NOT the owner of the spot.
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1118,7 +1059,6 @@ Return all the bookings for a spot specified by id.
     ```
 
 - Successful Response: If you ARE the owner of the spot.
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1146,7 +1086,6 @@ Return all the bookings for a spot specified by id.
     ```
 
 - Error response: Couldn't find a Spot with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -1165,7 +1104,6 @@ Create and return a new booking from a spot specified by id.
 - Require Authentication: true
 - Require proper authorization: Spot must NOT belong to the current user
 - Request
-
   - Method: POST
   - URL: /api/spots/:spotId/bookings
   - Headers:
@@ -1180,7 +1118,6 @@ Create and return a new booking from a spot specified by id.
     ```
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1199,7 +1136,6 @@ Create and return a new booking from a spot specified by id.
     ```
 
 - Error response: Body validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
@@ -1216,7 +1152,6 @@ Create and return a new booking from a spot specified by id.
     ```
 
 - Error response: Couldn't find a Spot with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -1229,7 +1164,6 @@ Create and return a new booking from a spot specified by id.
     ```
 
 - Error response: Booking conflict
-
   - Status Code: 403
   - Headers:
     - Content-Type: application/json
@@ -1252,7 +1186,6 @@ Update and return an existing booking.
 - Require Authentication: true
 - Require proper authorization: Booking must belong to the current user
 - Request
-
   - Method: PUT
   - URL: /api/bookings/:bookingId
   - Headers:
@@ -1267,7 +1200,6 @@ Update and return an existing booking.
     ```
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1286,7 +1218,6 @@ Update and return an existing booking.
     ```
 
 - Error response: Body validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
@@ -1303,7 +1234,6 @@ Update and return an existing booking.
     ```
 
 - Error response: Couldn't find a Booking with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -1316,7 +1246,6 @@ Update and return an existing booking.
     ```
 
 - Error response: Can't edit a booking that's past the end date
-
   - Status Code: 403
   - Headers:
     - Content-Type: application/json
@@ -1329,7 +1258,6 @@ Update and return an existing booking.
     ```
 
 - Error response: Booking conflict
-
   - Status Code: 403
   - Headers:
     - Content-Type: application/json
@@ -1353,13 +1281,11 @@ Delete an existing booking.
 - Require proper authorization: Booking must belong to the current user or the
   Spot must belong to the current user
 - Request
-
   - Method: DELETE
   - URL: /api/bookings/:bookingId
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1372,7 +1298,6 @@ Delete an existing booking.
     ```
 
 - Error response: Couldn't find a Booking with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -1385,7 +1310,6 @@ Delete an existing booking.
     ```
 
 - Error response: Bookings that have been started can't be deleted
-
   - Status Code: 403
   - Headers:
     - Content-Type: application/json
@@ -1406,13 +1330,11 @@ Delete an existing image for a Spot.
 - Require Authentication: true
 - Require proper authorization: Spot must belong to the current user
 - Request
-
   - Method: DELETE
   - URL: /api/spot-images/:imageId
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1425,7 +1347,6 @@ Delete an existing image for a Spot.
     ```
 
 - Error response: Couldn't find a Spot Image with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -1444,13 +1365,11 @@ Delete an existing image for a Review.
 - Require Authentication: true
 - Require proper authorization: Review must belong to the current user
 - Request
-
   - Method: DELETE
   - URL: /api/review-images/:imageId
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1463,7 +1382,6 @@ Delete an existing image for a Review.
     ```
 
 - Error response: Couldn't find a Review Image with the specified id
-
   - Status Code: 404
   - Headers:
     - Content-Type: application/json
@@ -1481,7 +1399,6 @@ Return spots filtered by query parameters.
 
 - Require Authentication: false
 - Request
-
   - Method: GET
   - URL: /api/spots
   - Query Parameters
@@ -1496,7 +1413,6 @@ Return spots filtered by query parameters.
   - Body: none
 
 - Successful Response
-
   - Status Code: 200
   - Headers:
     - Content-Type: application/json
@@ -1529,7 +1445,6 @@ Return spots filtered by query parameters.
     ```
 
 - Error Response: Query parameter validation errors
-
   - Status Code: 400
   - Headers:
     - Content-Type: application/json
